@@ -1,0 +1,109 @@
+.card {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #eac082; /* Цвет границы */
+    border-radius: 12px; /* Закругление углов */
+    padding: 20px;
+    max-width: 500px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(255, 181, 92, 0.3);
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.courses-info {
+    color: #b3854a;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 5px 0 10px;
+    color: #4d2f14;
+}
+
+.card-list {
+    list-style: none;
+    padding: 0;
+}
+
+.card-list li {
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 15px;
+    color: #5c3c1f;
+}
+
+.card-list li::before {
+    content: "•";
+    color: #b3854a;
+    position: absolute;
+    left: 0;
+}
+
+.card-list a {
+    text-decoration: none;
+    color: #3d2a12;
+    font-weight: 500;
+}
+
+.card-list a:hover {
+    text-decoration: underline;
+    color: #e09e47;
+}
+
+.card-icon {
+    margin-left: 15px;
+}
+
+.card-icon img {
+    width: 50px;
+}
+
+.card-arrow {
+    border: none;
+    cursor: pointer;
+    background-color: rgba(255, 181, 92, 0.342);
+    padding: 10px 13px;
+    border-radius: 54px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    font-size: 24px;
+    color: #b3854a;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card-arrow:hover {
+    color: #2fac35;
+    background-color: #2fac3569;
+}
+.card:has(.card-arrow:hover) {
+    border-color: #2fac35;
+    box-shadow: 0 4px 15px rgba(255, 181, 92, 0.5);
+}
+
+
+
+
+
+
+
+
+
+.home__courses__contenteiner {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card_conteiner{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

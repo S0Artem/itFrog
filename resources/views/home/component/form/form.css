@@ -1,0 +1,75 @@
+.home__form__section{
+    margin-top: 80px;
+    height: fit-content;
+    position: relative; /* Позволяет ей выходить за границы main */
+    left: 50%; /* Смещаем влево на половину ширины main */
+    width: 100vw; /* Делаем ширину на весь экран */
+    transform: translateX(-50%); /* Возвращаем секцию на место */
+    background: #b3ff95;
+    padding: 100px 0 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home__form__contenteiner{
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+.form-container {
+    text-align: center;
+    max-width: 400px;
+}
+.form-container h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #0c0c0c;
+}
+.form-container p {
+    font-size: 14px;
+    color: #666;
+    margin: 15px 0;
+}
+.form-group {
+    margin: 10px 0;
+}
+
+
+.form-group input {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.phone-group {
+    display: flex;
+    gap: 10px;
+}
+.phone-group select, .phone-group input {
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+.btn {
+    margin-top: 20px;
+    width: fit-content;
+}
+.form-footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+}
+.form-footer a {
+    cursor: pointer;
+    color: #007bff;
+}

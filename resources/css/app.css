@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Добавил для более удобного контроля за размерами элементов */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Comfortaa", serif;;
+    width: 1280px;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+ul {
+    list-style: none;
+
+}
+
+a {
+    color: #7E7F86;
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #25202F;
+}
+
+
+
+/*Кнопка*/
+.btn {
+    width: 150px;
+    font-family: "Comfortaa", serif;;
+    padding: 8px 17px;
+    font-size: 16px;
+    border: 1.4px solid #000000;
+    background-color: white;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 17px;
+}
+.btn:hover {
+    border: 1.4px solid #33333300;
+    background-color: #2fac35;
+    color: white;
+}

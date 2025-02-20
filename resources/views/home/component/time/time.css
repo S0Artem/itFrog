@@ -1,0 +1,79 @@
+.home__time__section{
+    margin-top: 80px;
+}
+.home__time__contenteiner{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок */
+.home__time__contenteiner h2 {
+    margin: auto;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.home__time__contenteiner h2 span {
+    background: #5865F2;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+/* Контейнер заголовков */
+.timeline__titles {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.timeline__titles p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.highlight {
+    color: #5865F2;
+    font-weight: bold;
+}
+
+/* Линия с точками */
+.timeline__line {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.timeline__line::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 10px;
+    border-radius: 15px;
+    background: #6e79dd;
+    z-index: -1;
+}
+
+.timeline__circle {
+    width: 30px;
+    height: 30px;
+    border: 5px solid white;
+    background: #5865F2;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+/* Контейнер времени */
+.timeline__times {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    margin-top: 5px;
+}

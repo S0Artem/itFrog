@@ -1,0 +1,35 @@
+.home__banner__section{
+    margin-top: 50px;
+    position: relative; /* Позволяет ей выходить за границы main */
+    left: 50%; /* Смещаем влево на половину ширины main */
+    width: 100vw; /* Делаем ширину на весь экран */
+    transform: translateX(-50%); /* Возвращаем секцию на место */
+    background: #ffd495;
+    padding: 20px;
+    align-items: center;
+}
+.home__banner__contenteiner{
+    margin: 0 auto;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+}
+.home__banner__content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.home__banner__content img{
+    width: 100px;
+}
+.home__banner__section .btn{
+    width: 170px;
+    border-radius: 14px;
+    margin-top: 40px;
+    border: none;
+}
+.home__banner__content__text p{
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 20px;
+}
