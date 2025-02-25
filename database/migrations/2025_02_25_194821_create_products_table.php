@@ -8,13 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * Продукты
      */
     public function up(): void
     {
-        Schema::create('subsidiary', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('sity');
-            $table->string('adres');
+            $table->string('name');
+            $table->integer('volume');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subsidiary');
+        Schema::dropIfExists('products');
     }
 };

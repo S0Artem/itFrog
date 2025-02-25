@@ -8,18 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     * филиалы
      */
     public function up(): void
     {
-        Schema::create('progect_student', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')
-                ->constrained('student')
-                ->onDelete('cascade');
-            $table->foreignId('moduls_id')
-                ->constrained('moduls')
-                ->onDelete('cascade');
-            $table->string('progect');
+            $table->string('sity');
+            $table->string('adres');
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('progect_student');
+        Schema::dropIfExists('branches');
     }
 };
