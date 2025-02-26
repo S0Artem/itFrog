@@ -22,10 +22,14 @@ class DatabaseSeeder extends Seeder
             ['sity' => 'Chicago', 'adres' => '789 Lakeshore Dr']
         ]);
 
+        DB::table('employees')->insert([
+            ['id' => '1', 'branche_id' => '2'],
+        ]);
+
         DB::table('aplications')->insert([
-            ['number' => 'A123', 'name' => 'John Doe', 'age' => 18, 'branche_id' => 1],
-            ['number' => 'B456', 'name' => 'Jane Doe', 'age' => 20, 'branche_id' => 2],
-            ['number' => 'C789', 'name' => 'Mike Smith', 'age' => 22, 'branche_id' => 3]
+            ['number' => 'A123', 'name' => 'John Doe', 'age' => 18, 'branche_id' => 1, 'employee_id' => '1'],
+            ['number' => 'B456', 'name' => 'Jane Doe', 'age' => 20, 'branche_id' => 2, 'employee_id' => '1'],
+            ['number' => 'C789', 'name' => 'Mike Smith', 'age' => 22, 'branche_id' => 3, 'employee_id' => '1']
         ]);
         
         DB::table('students')->insert([
@@ -59,9 +63,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('lesson_assessments')->insert([
-            ['grade' => 85, 'description' => 'Good', 'lesson_id' => 1, 'student_id' => 1, 'user_id' => 1],
-            ['grade' => 90, 'description' => 'Very Good', 'lesson_id' => 2, 'student_id' => 2, 'user_id' => 2],
-            ['grade' => 95, 'description' => 'Excellent', 'lesson_id' => 3, 'student_id' => 3, 'user_id' => 3]
+            ['grade' => 85, 'description' => 'Good', 'lesson_id' => 1, 'student_id' => 1, 'employee_id' => 1],
+            ['grade' => 90, 'description' => 'Very Good', 'lesson_id' => 2, 'student_id' => 2, 'employee_id' => 1],
+            ['grade' => 95, 'description' => 'Excellent', 'lesson_id' => 3, 'student_id' => 3, 'employee_id' => 1]
         ]);
 
         DB::table('groups')->insert([
@@ -71,9 +75,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('group_teachers')->insert([
-            ['user_id' => 1, 'group_id' => 1],
-            ['user_id' => 2, 'group_id' => 2],
-            ['user_id' => 3, 'group_id' => 3]
+            ['employee_id' => 1, 'group_id' => 1],
+            ['employee_id' => 1, 'group_id' => 2],
+            ['employee_id' => 1, 'group_id' => 3]
         ]);
 
         DB::table('transactions')->insert([

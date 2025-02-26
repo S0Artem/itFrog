@@ -23,6 +23,12 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('students')
                 ->onDelete('cascade');
+
+            $table->foreignId('employee_id')
+                ->nullable()
+                ->constrained('employees')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
