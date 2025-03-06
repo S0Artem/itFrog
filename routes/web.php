@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControllerHome;
 
-Route::get('/', function () {
-    return view('home.home');
-});
+
+Route::get('/', [ControllerHome::class, 'showeHome'])->name('showeHome');

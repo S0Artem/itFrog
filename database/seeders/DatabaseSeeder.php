@@ -44,11 +44,38 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Product C', 'volume' => 15]
         ]);
 
-        DB::table('moduls')->insert([
-            ['name' => 'Module 1', 'description' => 'Introduction', 'lesson' => 5],
-            ['name' => 'Module 2', 'description' => 'Advanced', 'lesson' => 8],
-            ['name' => 'Module 3', 'description' => 'Expert', 'lesson' => 10]
+
+
+
+        DB::table('directions')->insert([
+            ['name' => '3D моделирование', 'description' => 'Тут большой текст чтобы на странице этого напровления ьыло много инфы про напровление', 'photo' => 'Тут много фото об этом напровление в виде массива будет и будут выводиться на странице', 'icon' => 'img/icon_stud.png'],
+            ['name' => '3D моделирование старших групп', 'description' => 'Тут большой текст чтобы на странице этого напровления ьыло много инфы про напровление', 'photo' => 'Тут много фото об этом напровление в виде массива будет и будут выводиться на странице', 'icon' => 'img/icon_stud.png'],
+            ['name' => 'Создание сайтов', 'description' => 'Тут большой текст чтобы на странице этого напровления ьыло много инфы про напровление', 'photo' => 'Тут много фото об этом напровление в виде массива будет и будут выводиться на странице', 'icon' => 'img/icon_stud.png'],
+            ['name' => 'Создание игр', 'description' => 'Тут большой текст чтобы на странице этого напровления ьыло много инфы про напровление', 'photo' => 'Тут много фото об этом напровление в виде массива будет и будут выводиться на странице', 'icon' => 'img/icon_stud.png'],
+            ['name' => 'Создание игр старших групп', 'description' => 'Тут большой текст чтобы на странице этого напровления ьыло много инфы про напровление', 'photo' => 'Тут много фото об этом напровление в виде массива будет и будут выводиться на странице', 'icon' => 'img/icon_stud.png'],
         ]);
+        DB::table('moduls')->insert([
+            ['name' => 'Blender создание моделей1', 'description' => 'Introduction', 'lesson' => 8, 'direction_id' => '1'],
+            ['name' => '3D-max создание дизайна2', 'description' => 'Advanced', 'lesson' => 16, 'direction_id' => '1'],
+            ['name' => 'Blender создание анимаций3', 'description' => 'Expert', 'lesson' => 3,  'direction_id' => '1'],
+            ['name' => 'Blender создание моделей4', 'description' => 'Introduction', 'lesson' => 7, 'direction_id' => '2'],
+            ['name' => '3D-max создание дизайна5', 'description' => 'Advanced', 'lesson' => 26, 'direction_id' => '2'],
+            ['name' => 'Blender создание анимаций6', 'description' => 'Expert', 'lesson' => 3,  'direction_id' => '2'],
+            ['name' => 'Blender создание моделей7', 'description' => 'Introduction', 'lesson' => 5, 'direction_id' => '3'],
+            ['name' => '3D-max создание дизайна8', 'description' => 'Advanced', 'lesson' => 8, 'direction_id' => '3'],
+            ['name' => 'Blender создание анимаций9', 'description' => 'Expert', 'lesson' => 10,  'direction_id' => '3'],
+            ['name' => 'Blender создание моделей10', 'description' => 'Introduction', 'lesson' => 5, 'direction_id' => '4'],
+            ['name' => '3D-max создание дизайна11', 'description' => 'Advanced', 'lesson' => 17, 'direction_id' => '4'],
+            ['name' => 'Blender создание анимаций12', 'description' => 'Expert', 'lesson' => 10,  'direction_id' => '4'],
+            ['name' => 'Blender создание моделей13', 'description' => 'Introduction', 'lesson' => 5, 'direction_id' => '5'],
+            ['name' => '3D-max создание дизайна14', 'description' => 'Advanced', 'lesson' => 6, 'direction_id' => '5'],
+            ['name' => 'Blender создание анимаций15', 'description' => 'Expert', 'lesson' => 10,  'direction_id' => '5'],
+            ['name' => 'Blender создание анимаций16', 'description' => 'Expert', 'lesson' => 26,  'direction_id' => '5'],
+            ['name' => 'Blender создание анимаций17', 'description' => 'Expert', 'lesson' => 14,  'direction_id' => '5']
+        ]);
+
+
+
 
         DB::table('student_progects')->insert([
             ['progect' => 'Website', 'student_id' => 1, 'modul_id' => 1],
