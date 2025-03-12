@@ -11,13 +11,13 @@
 <body>
     <header class="header">
         <div class="logo">
-            <a href="#"><img src="{{ asset('img/logo.svg') }}" alt="Logo" /></a>
+            <a href="{{ route('showeHome') }}"><img src="{{ asset('img/logo.svg') }}" alt="Logo" /></a>
         </div>
         <ul class="header__ul">
-            <li>Записаться</li>
-            <li>Курсы</li>
-            <li>Преподователи</li>
-            <li>Отзывы</li>
+            <li><a href="#">Записаться</a></li>
+            <li><a href="#">Курсы</a></li>
+            <li><a href="#">Преподователи</a></li>
+            <li><a href="#">Отзывы</a></li>
         </ul>
         <ul class="header__ul">
             <div class="dropdown" id="dropdown">
@@ -30,7 +30,13 @@
                     <li class="dropdown__menu__item" id="Moskow">Москва</li>
                 </ul>
             </div>
-            <li>Вход</li>
+            @if (!Auth::check())
+                <a href="{{ route('showeLogin') }}">Вход</a>
+            @else
+                <a href={{ route("showeProfil") }}>Личный кабинет</a>
+                <a href="{{ route('logout') }}">Выйти</a>
+            @endif
+
         </ul>
     </header>
     {{ $slot }}

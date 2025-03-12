@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('modul_id')
                 ->constrained('moduls')
                 ->onDelete('cascade');
+            $table->string('video');
             $table->timestamps();
         });
     }

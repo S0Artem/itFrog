@@ -1,0 +1,164 @@
+.home__portfolio__section {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.video {
+    margin-top: 30px;
+    max-width: 60%;
+    border-radius: 15px 15px 0 0;
+}
+
+.portfolio__info {
+    background: #b3ff95;
+    padding: 20px;
+    border-radius: 0 0 15px 15px;
+    max-width: 60%;
+}
+
+.portfolio__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.tag {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #2fac35;
+    color: white;
+}
+
+/* Стили для стрелок */
+.slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px 15px;
+    z-index: 10;
+    transition: background 0.3s ease-in-out;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+.prev:hover, .next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.home__portfolio__section h2{
+    font-size: 32px;
+}
+.studentProgectChangeForm{
+    gap: 40px;
+    width: 100%;
+}
+.studentProgectChangeForm .form-group textarea{
+    width: 60%;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.studentProgectChangeForm .form-group textarea:focus {
+    border-color: #2fac35;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Стили для select */
+.form-select {
+    width: 60%;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    appearance: none; /* Убираем стандартную стрелку */
+    -webkit-appearance: none; /* Для Safari */
+    -moz-appearance: none; /* Для Firefox */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    border-color: #2fac35;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Стрелка для кастомного select */
+.form-select::after {
+    content: '\f0d7'; /* Стрелка вниз */
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #333;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Стили для options */
+.form-select option {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+.form-select option:hover {
+    background-color: #e6e6e6;
+}
+
+.form-select option:checked {
+    background-color: #2fac35;
+    color: white;
+}
+
+
+
+

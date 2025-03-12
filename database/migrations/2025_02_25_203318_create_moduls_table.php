@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('direction_id')
                 ->constrained('directions')
                 ->onDelete('cascade');
+            $table->json('tags');
             $table->timestamps();
         });
     }

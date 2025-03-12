@@ -12,7 +12,12 @@
 .header__ul li{
     cursor: pointer;
 }
-
+.header a, .dropdown__address{
+    color: black;
+}
+.header a:hover, .dropdown__address:hover{
+    color: rgb(80, 79, 79);
+}
 
 
 .dropdown{

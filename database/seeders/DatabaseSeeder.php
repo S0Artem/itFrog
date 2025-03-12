@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
             ['name' => 'Alice', 'email' => 'alice@example.com', 'login' => 'alice123', 'password' => Hash::make('password'), 'role' => 'admin'],
+            ['name' => 'Alice', 'email' => 'alice@example.com', 'login' => '123', 'password' => Hash::make('123'), 'role' => 'user'],
+            ['name' => 'Alice', 'email' => 'alice@example.com', 'login' => '321', 'password' => Hash::make('321'), 'role' => 'admin'],
             ['name' => 'Bob', 'email' => 'bob@example.com', 'login' => 'bob321', 'password' => Hash::make('password'), 'role' => 'user'],
             ['name' => 'Charlie', 'email' => 'charlie@example.com', 'login' => 'charlie456', 'password' => Hash::make('password'), 'role' => 'user']
         ]);
@@ -33,9 +35,9 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('students')->insert([
-            ['age' => 18, 'branche_id' => 1, 'user_id' => 2, 'aplication_id' => 1],
-            ['age' => 20, 'branche_id' => 2, 'user_id' => 3, 'aplication_id' => 2],
-            ['age' => 22, 'branche_id' => 3, 'user_id' => 1, 'aplication_id' => 3]
+            ['age' => 18, 'branche_id' => 1, 'user_id' => 2, 'aplication_id' => 1, 'name' => 'Софронов Артем'],
+            ['age' => 20, 'branche_id' => 2, 'user_id' => 3, 'aplication_id' => 2, 'name' => 'Сефронов Артем'],
+            ['age' => 22, 'branche_id' => 3, 'user_id' => 1, 'aplication_id' => 3, 'name' => 'Сафронов Артем']
         ]);
 
         DB::table('products')->insert([
@@ -55,32 +57,32 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Создание игр старших групп', 'description' => 'Тут большой текст чтобы на странице этого напровления ьыло много инфы про напровление', 'photo' => 'Тут много фото об этом напровление в виде массива будет и будут выводиться на странице', 'icon' => 'img/icon_stud.png'],
         ]);
         DB::table('moduls')->insert([
-            ['name' => 'Blender создание моделей1', 'description' => 'Introduction', 'lesson' => 8, 'direction_id' => '1'],
-            ['name' => '3D-max создание дизайна2', 'description' => 'Advanced', 'lesson' => 16, 'direction_id' => '1'],
-            ['name' => 'Blender создание анимаций3', 'description' => 'Expert', 'lesson' => 3,  'direction_id' => '1'],
-            ['name' => 'Blender создание моделей4', 'description' => 'Introduction', 'lesson' => 7, 'direction_id' => '2'],
-            ['name' => '3D-max создание дизайна5', 'description' => 'Advanced', 'lesson' => 26, 'direction_id' => '2'],
-            ['name' => 'Blender создание анимаций6', 'description' => 'Expert', 'lesson' => 3,  'direction_id' => '2'],
-            ['name' => 'Blender создание моделей7', 'description' => 'Introduction', 'lesson' => 5, 'direction_id' => '3'],
-            ['name' => '3D-max создание дизайна8', 'description' => 'Advanced', 'lesson' => 8, 'direction_id' => '3'],
-            ['name' => 'Blender создание анимаций9', 'description' => 'Expert', 'lesson' => 10,  'direction_id' => '3'],
-            ['name' => 'Blender создание моделей10', 'description' => 'Introduction', 'lesson' => 5, 'direction_id' => '4'],
-            ['name' => '3D-max создание дизайна11', 'description' => 'Advanced', 'lesson' => 17, 'direction_id' => '4'],
-            ['name' => 'Blender создание анимаций12', 'description' => 'Expert', 'lesson' => 10,  'direction_id' => '4'],
-            ['name' => 'Blender создание моделей13', 'description' => 'Introduction', 'lesson' => 5, 'direction_id' => '5'],
-            ['name' => '3D-max создание дизайна14', 'description' => 'Advanced', 'lesson' => 6, 'direction_id' => '5'],
-            ['name' => 'Blender создание анимаций15', 'description' => 'Expert', 'lesson' => 10,  'direction_id' => '5'],
-            ['name' => 'Blender создание анимаций16', 'description' => 'Expert', 'lesson' => 26,  'direction_id' => '5'],
-            ['name' => 'Blender создание анимаций17', 'description' => 'Expert', 'lesson' => 14,  'direction_id' => '5']
+            ['name' => 'Blender создание моделей1', 'description' => 'Этот курс обучает основам 3D-моделирования в Blender.', 'lesson' => 8, 'direction_id' => '1', 'tags' => json_encode(["#Blender", "#3DМоделирование", "#Blender3D", "#CGI", "#3DАнимация", "#3DАнимация", "#3DАнимация","#3DАнимация","#3DАнимация"])],
+            ['name' => '3D-max создание дизайна2', 'description' => 'Курс по созданию 3D-дизайна и визуализации интерьеров в 3ds Max.', 'lesson' => 16, 'direction_id' => '1', 'tags' => json_encode(["#3dsMax", "#3DГрафика", "#Визуализация", "#АрхитектурнаяВизуализация"])],
+            ['name' => 'Blender создание анимаций3', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 3, 'direction_id' => '1', 'tags' => json_encode(["#Blender", "#BlenderАнимация", "#3DАнимация", "#CGI", "#VFX"])],
+            ['name' => 'Blender создание моделей4', 'description' => 'Этот курс обучает основам 3D-моделирования в Blender.', 'lesson' => 7, 'direction_id' => '2', 'tags' => json_encode(["#Blender", "#3DМоделирование", "#Blender3D", "#CGI"])],
+            ['name' => '3D-max создание дизайна5', 'description' => 'Курс по созданию 3D-дизайна и визуализации интерьеров в 3ds Max.', 'lesson' => 26, 'direction_id' => '2', 'tags' => json_encode(["#3dsMax", "#3DГрафика", "#АрхитектурнаяВизуализация"])],
+            ['name' => 'Blender создание анимаций6', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 3, 'direction_id' => '2', 'tags' => json_encode(["#Blender", "#BlenderАнимация", "#3DАнимация", "#CGI"])],
+            ['name' => 'Blender создание моделей7', 'description' => 'Этот курс обучает основам 3D-моделирования в Blender.', 'lesson' => 5, 'direction_id' => '3', 'tags' => json_encode(["#Blender", "#3DМоделирование", "#LowPolyАрт"])],
+            ['name' => '3D-max создание дизайна8', 'description' => 'Курс по созданию 3D-дизайна и визуализации интерьеров в 3ds Max.', 'lesson' => 8, 'direction_id' => '3', 'tags' => json_encode(["#3dsMax", "#3DГрафика", "#Рендеринг"])],
+            ['name' => 'Blender создание анимаций9', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 10, 'direction_id' => '3', 'tags' => json_encode(["#Blender", "#BlenderАнимация", "#3DАнимация"])],
+            ['name' => 'Blender создание моделей10', 'description' => 'Этот курс обучает основам 3D-моделирования в Blender.', 'lesson' => 5, 'direction_id' => '4', 'tags' => json_encode(["#Blender", "#3DМоделирование", "#CGI"])],
+            ['name' => '3D-max создание дизайна11', 'description' => 'Курс по созданию 3D-дизайна и визуализации интерьеров в 3ds Max.', 'lesson' => 17, 'direction_id' => '4', 'tags' => json_encode(["#3dsMax", "#АрхитектурнаяВизуализация", "#Визуализация"])],
+            ['name' => 'Blender создание анимаций12', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 10, 'direction_id' => '4', 'tags' => json_encode(["#Blender", "#BlenderАнимация", "#Рендеринг"])],
+            ['name' => 'Blender создание моделей13', 'description' => 'Этот курс обучает основам 3D-моделирования в Blender.', 'lesson' => 5, 'direction_id' => '5', 'tags' => json_encode(["#Blender", "#3DМоделирование", "#BlenderCycles"])],
+            ['name' => '3D-max создание дизайна14', 'description' => 'Курс по созданию 3D-дизайна и визуализации интерьеров в 3ds Max.', 'lesson' => 6, 'direction_id' => '5', 'tags' => json_encode(["#3dsMax", "#3DГрафика", "#ГрафическийДизайн"])],
+            ['name' => 'Blender создание анимаций15', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 10, 'direction_id' => '5', 'tags' => json_encode(["#Blender", "#3DАнимация", "#CGI"])],
+            ['name' => 'Blender создание анимаций16', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 26, 'direction_id' => '5', 'tags' => json_encode(["#Blender", "#МоушнДизайн", "#3DАнимация"])],
+            ['name' => 'Blender создание анимаций17', 'description' => 'Обучение основам 3D-анимации в Blender.', 'lesson' => 14, 'direction_id' => '5', 'tags' => json_encode(["#Blender", "#VFX", "#Рендеринг"])]
         ]);
 
 
 
 
         DB::table('student_progects')->insert([
-            ['progect' => 'Website', 'student_id' => 1, 'modul_id' => 1],
-            ['progect' => 'App', 'student_id' => 2, 'modul_id' => 2],
-            ['progect' => 'Game', 'student_id' => 3, 'modul_id' => 3]
+            ['progect' => 'Я научился делать проекты в Blender, сделал этот проект за 22 урока, моздал модель, дал ей текстуры и сделал анимации', 'student_id' => 1, 'modul_id' => 1, 'video' => 'img/student_progect_1.gif'],
+            ['progect' => 'Я научился делать проекты в Blender, сделал этот проект за 22 урока, моздал модель, дал ей текстуры и сделал анимации', 'student_id' => 2, 'modul_id' => 2, 'video' => 'img/student_progect_1.gif'],
+            ['progect' => 'Я научился делать проекты в Blender, сделал этот проект за 22 урока, моздал модель, дал ей текстуры и сделал анимации', 'student_id' => 3, 'modul_id' => 3, 'video' => 'img/student_progect_1.gif']
         ]);
 
         DB::table('lessons')->insert([
