@@ -4,18 +4,19 @@
         <div class="form-container">
             <h2>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</h2>
             <p>Оставьте контакты, и менеджеры учебного отдела помогут Вам подобрать курс</p>
-            <form>
+            <form action="{{ route('aplication.store') }}" method="POST">
+                @csrf
                 <div class="form-group">
-                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="text" name="name" placeholder="Ваше имя" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Электронная почта" required>
+                    <input type="email" name="email" placeholder="Электронная почта" required>
                 </div>
                 <div class="form-group phone-group">
                     <select>
                         <option>RU</option>
                     </select>
-                    <input type="tel" placeholder="+7" required>
+                    <input type="number" name="number" placeholder="+7" required>
                 </div>
                 <button type="submit" class="btn">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
             </form>

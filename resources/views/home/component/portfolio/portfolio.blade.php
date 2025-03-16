@@ -8,14 +8,15 @@
         <button class="prev">&#10094;</button> <!-- Левая стрелка -->
         <div class="slider-container">
             @foreach ($student_projects as $project)
-                <div class="slide">
+                <<div class="slide">
                     @if(Str::endsWith($project->video, '.gif'))
-                        <img src="{{ asset($project->video) }}" alt="GIF-анимация" class="video">
+                        <img src="{{ asset($project->video) }}" alt="GIF-анимация видеотчета проекта ребенка" class="video">
                     @else
                         <video src="{{ asset($project->video) }}" controls></video>
                     @endif
                     <div class="portfolio__info">
                         <div class="portfolio__tags">
+                            <span class="tag yellow">{{ $project->id }}</span>
                             @foreach ($project->tags as $tag)
                                 <span class="tag yellow">{{ $tag }}</span>
                             @endforeach

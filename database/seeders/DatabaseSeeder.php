@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('aplications')->insert([
-            ['number' => 'A123', 'name' => 'John Doe', 'age' => 18, 'branche_id' => 1, 'employee_id' => '1'],
-            ['number' => 'B456', 'name' => 'Jane Doe', 'age' => 20, 'branche_id' => 2, 'employee_id' => '1'],
-            ['number' => 'C789', 'name' => 'Mike Smith', 'age' => 22, 'branche_id' => 3, 'employee_id' => '1']
+            ['number' => 'A123', 'name' => 'John Doe', 'branche_id' => 1, 'employee_id' => '1', 'email' => 'gmail@gmail.com', 'status' => 'Отказ'],
+            ['number' => 'B456', 'name' => 'Jane Doe', 'branche_id' => 2, 'employee_id' => '1', 'email' => 'gmail@gmail.com', 'status' => 'Новая'],
+            ['number' => 'C789', 'name' => 'Mike Smith', 'branche_id' => 3, 'employee_id' => '1', 'email' => 'gmail@gmail.com', 'status' => 'Новая']
         ]);
         
         DB::table('students')->insert([

@@ -1,6 +1,6 @@
-<!-- Подключаем Swiper.js -->
-@vite(['resources/views/profilAdmin/component/portfolio/portfolio.css'])
-@vite(['resources/views/profilAdmin/component/portfolio/portfolio.js'])
+<x-layout>
+@vite(['resources/views/adminPortfolio/portfolio.css'])
+@vite(['resources/views/adminPortfolio/portfolio.js'])
 
 <section class="home__portfolio__section">
     <h2>Портфолио наших студентов</h2>
@@ -10,7 +10,7 @@
             @foreach ($student_projects as $project)
                 <div class="slide">
                     @if(Str::endsWith($project->video, '.gif'))
-                        <img src="{{ asset($project->video) }}" alt="GIF-анимация" class="video">
+                        <img src="{{ asset($project->video) }}" alt="GIF-анимация видеотчета проекта ребенка" class="video">
                     @else
                         <video src="{{ asset($project->video) }}" controls></video>
                     @endif
@@ -71,3 +71,5 @@
     </div>
 </section>
 
+
+</x-layout>

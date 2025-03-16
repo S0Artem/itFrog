@@ -5,27 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\StudentProgect;
 use App\Models\Student;
+use App\Models\Aplication;
 
 class ControllerAdmin extends Controller
 {
-    function showeAdmin(){
-
+    function showeAdminPortfolio(){
         $student_projects = StudentProgect::with('student', 'modul')->get();
-
-        $student_projects = StudentProgect::with('student', 'modul')->get();
-
         $student_projects = $student_projects->map(function ($project) {
-            $project->student_name = optional($project->student)->name ?? 'Неизвестно'; 
-            $project->student_age = optional($project->student)->age ?? 'Неизвестно'; 
+            $project->student_name = optional($project->student)->name; 
+            $project->student_age = optional($project->student)->age; 
             $project->tags = json_decode(optional($project->modul)->tags ?? '[]', true);
-            $project->progect = $project->progect ?? 'Описание отсутствует';
+            $project->progect = $project->progect;
             return $project;
         });
-
         $students = Student::all(); // Получаем всех детей для выпадающего списка
-
-        
-        return view('profilAdmin.profilAdmin', compact('student_projects', 'students'));
+        return view('adminPortfolio.portfolio', compact('student_projects', 'students'));
+    }
+    function showeAdminAplication(){
+        $aplications = Aplication::all(); // Получаем завки пользоватлей
+        return view('adminAplication.aplication', compact('aplications'));
     }
     function studentProgectChange(Request $request){
         $messages = [
@@ -45,6 +43,19 @@ class ControllerAdmin extends Controller
         $student_projects->save();
     
         // Перенаправляем или возвращаем ответ
-        return redirect()->route('showeAdmin');
+        return redirect()->route('showeAdminPortfolio');
+    }
+    public function aplicationChange(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:Новая,В работе,Отказ,Обработана',
+        ]);
+
+        $aplication = Aplication::findOrFail($id);
+
+        $aplication->status = $request->input('status');
+        $aplication->save();
+
+        return redirect()->route('showeAdminAplication');
     }
 }

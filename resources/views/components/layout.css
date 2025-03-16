@@ -12,44 +12,15 @@
 .header__ul li{
     cursor: pointer;
 }
-.header a, .dropdown__address{
+header a{
     color: black;
 }
-.header a:hover, .dropdown__address:hover{
+header a:hover{
     color: rgb(80, 79, 79);
 }
 
-
-.dropdown{
-    cursor: pointer;
+.header_admin{
+    gap: 20px;
+    display: flex;
+    justify-content: flex-end
 }
-.dropdown__menu{
-    display: none;
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    list-style: none;
-    padding: 0;
-    margin: 5px 0 0;
-}
-.open{
-    display: block;
-}
-.dropdown__menu__item{
-    color: rgb(73, 73, 73);
-}
-.dropdown__menu__item:hover{
-    color: rgb(0, 0, 0);
-}
-
-
-
-
-
-
-
-
-

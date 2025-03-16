@@ -21,15 +21,12 @@ class ControllerHome extends Controller
 
 
         $student_projects = StudentProgect::with('student', 'modul')->get();
-
-        $student_projects = StudentProgect::with('student', 'modul')->get();
-
         $student_projects = $student_projects->map(function ($project) {
-            $project->student_name = optional($project->student)->name ?? 'Неизвестно'; 
-            $project->student_age = optional($project->student)->age ?? 'Неизвестно'; 
-            $project->tags = array_slice(json_decode(optional($project->modul)->tags ?? '[]', true), 0, 2); 
-            $project->progect = $project->progect ?? 'Описание отсутствует';
-
+            $project->student_name = optional($project->student)->name; 
+            $project->student_age = optional($project->student)->age;
+            $project->tags = json_decode(optional($project->modul)->tags ?? '[]', true); 
+            $project->progect = $project->progect;
+            
             return $project;
         });
         

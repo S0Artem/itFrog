@@ -9,35 +9,33 @@
     @vite('resources/views/components/layout.js')
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <a href="{{ route('showeHome') }}"><img src="{{ asset('img/logo.svg') }}" alt="Logo" /></a>
-        </div>
-        <ul class="header__ul">
-            <li><a href="#">Записаться</a></li>
-            <li><a href="#">Курсы</a></li>
-            <li><a href="#">Преподователи</a></li>
-            <li><a href="#">Отзывы</a></li>
-        </ul>
-        <ul class="header__ul">
-            <div class="dropdown" id="dropdown">
-                <div class="dropdown__address" id="dropdown__address">
-                    <span>Набережные Челны</span>
-                </div>
-                <ul class="dropdown__menu" id="dropdown__menu">
-                    <li class="dropdown__menu__item" id="Kazan">Казань</li>
-                    <li class="dropdown__menu__item" id="Novosibirsk">Новосибирск</li>
-                    <li class="dropdown__menu__item" id="Moskow">Москва</li>
-                </ul>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="{{ route('showeHome') }}"><img src="{{ asset('img/logo.svg') }}" alt="Logo" /></a>
             </div>
-            @if (!Auth::check())
-                <a href="{{ route('showeLogin') }}">Вход</a>
-            @else
-                <a href={{ route("showeProfil") }}>Личный кабинет</a>
-                <a href="{{ route('logout') }}">Выйти</a>
+            <ul class="header__ul">
+                <li><a href="#">Записаться</a></li>
+                <li><a href="#">Курсы</a></li>
+                <li><a href="#">Преподователи</a></li>
+                <li><a href="#">Отзывы</a></li>
+            </ul>
+            <ul class="header__ul">
+                @if (!Auth::check())
+                    <a href="{{ route('showeLogin') }}">Вход</a>
+                @else
+                    <a href={{ route("showeProfil") }}>Личный кабинет</a>
+                    <a href="{{ route('logout') }}">Выйти</a>
+                @endif
+    
+            </ul>
+        </div>
+        <div class="header_admin">
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <a href="{{ route('showeAdminPortfolio') }}">Портфолио</a>
+                <a href="{{ route('showeAdminAplication') }}">Заявки</a>
             @endif
-
-        </ul>
+        </div>
     </header>
     {{ $slot }}
 </body>
