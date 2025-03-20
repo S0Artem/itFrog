@@ -20,7 +20,20 @@ header a:hover{
 }
 
 .header_admin{
+    margin-bottom: 40px;
+    position: relative; /* Позволяет ей выходить за границы main */
+    left: 50%; /* Смещаем влево на половину ширины main */
+    width: 100vw; /* Делаем ширину на весь экран */
+    transform: translateX(-50%); /* Возвращаем секцию на место */
+    background: #ffe4bd;
+    padding: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.header_admin_content{
+    width: 1280px;
     gap: 20px;
     display: flex;
-    justify-content: flex-end
+    justify-content: flex-end;
 }

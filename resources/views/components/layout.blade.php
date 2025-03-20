@@ -24,17 +24,19 @@
                 @if (!Auth::check())
                     <a href="{{ route('showeLogin') }}">Вход</a>
                 @else
-                    <a href={{ route("showeProfil") }}>Личный кабинет</a>
                     <a href="{{ route('logout') }}">Выйти</a>
                 @endif
     
             </ul>
         </div>
         <div class="header_admin">
-            @if (Auth::check() && Auth::user()->role === 'admin')
+            <div class="header_admin_content">
+                @if (Auth::check() && Auth::user()->role === 'admin')
                 <a href="{{ route('showeAdminPortfolio') }}">Портфолио</a>
                 <a href="{{ route('showeAdminAplication') }}">Заявки</a>
-            @endif
+                <a href="{{ route('showeAdminRegister') }}">Регистрация</a>
+                @endif
+            </div>
         </div>
     </header>
     {{ $slot }}

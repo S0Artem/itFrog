@@ -9,18 +9,17 @@
         <div class="slider-container">
             @foreach ($student_projects as $project)
                 <div class="slide">
-                    @if(Str::endsWith($project->video, '.gif'))
+                    @if(Str::endsWith($project->video, ['.gif', '.png', '.jpg', '.jpeg', '.webp']))
                         <img src="{{ asset($project->video) }}" alt="GIF-анимация видеотчета проекта ребенка" class="video">
                     @else
                         <video src="{{ asset($project->video) }}" controls></video>
                     @endif
                     <div class="portfolio__info">
                         <div class="portfolio__tags">
-                            <span class="tag yellow">{{ $project->id }}</span>
                             @foreach ($project->tags as $tag)
                                 <span class="tag yellow">{{ $tag }}</span>
                             @endforeach
-                            <span class="tag yellow">{{ $project->student_age }}</span>
+                            <span class="tag yellow">{{ $project->student_age }} лет</span>
                         </div>
                         <h3>{{ $project->student_name }}</h3>
                         <p>{{ $project->progect }}</p>

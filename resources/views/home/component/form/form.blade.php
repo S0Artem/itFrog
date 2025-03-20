@@ -1,4 +1,5 @@
 @vite(['resources/views/home/component/form/form.css'])
+@vite(['resources/views/home/component/form/form.js'])
 <section class="home__form__section">
     <div class="home__form__contenteiner">
         <div class="form-container">
@@ -12,11 +13,8 @@
                 <div class="form-group">
                     <input type="email" name="email" placeholder="Электронная почта" required>
                 </div>
-                <div class="form-group phone-group">
-                    <select>
-                        <option>RU</option>
-                    </select>
-                    <input type="number" name="number" placeholder="+7" required>
+                <div class="form-group">
+                    <input type="text" id="phone" name="number" placeholder="+7 (___) ___-__-__" required>
                 </div>
                 <button type="submit" class="btn">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
             </form>

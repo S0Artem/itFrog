@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ControllerProfil;
 use App\Http\Controllers\ControllerAdmin;
 use App\Http\Controllers\ControllerAplication;
+use App\Http\Controllers\ControllerRegister;
 
 
 Route::get('/', [ControllerHome::class, 'showeHome'])->name('showeHome');
@@ -22,3 +23,4 @@ Route::get('/profil/admin/potfolio', [ControllerAdmin::class, 'showeAdminPortfol
 Route::put('/profil/admin/potfolio/change', [ControllerAdmin::class, 'studentProgectChange'])->name('studentProgectChange');
 Route::get('/profil/admin/aplication', [ControllerAdmin::class, 'showeAdminAplication'])->name('showeAdminAplication');
 Route::put('/admin/aplications/{id}/change', [ControllerAdmin::class, 'aplicationChange'])->name('aplicationChange');
+Route::get('/profil/admin/register', [ControllerRegister::class, 'showeAdminRegister'])->name('showeAdminRegister');

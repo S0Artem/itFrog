@@ -17,6 +17,18 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'email_verified_at',
+        'two_factor_expires_at',
+
+
+    ];
+
+
+
     protected $fillable = [
         'name', 'email', 'login', 'password', 'role'
     ];

@@ -1,7 +1,6 @@
 .home__portfolio__section {
     text-align: center;
     padding: 50px 0;
-    background-color: #f8f8f8;
 }
 
 .slider {
@@ -28,12 +27,17 @@
 }
 
 .video {
+    height: 432px;
     margin-top: 30px;
     max-width: 60%;
     border-radius: 15px 15px 0 0;
 }
 
 .portfolio__info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
     background: #b3ff95;
     padding: 20px;
     border-radius: 0 0 15px 15px;

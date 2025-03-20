@@ -1,7 +1,6 @@
 .home__portfolio__section {
     text-align: center;
     padding: 50px 0;
-    background-color: #f8f8f8;
 }
 
 .slider {
@@ -28,12 +27,16 @@
 }
 
 .video {
-    margin-top: 30px;
+    height: 432px;
     max-width: 60%;
     border-radius: 15px 15px 0 0;
 }
 
 .portfolio__info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
     background: #b3ff95;
     padding: 20px;
     border-radius: 0 0 15px 15px;
@@ -88,11 +91,16 @@
 }
 
 .home__portfolio__section h2{
+    margin-bottom: 20px;
     font-size: 32px;
 }
 .studentProgectChangeForm{
-    gap: 40px;
+    margin-top: 20px;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
 }
 .studentProgectChangeForm .form-group textarea{
     width: 60%;
@@ -159,6 +167,8 @@
     color: white;
 }
 
-
+.btn-primary{
+    margin: auto;
+}
 
 
