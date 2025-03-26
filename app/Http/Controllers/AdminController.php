@@ -7,7 +7,7 @@ use App\Models\StudentProgect;
 use App\Models\Student;
 use App\Models\Aplication;
 
-class ControllerAdmin extends Controller
+class AdminController extends Controller
 {
     function showeAdminPortfolio(){
         $student_projects = StudentProgect::with('student', 'modul')->get();
@@ -52,10 +52,15 @@ class ControllerAdmin extends Controller
         ]);
 
         $aplication = Aplication::findOrFail($id);
+        if ($aplication->status === 'Созданная') {
+            return back()->withErrors([
+                'aplication_' . $id => 'Невозможно изменить заявку, по которой был создан пользователь'
+            ]);
+        }
 
         $aplication->status = $request->input('status');
         $aplication->save();
 
-        return redirect()->route('showeAdminAplication');
+        return back()->with('success_' . $id, 'Статус заявки успешно обновлен');
     }
 }

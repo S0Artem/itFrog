@@ -2,6 +2,16 @@
 @vite(['resources/views/adminAplication/aplication.css'])
 <section class="admin__aplication__section">
     <h2>Заявки</h2>
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="aplication">
         @foreach ($aplications as $aplication)
             <div class="aplication__card">
@@ -10,10 +20,20 @@
                     <p><strong>Почта:</strong> {{ $aplication->email ?? 'нету инфы' }}</p>
                     <p><strong>Телефон:</strong> {{ $aplication->number ?? 'нету инфы' }}</p>
                 </div>
+                @if ($errors->has('aplication_' . $aplication->id))
+                <div class="alert alert-danger">
+                    {{ $errors->first('aplication_' . $aplication->id) }}
+                </div>
+                @endif
+                
+                @if (session('success_' . $aplication->id))
+                    <div class="alert alert-success">
+                        {{ session('success_' . $aplication->id) }}
+                    </div>
+                @endif
                 <form action="{{ route('aplicationChange', $aplication->id) }}" method="post" class="aplication__form">
                     @csrf
                     @method('PATCH')
-                    {{-- //TODO:на строне сервера сделать невозможность менять при созданнном пользователе --}}
                     <select name="status" id="status" class="aplication__select" onchange="this.form.submit()" {{ $aplication->status === 'Созданная' ? 'disabled' : '' }}>
                         <option value="Новая" {{ $aplication->status === 'Новая' ? 'selected' : '' }}>Новая</option>
                         <option value="В работе" {{ $aplication->status === 'В работе' ? 'selected' : '' }}>В работе</option>

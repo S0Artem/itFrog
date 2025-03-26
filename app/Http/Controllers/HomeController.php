@@ -6,7 +6,7 @@ use App\Models\Direction;
 use Illuminate\Http\Request;
 use App\Models\StudentProgect;
 
-class ControllerHome extends Controller
+class HomeController extends Controller
 {
     function showeHome(){
         $directions = Direction::with('moduls')->get();

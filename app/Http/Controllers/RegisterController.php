@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\SendLoginDetails;
 
-class ControllerRegister extends Controller
+class RegisterController extends Controller
 {
     
     function showeAdminRegister(Request $request){
