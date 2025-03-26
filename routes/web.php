@@ -20,6 +20,6 @@ Route::get('/logout', function(){
 Route::get('/admin/potfolio', [ControllerAdmin::class, 'showeAdminPortfolio'])->name('showeAdminPortfolio');
 Route::put('/admin/potfolio/change', [ControllerAdmin::class, 'studentProgectChange'])->name('studentProgectChange');
 Route::get('/admin/aplication', [ControllerAdmin::class, 'showeAdminAplication'])->name('showeAdminAplication');
-Route::put('/admin/aplications/{id}/change', [ControllerAdmin::class, 'aplicationChange'])->name('aplicationChange');
+Route::PATCH('/admin/aplications/{id}/change', [ControllerAdmin::class, 'aplicationChange'])->name('aplicationChange');
 Route::get('/admin/register', [ControllerRegister::class, 'showeAdminRegister'])->name('showeAdminRegister');
 Route::post('/admin/register/reg',[ControllerRegister::class, 'submitRegister'])->name('submitRegister');

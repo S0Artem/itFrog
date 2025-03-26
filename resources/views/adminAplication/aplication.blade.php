@@ -12,8 +12,7 @@
                 </div>
                 <form action="{{ route('aplicationChange', $aplication->id) }}" method="post" class="aplication__form">
                     @csrf
-                    @method('PUT')
-                    {{-- //TODO:Patch --}}
+                    @method('PATCH')
                     {{-- //TODO:на строне сервера сделать невозможность менять при созданнном пользователе --}}
                     <select name="status" id="status" class="aplication__select" onchange="this.form.submit()" {{ $aplication->status === 'Созданная' ? 'disabled' : '' }}>
                         <option value="Новая" {{ $aplication->status === 'Новая' ? 'selected' : '' }}>Новая</option>
