@@ -6,6 +6,7 @@
                 <h2>ВХОД</h2>
                 <p>Вход в личный кабинет, данные личного кабинета вам выдадут при записи ребенка на занятия</p>
                 <form action="{{ route('submitLogin') }}" method="post">
+                    {{-- //TODO:Смена пароля при потере --}}
                     @csrf
                     <div class="login-group">
                         <input name="login" type="login" placeholder="Ваш логин" value="{{ old('login') }}">

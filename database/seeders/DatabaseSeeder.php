@@ -149,6 +149,13 @@ class DatabaseSeeder extends Seeder
                 'direction_id' => 3,
                 'tags' => json_encode(["#React", "#JavaScript", "#Фронтенд"])
             ],
+            [
+                'name' => 'React: современный фронтенд',
+                'description' => 'Создание динамических веб-приложений с React.',
+                'lesson' => 16,
+                'direction_id' => 3,
+                'tags' => json_encode(["#React", "#JavaScript", "#Фронтенд"])
+            ],
         
             // Модули для "Создание игр"
             [

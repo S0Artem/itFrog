@@ -1,10 +1,15 @@
 @vite(['resources/views/home/component/form/form.css'])
 @vite(['resources/views/home/component/form/form.js'])
-<section class="home__form__section">
+<section class="home__form__section" id="home__form">
     <div class="home__form__contenteiner">
         <div class="form-container">
             <h2>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</h2>
             <p>Оставьте контакты, и менеджеры учебного отдела помогут Вам подобрать курс</p>
+            @if (session('form'))
+                <div class="alert alert-success">
+                    {{ session('form') }}
+                </div>
+            @endif  
             <form action="{{ route('aplication.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -18,7 +23,7 @@
                 </div>
                 <button type="submit" class="btn">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
             </form>
-            <p class="form-footer">Нажимая на кнопку, я соглашаюсь на <a href="#">обработку персональных данных</a></p>
+            <p class="form-footer">Нажимая на кнопку, я соглашаюсь на <a href="{{ asset('docs/privacy-policy.pdf') }}" download="Политика_конфиденциальности.pdf">обработку персональных данных</a></p>
         </div>
     </div>
 </section>

@@ -1,10 +1,12 @@
 /* Основные стили для секции */
 .admin__aplication__section {
-    padding: 20px;
-    background-color: #b3ff95; /* Основной зеленый фон */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    padding: 50px 0 80px;
+    height: fit-content;
+    position: relative; /* Позволяет ей выходить за границы main */
+    left: 50%; /* Смещаем влево на половину ширины main */
+    width: 100vw; /* Делаем ширину на весь экран */
+    transform: translateX(-50%); /* Возвращаем секцию на место */
+    background: #b3ff95;
     margin: 0 auto;
 }
 
@@ -18,6 +20,8 @@
 
 /* Стили для контейнера заявок */
 .aplication {
+    margin: 0 auto;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -82,6 +86,7 @@
     transition: background-color 0.3s ease;
 }
 
-.aplication__button:hover {
+.aplication__button:hover, button a:hover{
+    color: rgb(255, 255, 255);
     background-color: #248c2d; /* Темно-зеленый при наведении */
 }

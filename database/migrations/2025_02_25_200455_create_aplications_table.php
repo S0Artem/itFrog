@@ -29,7 +29,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('employees')
                 ->onDelete('cascade');
-            $table->enum('status', ['Новая','В работе', 'Отказ', 'Обработана'])->default('Новая');
+            $table->enum('status', ['Новая','В работе', 'Отказ', 'Обработана', 'Созданная'])->default('Новая');
             $table->timestamps();
         });
     }

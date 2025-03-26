@@ -1,23 +1,33 @@
 <x-layout>
     @vite(['resources/views/adminRegister/register.css'])
-    <section class="login__section">
-        <div class="login__contenteiner">
-            <div class="login-container">
-                <h2>ВХОД</h2>
-                <p>Вход в личный кабинет, данные личного кабинета вам выдадут при записи ребенка на занятия</p>
-                <form action="{{ route('submitLogin') }}" method="post">
+    <section class="register__section">
+        <div class="register__contenteiner">
+            <div class="register-container">
+                <h2>Регистрация пользователя</h2>
+                @if (session('register'))
+                    <div class="alert alert-register">
+                        {{ session('register') }}
+                    </div>
+                @endif
+                <p>Регистрация нового пользователя в системе. Логин и пароль прийдет на почту</p>
+                <form action="{{ route('submitRegister') }}" method="post">
                     @csrf
-                    <div class="login-group">
-                        <input name="login" type="login" placeholder="Ваш логин" value="{{ old('login') }}">
+                    {{-- //TODO:Телефон родителя тоже сохронять --}}
+                    {{-- //TODO:Информация в филиал ребенка --}}
+                    {{-- //TODO:Создаем ребенка/либо привязываем --}}
+                    {{-- //TODO:Создаем Учителя --}}
+                    {{-- //TODO:Привязыываем курс к ребку, список курсов в зависимости от возраста ребенка/и групп которые уже есть в филиале --}}
+                    <input type="hidden" name="idAplication" value="{{ $idAplication }}">
+                    <div class="name-group">
+                        <input name="name" type="name" placeholder="Имя пользователя " value="{{ old('name', $name) }}" >
                     </div>
-                    @error('login') <p class="error">{{ $message }}</p> @enderror
-                    <div class="login-group">
-                        <input name="password" type="password" placeholder="Ваш пароль">
+                    @error('name') <p class="error">{{ $message }}</p> @enderror
+                    <div class="email-group">
+                        <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email', $email) }}">
                     </div>
-                    @error('password') <p class="error">{{ $message }}</p> @enderror
-                    <button type="submit" class="btn">Войти</button>
+                    @error('email') <p class="error">{{ $message }}</p> @enderror
+                    <button type="submit" class="btn">Зарегестрировать</button>
                 </form>
-                <p class="login-footer">Если забыли логин или пароль <a href="#">нажмите</a></p>
             </div>
         </div>
     </section>

@@ -9,16 +9,15 @@
     @vite('resources/views/components/layout.js')
 </head>
 <body>
-    <header>
+    <header class="no-select">
         <div class="header">
             <div class="logo">
                 <a href="{{ route('showeHome') }}"><img src="{{ asset('img/logo.svg') }}" alt="Logo" /></a>
             </div>
             <ul class="header__ul">
-                <li><a href="#">Записаться</a></li>
-                <li><a href="#">Курсы</a></li>
-                <li><a href="#">Преподователи</a></li>
-                <li><a href="#">Отзывы</a></li>
+                <li><a href="{{ route('showeHome') }}#home__form">Записаться</a></li>
+                <li><a href="{{ route('showeHome') }}#home__courses">Курсы</a></li>
+                <li><a href="{{ route('showeHome') }}#home__portfolio">Работы студентов</a></li>
             </ul>
             <ul class="header__ul">
                 @if (!Auth::check())
@@ -29,15 +28,17 @@
     
             </ul>
         </div>
+        @if (Auth::check() && Auth::user()->role === 'admin')
         <div class="header_admin">
             <div class="header_admin_content">
-                @if (Auth::check() && Auth::user()->role === 'admin')
-                <a href="{{ route('showeAdminPortfolio') }}">Портфолио</a>
+                
+                <a href="{{ route('showeAdminPortfolio') }}">Работы студентов</a>
                 <a href="{{ route('showeAdminAplication') }}">Заявки</a>
                 <a href="{{ route('showeAdminRegister') }}">Регистрация</a>
-                @endif
+                
             </div>
         </div>
+        @endif
     </header>
     {{ $slot }}
 </body>

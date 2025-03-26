@@ -14,7 +14,7 @@
 }
 
 .home__time__contenteiner h2 span {
-    background: #5865F2;
+    background: #2fac35;
     color: white;
     padding: 5px 10px;
     border-radius: 10px;
@@ -34,7 +34,7 @@
 }
 
 .highlight {
-    color: #5865F2;
+    color: #2fac35;
     font-weight: bold;
 }
 
@@ -55,7 +55,7 @@
     right: 0;
     height: 10px;
     border-radius: 15px;
-    background: #6e79dd;
+    background: #2fac35;
     z-index: -1;
 }
 
@@ -63,7 +63,7 @@
     width: 30px;
     height: 30px;
     border: 5px solid white;
-    background: #5865F2;
+    background: #2fac35;
     border-radius: 50%;
     position: relative;
     z-index: 1;

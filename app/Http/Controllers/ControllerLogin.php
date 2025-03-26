@@ -23,14 +23,14 @@ class ControllerLogin extends Controller
             'login' => 'required',
             'password' => 'required'
         ], $messages);
+
         $user = User::where('login', $request->login)->first();
-        if ($user && Hash::check($request->password, $user->password)){
+
+        if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect()->route('showeHome')->with('success', 'Вы успешно вошли!');
-        }
-        else{
+            return redirect()->route('showeHome')->with('login', 'Вы успешно вошли!');
+        } else {
             return back()->withErrors(['password' => 'Неверный пароль.'])->withInput();
         }
-        return back()->withErrors(['login' => 'Неверный логин'])->withInput();
     }
 }

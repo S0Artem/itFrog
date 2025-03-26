@@ -16,20 +16,15 @@
     width: 600px;
 }
 .home__main__content_text p{
+    width: 600px;
     margin-top: 35px;
     font-size: 18px;
     line-height: 25px;
-}
-.home__main__content .btn{
-    margin-top: auto;
-    margin-left: 13%;
-    margin-bottom: 10px;
 }
 
 
 /*Банер*/
 .home__main__content__banner{
-    margin-top: 50px;
     background-color: #2fac35;
     padding: 16px;
     border-radius: 16px;
@@ -40,6 +35,17 @@
     gap: 16px;
 }
 .home__main__content__banner2{
-    background-color: #ffa011c0;
-    margin-top: 30px;
+    background-color: #ffa011;
+}
+.home__main__content__banner__text{
+    width: 100px;
+}
+.home__main__content__baner__btn{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100%;
+    width: fit-content;
+    align-items: center;
 }

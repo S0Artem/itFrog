@@ -1,6 +1,6 @@
 @vite(['resources/views/home/component/courses/courses.css'])
 
-<section class="home__courses__section">
+<section class="home__courses__section" id="home__courses">
     <div class="home__courses__contenteiner">
         <h2>У нас для каждого найдеться напровление</h2>
         <div class="card_conteiner">

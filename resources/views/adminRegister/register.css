@@ -1,5 +1,4 @@
-.login__section{
-    margin-top: 80px;
+.register__section{
     height: fit-content;
     position: relative; /* Позволяет ей выходить за границы main */
     left: 50%; /* Смещаем влево на половину ширины main */
@@ -12,7 +11,7 @@
     justify-content: center;
 }
 
-.login__contenteiner{
+.register__contenteiner{
     height: fit-content;
     display: flex;
     justify-content: center;
@@ -23,37 +22,33 @@
     background-color: #fff;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
-.login-container {
+.register-container {
     text-align: center;
     max-width: 400px;
 }
-.login-container h2 {
+.register-container h2 {
     font-size: 28px;
     font-weight: 900;
     color: #0c0c0c;
 }
-.login-container p {
+.register-container p {
     font-size: 14px;
     color: #666;
     margin: 15px 0;
 }
-.login-group {
+.name-group, .email-group, .login-group, .password-group{
     margin: 10px 0;
 }
 
 
-.login-group input {
+.name-group input, .email-group input, .login-group input, .password-group input{
     width: 100%;
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     font-size: 16px;
 }
-.phone-group {
-    display: flex;
-    gap: 10px;
-}
-.phone-group select, .phone-group input {
+.name-group select, .email-group select, .login-group select, .password-group select{
     flex: 1;
     padding: 15px;
     border-radius: 8px;
@@ -64,12 +59,12 @@
     margin-top: 20px;
     width: fit-content;
 }
-.login-footer a {
+.register-footer a {
     cursor: pointer;
     color: #007bff;
 }
 
 
-.login-container .error{
+.register-container .error{
     color: red;
 }

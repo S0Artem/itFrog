@@ -38,7 +38,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     gap: 10px;
-    background: #b3ff95;
+    background: #ffd495;
     padding: 20px;
     border-radius: 0 0 15px 15px;
     max-width: 60%;
@@ -57,7 +57,7 @@
     border-radius: 15px;
     font-size: 14px;
     font-weight: bold;
-    background: #2fac35;
+    background: #ffa011;
     color: white;
 }
 

@@ -35,9 +35,17 @@ a:visited {
 a:hover {
     color: #25202F;
 }
+.alert{
+    color: #06b900;
+    font-size: large;
+}
 
-
-
+.no-select{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 /*Кнопка*/
 .btn {
     width: 150px;
@@ -49,6 +57,10 @@ a:hover {
     color: #000000;
     cursor: pointer;
     border-radius: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .btn:hover {
     border: 1.4px solid #33333300;

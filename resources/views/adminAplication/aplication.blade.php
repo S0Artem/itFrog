@@ -13,13 +13,20 @@
                 <form action="{{ route('aplicationChange', $aplication->id) }}" method="post" class="aplication__form">
                     @csrf
                     @method('PUT')
-                    <select name="status" id="status" class="aplication__select">
+                    {{-- //TODO:Patch --}}
+                    {{-- //TODO:на строне сервера сделать невозможность менять при созданнном пользователе --}}
+                    <select name="status" id="status" class="aplication__select" onchange="this.form.submit()" {{ $aplication->status === 'Созданная' ? 'disabled' : '' }}>
                         <option value="Новая" {{ $aplication->status === 'Новая' ? 'selected' : '' }}>Новая</option>
                         <option value="В работе" {{ $aplication->status === 'В работе' ? 'selected' : '' }}>В работе</option>
                         <option value="Отказ" {{ $aplication->status === 'Отказ' ? 'selected' : '' }}>Отказ</option>
                         <option value="Обработана" {{ $aplication->status === 'Обработана' ? 'selected' : '' }}>Обработана</option>
+                        @if ($aplication->status === 'Созданная')
+                            <option value="Созданная" {{ $aplication->status === 'Созданная' ? 'selected' : '' }}>Созданная</option>
+                        @endif
                     </select>
-                    <button type="submit" class="aplication__button">Изменить</button>
+                    @if ($aplication->status === 'Обработана')
+                        <a href="{{ route('showeAdminRegister', ['email' => $aplication->email, 'name' => $aplication->name, 'idAplication' => $aplication->id]) }}" class="aplication__button">Зарегистрировать</a>
+                    @endif
                 </form>
             </div>
         @endforeach        

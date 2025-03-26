@@ -20,7 +20,6 @@ header a:hover{
 }
 
 .header_admin{
-    margin-bottom: 40px;
     position: relative; /* Позволяет ей выходить за границы main */
     left: 50%; /* Смещаем влево на половину ширины main */
     width: 100vw; /* Делаем ширину на весь экран */
