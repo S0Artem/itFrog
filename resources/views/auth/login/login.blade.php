@@ -1,15 +1,14 @@
 <x-layout>
-    @vite(['resources/views/login/login.css'])
+    @vite(['resources/views/auth/login/login.css'])
     <section class="login__section">
         <div class="login__contenteiner">
             <div class="login-container">
                 <h2>ВХОД</h2>
                 <p>Вход в личный кабинет, данные личного кабинета вам выдадут при записи ребенка на занятия</p>
                 <form action="{{ route('submitLogin') }}" method="post">
-                    {{-- //TODO:Смена пароля при потере --}}
                     @csrf
                     <div class="login-group">
-                        <input name="login" type="login" placeholder="Ваш логин" value="{{ old('login') }}">
+                        <input name="login" type="login" placeholder="Ваша почта" value="{{ old('login') }}">
                     </div>
                     @error('login') <p class="error">{{ $message }}</p> @enderror
                     <div class="login-group">
@@ -18,7 +17,7 @@
                     @error('password') <p class="error">{{ $message }}</p> @enderror
                     <button type="submit" class="btn">Войти</button>
                 </form>
-                <p class="login-footer">Если забыли логин или пароль <a href="#">нажмите</a></p>
+                <p class="login-footer">Если забыли пароль <a href="#">Восстановить пароль</a></p>
             </div>
         </div>
     </section>

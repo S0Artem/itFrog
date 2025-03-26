@@ -1,5 +1,5 @@
 <x-layout>
-@vite(['resources/views/adminAplication/aplication.css'])
+@vite(['resources/views/admin/adminAplication/aplication.css'])
 <section class="admin__aplication__section">
     <h2>Заявки</h2>
     @if (session('error'))

@@ -23,15 +23,15 @@ class SendLoginDetails extends Notification
     {
         return ['mail'];
     }
-
+    
     public function toMail($notifiable)
     {
+        #//TODO:Разобраться как это работает до конца
         return (new MailMessage)
             ->subject('Здраствуйте  ' . $this->user->name . '. Ваши данные для входа')
             ->line('Здраствуйте  ' . $this->user->name . '. Ваши данные для входа')
-            ->line('Ваш логин: ' . $this->user->login)
+            ->line('Ваш логин: ' . $this->user->email)
             ->line('Ваш пароль: ' . $this->password)
-            //->action('Войти', url('/login'))
             ->line('Спасибо за использование нашего сервиса!');
     }
 }

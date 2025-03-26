@@ -8,8 +8,9 @@ use App\Models\Aplication;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\SendLoginDetails;
+use Illuminate\Validation\Rule;
 
-class RegisterController extends Controller
+class AdminRegisterController extends Controller
 {
     
     function showeAdminRegister(Request $request){
@@ -17,22 +18,7 @@ class RegisterController extends Controller
         $name = $request->query('name');
         $idAplication = $request->query('idAplication');
 
-        return view('adminRegister.register' , compact('email', 'name','idAplication'));
-    }
-
-    function generateUniqueLogin($name)
-    {
-        $login = Str::slug($name); // Преобразуем имя в логин
-        $originalLogin = $login;
-        $counter = 1;
-
-        // Проверяем, существует ли уже такой логин в базе данных
-        while (User::where('login', $login)->exists()) {
-            $login = $originalLogin . $counter;
-            $counter++;
-        }
-
-        return $login;
+        return view('admin.adminRegister.register' , compact('email', 'name','idAplication'));
     }
 
     function generateRandomPassword($length = 10)
@@ -45,23 +31,26 @@ class RegisterController extends Controller
         $messages = [
             'email.required' => 'Почта обязательна для заполнения',
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
+            'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
         ];
-
+        
         $request->validate([
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
+            ],
             'name' => 'required',
-            'idAplication' => 'nullable|exists:aplications,id', // idAplication не обязательно, но если есть, проверяем его существование
+            'idAplication' => 'nullable|exists:aplications,id',
         ], $messages);
 
         // Генерация уникального логина и пароля
-        $login = $this->generateUniqueLogin($request->name);
         $password = $this->generateRandomPassword();
 
         // Создание пользователя
         $user = User::create([
             'email' => $request->email,
-            'login' => $login,
             'name' => $request->name,
             'password' => Hash::make($password),
         ]);

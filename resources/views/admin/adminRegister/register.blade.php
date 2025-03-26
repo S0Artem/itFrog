@@ -1,5 +1,5 @@
 <x-layout>
-    @vite(['resources/views/adminRegister/register.css'])
+    @vite(['resources/views/admin/adminRegister/register.css'])
     <section class="register__section">
         <div class="register__contenteiner">
             <div class="register-container">

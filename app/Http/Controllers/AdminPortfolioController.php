@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\StudentProgect;
 use App\Models\Student;
-use App\Models\Aplication;
 
-class AdminController extends Controller
+class AdminPortfolioController extends Controller
 {
     function showeAdminPortfolio(){
         $student_projects = StudentProgect::with('student', 'modul')->get();
@@ -19,11 +18,7 @@ class AdminController extends Controller
             return $project;
         });
         $students = Student::all(); // Получаем всех детей для выпадающего списка
-        return view('adminPortfolio.portfolio', compact('student_projects', 'students'));
-    }
-    function showeAdminAplication(){
-        $aplications = Aplication::all(); // Получаем завки пользоватлей
-        return view('adminAplication.aplication', compact('aplications'));
+        return view('admin.adminPortfolio.portfolio', compact('student_projects', 'students'));
     }
     function studentProgectChange(Request $request){
         $messages = [
@@ -44,23 +39,5 @@ class AdminController extends Controller
     
         // Перенаправляем или возвращаем ответ
         return redirect()->route('showeAdminPortfolio');
-    }
-    public function aplicationChange(Request $request, $id)
-    {
-        $request->validate([
-            'status' => 'required|in:Новая,В работе,Отказ,Обработана',
-        ]);
-
-        $aplication = Aplication::findOrFail($id);
-        if ($aplication->status === 'Созданная') {
-            return back()->withErrors([
-                'aplication_' . $id => 'Невозможно изменить заявку, по которой был создан пользователь'
-            ]);
-        }
-
-        $aplication->status = $request->input('status');
-        $aplication->save();
-
-        return back()->with('success_' . $id, 'Статус заявки успешно обновлен');
     }
 }

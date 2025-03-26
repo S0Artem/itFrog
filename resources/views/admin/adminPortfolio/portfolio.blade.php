@@ -1,6 +1,6 @@
 <x-layout>
-@vite(['resources/views/adminPortfolio/portfolio.css'])
-@vite(['resources/views/adminPortfolio/portfolio.js'])
+@vite(['resources/views/admin/adminPortfolio/portfolio.css'])
+@vite(['resources/views/admin/adminPortfolio/portfolio.js'])
 
 <section class="home__portfolio__section">
     <h2>Работы наших студентов</h2>

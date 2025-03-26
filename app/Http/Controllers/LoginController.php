@@ -11,12 +11,12 @@ class LoginController extends Controller
 {
     function showeLogin()
     {
-        return(view('login.login'));
+        return(view('auth.login.login'));
     }
     function submitLogin(Request $request)
     {
         $messages = [
-            'login.required' => 'Логин обязателен для заполнения',
+            'login.required' => 'Почта обязателен для заполнения',
             'password.required' => 'Пароль обязателен для заполнения'
         ];
         $request->validate([
@@ -24,9 +24,11 @@ class LoginController extends Controller
             'password' => 'required'
         ], $messages);
 
-        $user = User::where('login', $request->login)->first();
-
-        if ($user && Hash::check($request->password, $user->password)) {
+        $user = User::where('email', $request->login)->first();
+        if (!$user){
+            return back()->withErrors(['password' => 'Неврная почта'])->withInput();
+        }
+        else if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
             return redirect()->route('showeHome')->with('login', 'Вы успешно вошли!');
         } else {
