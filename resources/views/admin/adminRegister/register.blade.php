@@ -1,5 +1,6 @@
 <x-layout>
     @vite(['resources/views/admin/adminRegister/register.css'])
+    @vite(['resources/views/home/component/form/form.js'])
     <section class="register__section">
         <div class="register__contenteiner">
             <div class="register-container">
@@ -12,7 +13,6 @@
                 <p>Регистрация нового пользователя в системе. Логин и пароль прийдет на почту</p>
                 <form action="{{ route('submitRegister') }}" method="post">
                     @csrf
-                    {{-- //TODO:Телефон родителя тоже сохронять --}}
                     {{-- //TODO:Информация в филиал ребенка --}}
                     {{-- //TODO:Создаем ребенка/либо привязываем --}}
                     {{-- //TODO:Создаем Учителя --}}
@@ -26,6 +26,16 @@
                         <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email', $email) }}">
                     </div>
                     @error('email') <p class="error">{{ $message }}</p> @enderror
+                    <div class="number-group">
+                        <input type="tel" 
+                               id="phone" 
+                               name="number" 
+                               placeholder="+7 (___) ___-__-__" 
+                               value="{{ old('number', $number ?? '') }}"
+                               required>
+                    </div>
+                    @error('number') <p class="error">{{ $message }}</p> @enderror
+
                     <button type="submit" class="btn">Зарегестрировать</button>
                 </form>
             </div>

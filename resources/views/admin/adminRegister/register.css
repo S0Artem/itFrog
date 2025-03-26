@@ -36,19 +36,19 @@
     color: #666;
     margin: 15px 0;
 }
-.name-group, .email-group, .login-group, .password-group{
+.name-group, .email-group, .number-group, .password-group{
     margin: 10px 0;
 }
 
 
-.name-group input, .email-group input, .login-group input, .password-group input{
+.name-group input, .email-group input, .number-group input, .password-group input{
     width: 100%;
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     font-size: 16px;
 }
-.name-group select, .email-group select, .login-group select, .password-group select{
+.name-group select, .email-group select, .number-group select, .password-group select{
     flex: 1;
     padding: 15px;
     border-radius: 8px;

@@ -16,9 +16,10 @@ class AdminRegisterController extends Controller
     function showeAdminRegister(Request $request){
         $email = $request->query('email');
         $name = $request->query('name');
+        $number = $request->query('number');
         $idAplication = $request->query('idAplication');
-
-        return view('admin.adminRegister.register' , compact('email', 'name','idAplication'));
+    
+        return view('admin.adminRegister.register', compact('email', 'name', 'idAplication', 'number'));
     }
 
     function generateRandomPassword($length = 10)
@@ -33,6 +34,7 @@ class AdminRegisterController extends Controller
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
             'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
+            'number.required' => 'Имя обязательно для заполнения',
         ];
         
         $request->validate([
@@ -42,6 +44,7 @@ class AdminRegisterController extends Controller
                 Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
             ],
             'name' => 'required',
+            'number'=> 'required',
             'idAplication' => 'nullable|exists:aplications,id',
         ], $messages);
 
@@ -52,6 +55,7 @@ class AdminRegisterController extends Controller
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,
+            'number' => $request->number,
             'password' => Hash::make($password),
         ]);
 

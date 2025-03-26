@@ -44,7 +44,12 @@
                         @endif
                     </select>
                     @if ($aplication->status === 'Обработана')
-                        <a href="{{ route('showeAdminRegister', ['email' => $aplication->email, 'name' => $aplication->name, 'idAplication' => $aplication->id]) }}" class="aplication__button">Зарегистрировать</a>
+                        <a href="{{ route('showeAdminRegister', [
+                            'email' => $aplication->email, 
+                            'name' => $aplication->name, 
+                            'number' => $aplication->number,
+                            'idAplication' => $aplication->id
+                        ]) }}" class="aplication__button">Зарегистрировать</a>
                     @endif
                 </form>
             </div>
