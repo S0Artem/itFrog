@@ -4,22 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Aplication;
+use App\Models\Employee;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\SendLoginDetails;
 use Illuminate\Validation\Rule;
+use App\Models\Branch;
 
-class AdminRegisterController extends Controller
+class AdminRegisterEmployeeController extends Controller
 {
-    
-    function showeAdminRegister(Request $request){
-        $email = $request->query('email');
-        $name = $request->query('name');
-        $number = $request->query('number');
-        $idAplication = $request->query('idAplication');
-    
-        return view('admin.adminRegister.register', compact('email', 'name', 'idAplication', 'number'));
+    function showeAdminRegister(){
+        $branchs = Branch::all();
+        return view('admin.adminRegister.employee.register', compact('branchs'));
     }
 
     function generateRandomPassword($length = 10)
@@ -34,7 +30,8 @@ class AdminRegisterController extends Controller
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
             'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
-            'number.required' => 'Имя обязательно для заполнения',
+            'number.required' => 'Номер обязательно для заполнения',
+            'branch_id.required' => 'Филиал обязательно для заполнения',
         ];
         
         $request->validate([
@@ -43,9 +40,9 @@ class AdminRegisterController extends Controller
                 'email',
                 Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
             ],
+            'branch_id' => 'required',
             'name' => 'required',
             'number'=> 'required',
-            'idAplication' => 'nullable|exists:aplications,id',
         ], $messages);
 
         // Генерация уникального логина и пароля
@@ -56,21 +53,18 @@ class AdminRegisterController extends Controller
             'email' => $request->email,
             'name' => $request->name,
             'number' => $request->number,
+            'role' => 'teacher',
             'password' => Hash::make($password),
         ]);
-
-        // Если idAplication передан, обновляем статус заявки на "Созданный"
-        if ($request->has('idAplication')) {
-            $aplication = Aplication::find($request->input('idAplication'));
-            if ($aplication) {
-                $aplication->status = 'Созданная';
-                $aplication->save();
-            }
-        }
+        
+        $employee = Employee::create([
+            'id' => $user->id,
+            'branche_id' => $request->branch_id,
+        ]);
 
         // Отправка уведомления с логином и паролем
         $user->notify(new SendLoginDetails($user, $password));
 
-        return redirect()->route('showeAdminRegister')->with('register', 'Вы успешно зарегистрировали пользователя! Проверьте данные на ' . $user->email);
+        return redirect()->route('showeRegisterEmployee')->with('register', 'Вы успешно зарегистрировали пользователя! Проверьте данные на ' . $user->email);
     }
 }

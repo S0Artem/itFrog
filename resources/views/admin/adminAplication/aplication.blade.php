@@ -44,7 +44,7 @@
                         @endif
                     </select>
                     @if ($aplication->status === 'Обработана')
-                        <a href="{{ route('showeAdminRegister', [
+                        <a href="{{ route('showeRegisterUser', [
                             'email' => $aplication->email, 
                             'name' => $aplication->name, 
                             'number' => $aplication->number,

@@ -1,29 +1,27 @@
 <x-layout>
-    @vite(['resources/views/admin/adminRegister/register.css'])
+    @vite(['resources/views/admin/adminRegister/employee/register.css'])
     @vite(['resources/views/home/component/form/form.js'])
     <section class="register__section">
         <div class="register__contenteiner">
             <div class="register-container">
-                <h2>Регистрация пользователя</h2>
+                <h2>Регистрация сотрудника</h2>
                 @if (session('register'))
                     <div class="alert alert-register">
                         {{ session('register') }}
                     </div>
                 @endif
                 <p>Регистрация нового пользователя в системе. Логин и пароль прийдет на почту</p>
-                <form action="{{ route('submitRegister') }}" method="post">
+
+                <form action="{{ route('submitRegisterEmployee') }}" method="post">
                     @csrf
-                    {{-- //TODO:Информация в филиал ребенка --}}
-                    {{-- //TODO:Создаем ребенка/либо привязываем --}}
-                    {{-- //TODO:Создаем Учителя --}}
-                    {{-- //TODO:Привязыываем курс к ребку, список курсов в зависимости от возраста ребенка/и групп которые уже есть в филиале --}}
-                    <input type="hidden" name="idAplication" value="{{ $idAplication }}">
+                    
+
                     <div class="name-group">
-                        <input name="name" type="name" placeholder="Имя пользователя " value="{{ old('name', $name) }}" >
+                        <input name="name" type="name" placeholder="Имя пользователя " value="{{ old('name') }}" >
                     </div>
                     @error('name') <p class="error">{{ $message }}</p> @enderror
                     <div class="email-group">
-                        <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email', $email) }}">
+                        <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email') }}">
                     </div>
                     @error('email') <p class="error">{{ $message }}</p> @enderror
                     <div class="number-group">
@@ -31,10 +29,21 @@
                                id="phone" 
                                name="number" 
                                placeholder="+7 (___) ___-__-__" 
-                               value="{{ old('number', $number ?? '') }}"
+                               value="{{ old('number' ?? '') }}"
                                required>
                     </div>
                     @error('number') <p class="error">{{ $message }}</p> @enderror
+
+                    <div class="email-group">
+                        <select name="branch_id" id="branch" class="form-select">
+                            @foreach($branchs as $branch)
+                                <option value="{{ $branch->id }}">
+                                    {{ $branch->sity }}, {{ $branch->adres }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
 
                     <button type="submit" class="btn">Зарегестрировать</button>
                 </form>

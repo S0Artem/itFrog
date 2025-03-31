@@ -34,7 +34,8 @@
                 
                 <a href="{{ route('showeAdminPortfolio') }}">Работы студентов</a>
                 <a href="{{ route('showeAdminAplication') }}">Заявки</a>
-                <a href="{{ route('showeAdminRegister') }}">Регистрация</a>
+                <a href="{{ route('showeRegisterUser') }}">Регистрация пользователя</a>
+                <a href="{{ route('showeRegisterEmployee') }}">Регистрация сотрудника</a>
                 
             </div>
         </div>
