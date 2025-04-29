@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('direction_id')
                 ->constrained('directions')
                 ->onDelete('cascade');
+            $table->unsignedTinyInteger('min_age');
+            $table->unsignedTinyInteger('max_age');
             $table->json('tags');
             $table->timestamps();
         });

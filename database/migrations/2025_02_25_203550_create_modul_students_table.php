@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('modul_students', function (Blueprint $table) {
             $table->id();
-            $table->integer('paid')->default(4);
+            $table->date('last_payment_date')->nullable();
             $table->foreignId('group_id')
                 ->constrained('groups')
                 ->onDelete('cascade');

@@ -13,7 +13,12 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             ['name' => 'Артем', 'email' => 'so.artem998@gmail.com', 'password' => Hash::make('25071983EEe'), 'role' => 'admin'],
             ['name' => 'Тимофей', 'email' => 'tim@gmail.com', 'password' => Hash::make('password'), 'role' => 'user'],
+            ['name' => 'Херогов Георгий', 'email' => 'so.artem99@gmail.com', 'password' => Hash::make('25071983EEe'), 'role' => 'teacher'],
+            ['name' => 'Пилеев Аравис', 'email' => 'so.artem9@gmail.com', 'password' => Hash::make('25071983EEe'), 'role' => 'teacher'],
+            ['name' => 'Пивнов Алексей', 'email' => 'so.artem@gmail.com', 'password' => Hash::make('25071983EEe'), 'role' => 'teacher'],
         ]);
+
+        
 
         DB::table('branches')->insert([
             ['sity' => 'New York', 'adres' => '123 Main St'],
@@ -22,7 +27,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('employees')->insert([
-            ['id' => '1', 'branche_id' => '2'],
+            ['id' => 3, 'branche_id' => 1],
+            ['id' => 4, 'branche_id' => 3],
+            ['id' => 5, 'branche_id' => 2],
+        ]);
+
+        DB::table('lesson_times')->insert([
+            ['id' => '1', 'lesson_start' => '09:00', 'lesson_end' => '11:00', 'break_start' => '10:00', 'break_end' => '10:15'],
+            ['id' => '2', 'lesson_start' => '11:15', 'lesson_end' => '13:15', 'break_start' => '12:15', 'break_end' => '12:30'],
+            ['id' => '3', 'lesson_start' => '13:30', 'lesson_end' => '15:30', 'break_start' => '14:30', 'break_end' => '14:45'],
+            ['id' => '4', 'lesson_start' => '15:45', 'lesson_end' => '17:45', 'break_start' => '16:45', 'break_end' => '17:00'],
+            ['id' => '5', 'lesson_start' => '18:00', 'lesson_end' => '20:00', 'break_start' => '19:00', 'break_end' => '19:15'],
         ]);
 
         DB::table('aplications')->insert([
@@ -32,9 +47,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('students')->insert([
-            ['age' => 18, 'branche_id' => 1, 'user_id' => 2, 'aplication_id' => 1, 'name' => 'Софронов Артем'],
-            ['age' => 20, 'branche_id' => 2, 'user_id' => 2, 'aplication_id' => 2, 'name' => 'Гемаев Тимур'],
-            ['age' => 22, 'branche_id' => 3, 'user_id' => 1, 'aplication_id' => 3, 'name' => 'Юсупова Галина']
+            ['birthdate' => '2010-10-04', 'branche_id' => 1, 'user_id' => 2, 'name' => 'Софронов Артем'],
+            ['birthdate' => '2015-08-13', 'branche_id' => 2, 'user_id' => 2, 'name' => 'Гемаев Тимур'],
+            ['birthdate' => '2011-11-01', 'branche_id' => 3, 'user_id' => 1, 'name' => 'Юсупова Галина']
         ]);
 
         DB::table('products')->insert([
@@ -81,126 +96,149 @@ class DatabaseSeeder extends Seeder
         ]);
         
         DB::table('moduls')->insert([
-            // Модули для "3D моделирование"
+            // Модули для "3D моделирование" (6-12 лет)
             [
                 'name' => 'Основы Blender',
-                'description' => 'Изучите базовые инструменты Blender для создания 3D-моделей.',
+                'description' => 'Изучите базовые инструменты Blender для создания простых 3D-моделей.',
                 'lesson' => 8,
                 'direction_id' => 1,
-                'tags' => json_encode(["#Blender", "#3DМоделирование", "#Новичкам"])
+                'tags' => json_encode(["#Blender", "#3DМоделирование", "#Дети"]),
+                'min_age' => 6,
+                'max_age' => 12
             ],
             [
                 'name' => 'Создание персонажей',
-                'description' => 'Учимся создавать 3D-персонажей с нуля.',
+                'description' => 'Учимся создавать простых 3D-персонажей.',
                 'lesson' => 12,
                 'direction_id' => 1,
-                'tags' => json_encode(["#Blender", "#Персонажи", "#3DАнимация"])
+                'tags' => json_encode(["#Blender", "#Персонажи", "#ДетскоеТворчество"]),
+                'min_age' => 8,
+                'max_age' => 14
             ],
             [
                 'name' => 'Текстурирование в Blender',
-                'description' => 'Освойте наложение текстур на 3D-модели.',
+                'description' => 'Основы наложения текстур на 3D-модели.',
                 'lesson' => 6,
                 'direction_id' => 1,
-                'tags' => json_encode(["#Blender", "#Текстурирование", "#3DГрафика"])
+                'tags' => json_encode(["#Blender", "#Текстурирование", "#ДляНачинающих"]),
+                'min_age' => 10,
+                'max_age' => 16
             ],
-        
-            // Модули для "3D моделирование старших групп"
+            
+            // Модули для "3D моделирование старших групп" (12-20 лет)
             [
                 'name' => 'Продвинутое моделирование в Blender',
                 'description' => 'Техники для создания сложных 3D-моделей.',
                 'lesson' => 10,
                 'direction_id' => 2,
-                'tags' => json_encode(["#Blender", "#ПродвинутыйУровень", "#3DМоделирование"])
+                'tags' => json_encode(["#Blender", "#ПродвинутыйУровень", "#Профессионально"]),
+                'min_age' => 12,
+                'max_age' => 20
             ],
             [
                 'name' => 'Анимация в Blender',
                 'description' => 'Создание анимаций для 3D-моделей.',
                 'lesson' => 14,
                 'direction_id' => 2,
-                'tags' => json_encode(["#Blender", "#3DАнимация", "#VFX"])
+                'tags' => json_encode(["#Blender", "#3DАнимация", "#ДляПодростков"]),
+                'min_age' => 14,
+                'max_age' => 20
             ],
             [
                 'name' => 'Рендеринг в Cycles',
                 'description' => 'Освойте фотореалистичный рендеринг в Blender.',
                 'lesson' => 8,
                 'direction_id' => 2,
-                'tags' => json_encode(["#Blender", "#Рендеринг", "#Cycles"])
+                'tags' => json_encode(["#Blender", "#Рендеринг", "#ДляСтаршеклассников"]),
+                'min_age' => 16,
+                'max_age' => 20
             ],
-        
-            // Модули для "Создание сайтов"
+            
+            // Модули для "Создание сайтов" (8-18 лет)
             [
-                'name' => 'HTML и CSS для начинающих',
-                'description' => 'Основы создания веб-страниц.',
+                'name' => 'HTML и CSS для детей',
+                'description' => 'Основы создания веб-страниц для начинающих.',
                 'lesson' => 10,
                 'direction_id' => 3,
-                'tags' => json_encode(["#HTML", "#CSS", "#ВебРазработка"])
+                'tags' => json_encode(["#HTML", "#CSS", "#ДляШкольников"]),
+                'min_age' => 8,
+                'max_age' => 14
             ],
             [
                 'name' => 'JavaScript: основы',
                 'description' => 'Изучите базовый синтаксис JavaScript.',
                 'lesson' => 12,
                 'direction_id' => 3,
-                'tags' => json_encode(["#JavaScript", "#ВебРазработка", "#Программирование"])
+                'tags' => json_encode(["#JavaScript", "#ВебРазработка", "#ДляПодростков"]),
+                'min_age' => 12,
+                'max_age' => 18
             ],
             [
                 'name' => 'React: современный фронтенд',
                 'description' => 'Создание динамических веб-приложений с React.',
                 'lesson' => 16,
                 'direction_id' => 3,
-                'tags' => json_encode(["#React", "#JavaScript", "#Фронтенд"])
+                'tags' => json_encode(["#React", "#JavaScript", "#ДляСтаршеклассников"]),
+                'min_age' => 14,
+                'max_age' => 20
             ],
+            
+            // Модули для "Создание игр" (6-16 лет)
             [
-                'name' => 'React: современный фронтенд',
-                'description' => 'Создание динамических веб-приложений с React.',
-                'lesson' => 16,
-                'direction_id' => 3,
-                'tags' => json_encode(["#React", "#JavaScript", "#Фронтенд"])
-            ],
-        
-            // Модули для "Создание игр"
-            [
-                'name' => 'Unity: основы',
-                'description' => 'Изучите базовые инструменты Unity для создания игр.',
+                'name' => 'Unity: первые шаги',
+                'description' => 'Основы создания простых игр для детей.',
                 'lesson' => 10,
                 'direction_id' => 4,
-                'tags' => json_encode(["#Unity", "#РазработкаИгр", "#Новичкам"])
+                'tags' => json_encode(["#Unity", "#РазработкаИгр", "#ДляДетей"]),
+                'min_age' => 6,
+                'max_age' => 12
             ],
             [
                 'name' => 'Создание 2D-игр',
-                'description' => 'Разработка 2D-игр в Unity.',
+                'description' => 'Разработка 2D-игр в Unity для начинающих.',
                 'lesson' => 12,
                 'direction_id' => 4,
-                'tags' => json_encode(["#Unity", "#2DИгры", "#Геймдев"])
+                'tags' => json_encode(["#Unity", "#2DИгры", "#ДляШкольников"]),
+                'min_age' => 10,
+                'max_age' => 16
             ],
             [
                 'name' => 'Введение в C#',
                 'description' => 'Основы программирования на C# для Unity.',
                 'lesson' => 8,
                 'direction_id' => 4,
-                'tags' => json_encode(["#CSharp", "#Программирование", "#Unity"])
+                'tags' => json_encode(["#CSharp", "#Программирование", "#ДляПодростков"]),
+                'min_age' => 12,
+                'max_age' => 18
             ],
-        
-            // Модули для "Создание игр старших групп"
+            
+            // Модули для "Создание игр старших групп" (14-20 лет)
             [
                 'name' => 'Продвинутый Unity',
                 'description' => 'Создание сложных игровых механик в Unity.',
                 'lesson' => 14,
                 'direction_id' => 5,
-                'tags' => json_encode(["#Unity", "#ПродвинутыйУровень", "#Геймдев"])
+                'tags' => json_encode(["#Unity", "#ПродвинутыйУровень", "#ДляСтаршеклассников"]),
+                'min_age' => 14,
+                'max_age' => 20
             ],
             [
                 'name' => 'Оптимизация игр',
                 'description' => 'Техники оптимизации для игр на Unity.',
                 'lesson' => 10,
                 'direction_id' => 5,
-                'tags' => json_encode(["#Unity", "#Оптимизация", "#Геймдев"])
+                'tags' => json_encode(["#Unity", "#Оптимизация", "#Профессионально"]),
+                'min_age' => 16,
+                'max_age' => 20
             ],
             [
                 'name' => 'Создание 3D-игр',
                 'description' => 'Разработка 3D-игр в Unity.',
                 'lesson' => 16,
                 'direction_id' => 5,
-                'tags' => json_encode(["#Unity", "#3DИгры", "#Геймдев"])
+                'tags' => json_encode(["#Unity", "#3DИгры", "#ДляСтудентов"]),
+                'min_age' => 16,
+                'max_age' => 20
             ],
         ]);
 
@@ -233,21 +271,143 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('lesson_assessments')->insert([
-            ['grade' => 85, 'description' => 'Good', 'lesson_id' => 1, 'student_id' => 1, 'employee_id' => 1],
-            ['grade' => 90, 'description' => 'Very Good', 'lesson_id' => 2, 'student_id' => 2, 'employee_id' => 1],
-            ['grade' => 95, 'description' => 'Excellent', 'lesson_id' => 3, 'student_id' => 3, 'employee_id' => 1]
+            ['grade' => 85, 'description' => 'Good', 'lesson_id' => 1, 'student_id' => 1, 'employee_id' => 3],
+            ['grade' => 90, 'description' => 'Very Good', 'lesson_id' => 2, 'student_id' => 2, 'employee_id' => 5],
+            ['grade' => 95, 'description' => 'Excellent', 'lesson_id' => 3, 'student_id' => 3, 'employee_id' => 4]
         ]);
 
         DB::table('groups')->insert([
-            ['branche_id' => 1],
-            ['branche_id' => 2],
-            ['branche_id' => 3]
+            // Филиал 1
+    [
+        'branch_id' => 1,
+        'modul_id' => 1,
+        'time_id' => 1,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 1,
+        'modul_id' => 2,
+        'time_id' => 2,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 1,
+        'modul_id' => 7,
+        'time_id' => 3,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 1,
+        'modul_id' => 10,
+        'time_id' => 4,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 1,
+        'modul_id' => 13,
+        'time_id' => 5,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+
+    // Филиал 2
+    [
+        'branch_id' => 2,
+        'modul_id' => 3,
+        'time_id' => 1,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 2,
+        'modul_id' => 5,
+        'time_id' => 2,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 2,
+        'modul_id' => 8,
+        'time_id' => 3,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 2,
+        'modul_id' => 12,
+        'time_id' => 4,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 2,
+        'modul_id' => 15,
+        'time_id' => 5,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+
+    // Филиал 3
+    [
+        'branch_id' => 3,
+        'modul_id' => 1,
+        'time_id' => 1,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 3,
+        'modul_id' => 4,
+        'time_id' => 3,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 3,
+        'modul_id' => 6,
+        'time_id' => 4,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 3,
+        'modul_id' => 9,
+        'time_id' => 5,
+        'day' => 1,
+        'created_at' => now(),
+        'updated_at' => now()
+    ],
+    [
+        'branch_id' => 3,
+        'modul_id' => 14,
+        'time_id' => 1,
+        'day' => 3,
+        'created_at' => now(),
+        'updated_at' => now()
+    ]
         ]);
 
         DB::table('group_teachers')->insert([
-            ['employee_id' => 1, 'group_id' => 1],
-            ['employee_id' => 1, 'group_id' => 2],
-            ['employee_id' => 1, 'group_id' => 3]
+            ['employee_id' => 4, 'group_id' => 1],
+            ['employee_id' => 3, 'group_id' => 2],
+            ['employee_id' => 5, 'group_id' => 3]
         ]);
 
         DB::table('transactions')->insert([

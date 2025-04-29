@@ -1,0 +1,106 @@
+.register__section{
+    height: fit-content;
+    position: relative; /* Позволяет ей выходить за границы main */
+    left: 50%; /* Смещаем влево на половину ширины main */
+    width: 100vw; /* Делаем ширину на весь экран */
+    transform: translateX(-50%); /* Возвращаем секцию на место */
+    background: #b3ff95;
+    padding: 100px 0 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register__contenteiner{
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+.register-container {
+    text-align: center;
+    max-width: 400px;
+}
+.register-container h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #0c0c0c;
+}
+.register-container p {
+    font-size: 14px;
+    color: #666;
+    margin: 15px 0;
+}
+.name-group, .email-group, .number-group, .password-group{
+    margin: 10px 0;
+}
+
+
+.name-group input, .email-group input, .number-group input, .password-group input{
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.name-group select, .email-group select, .number-group select, .password-group select{
+    width: 100%;
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+.btn {
+    margin-top: 20px;
+    width: fit-content;
+}
+.register-footer a {
+    cursor: pointer;
+    color: #007bff;
+}
+
+
+.register-container .error{
+    color: red;
+}
+
+
+
+.error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+select option[disabled] {
+    color: #6c757d;
+}
+select option[hidden] {
+    display: none;
+}
+
+/* Стили для валидных/невалидных групп */
+select.valid-group {
+    border: 2px solid #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+select.invalid-group {
+    border: 2px solid #72711c;
+    background-color: #ffe9a7;
+}
+
+option.age-valid {
+    background-color: #d4edda !important;
+    color: #155724;
+}
+
+option.age-invalid {
+    background-color: #ffe9a7 !important;
+    color: #72711c;
+}

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->integer('age');
+            $table->date('birthdate');
             $table->string('name');
             
             $table->foreignId('branche_id')
@@ -21,9 +21,6 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->onDelete('cascade');
-            $table->foreignId('aplication_id')
-                ->constrained('aplications')
                 ->onDelete('cascade');
              
             $table->timestamps();

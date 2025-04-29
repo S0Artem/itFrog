@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['age', 'branche_id', 'user_id', 'aplication_id'];
+    protected $fillable = ['name' ,'birthdate', 'branche_id', 'user_id'];
 
     public function branch()
     {

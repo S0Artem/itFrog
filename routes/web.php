@@ -9,6 +9,8 @@ use App\Http\Controllers\AplicationController;
 use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminAplicationController;
 use App\Http\Controllers\AdminRegisterEmployeeController;
+use App\Http\Controllers\AdminRegisterStudentController;
+use App\Http\Controllers\SheduleController;
 
 
 Route::get('/', [HomeController::class, 'showeHome'])->name('showeHome');
@@ -27,3 +29,7 @@ Route::get('/admin/register/user', [AdminRegisterUserController::class, 'showeAd
 Route::post('/admin/register/user/reg',[AdminRegisterUserController::class, 'submitRegister'])->name('submitRegisterUser');
 Route::get('/admin/register/employee', [AdminRegisterEmployeeController::class, 'showeAdminRegister'])->name('showeRegisterEmployee');
 Route::post('/admin/register/employee/reg',[AdminRegisterEmployeeController::class, 'submitRegister'])->name('submitRegisterEmployee');
+Route::get('/admin/register/admin', [AdminRegisterStudentController::class, 'showe'])->name('showeRegisterStudent');
+Route::post('/admin/register/admin', [AdminRegisterStudentController::class, 'submitRegister'])->name('submitRegisterStudent');
+Route::get('/admin/shedule', [SheduleController::class, 'showe'])->name('showeShedule');
+Route::post('/admin/shedule', [SheduleController::class, 'submit'])->name('submitShedule');

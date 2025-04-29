@@ -45,7 +45,7 @@ class AdminRegisterEmployeeController extends Controller
             'number'=> 'required',
         ], $messages);
 
-        // Генерация уникального логина и пароля
+        // Генерация уникального пароля
         $password = $this->generateRandomPassword();
 
         // Создание пользователя
@@ -61,9 +61,6 @@ class AdminRegisterEmployeeController extends Controller
             'id' => $user->id,
             'branche_id' => $request->branch_id,
         ]);
-
-        // Отправка уведомления с логином и паролем
-        $user->notify(new SendLoginDetails($user, $password));
 
         return redirect()->route('showeRegisterEmployee')->with('register', 'Вы успешно зарегистрировали пользователя! Проверьте данные на ' . $user->email);
     }

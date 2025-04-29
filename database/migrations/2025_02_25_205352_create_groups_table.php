@@ -13,10 +13,26 @@ return new class extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('branche_id')
+        
+            $table->foreignId('branch_id')
                 ->constrained('branches')
                 ->onDelete('cascade');
+                
+            $table->foreignId('modul_id')
+                ->constrained('moduls')
+                ->onDelete('cascade');
+                
+            $table->foreignId('time_id')
+                ->constrained('lesson_times')
+                ->onDelete('cascade');
+                
+            $table->tinyInteger('day')->unsigned()
+                ->between(1, 7);
+                
             $table->timestamps();
+            
+
+            $table->unique(['branch_id', 'modul_id', 'time_id', 'day'], 'group_schedule_unique');
         });
     }
 

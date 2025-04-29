@@ -23,4 +23,11 @@ class Modul extends Model
     {
         return $this->belongsTo(Direction::class);
     }
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+
+    
 }

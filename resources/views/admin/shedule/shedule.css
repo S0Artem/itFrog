@@ -1,0 +1,86 @@
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(7, 1fr);
+    gap: 1px;
+    background-color: #5a5a5a;
+    border: 1px solid #5a5a5a;
+}
+
+.grid-header {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.time-column, .time-slot {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+}
+
+.lesson-slot {
+    min-height: 90px;
+    background-color: white;
+    padding: 5px;
+}
+
+.lesson-card {
+    background-color: #e3f2fd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-left: 3px solid #2196f3;
+}
+
+.lesson-module {
+    font-weight: bold;
+}
+
+.branch-selector {
+    max-width: 400px;
+    margin: 0 auto 20px;
+}
+.lesson-add{
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    max-width: 500px;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.no-select {
+    user-select: none;
+    cursor: pointer;
+}
