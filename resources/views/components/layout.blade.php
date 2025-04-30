@@ -28,21 +28,25 @@
     
             </ul>
         </div>
-        
+        @if (Auth::check() && Auth::user()->role === 'admin')
         <div class="header_admin">
             <div class="header_admin_content">
-                @if (Auth::check() && Auth::user()->role === 'admin')
+                
                 <a href="{{ route('showeAdminPortfolio') }}">Работы студентов</a>
                 <a href="{{ route('showeAdminAplication') }}">Заявки</a>
                 <a href="{{ route('showeRegisterUser') }}">Регистрация родитетеля</a>
                 <a href="{{ route('showeRegisterEmployee') }}">Регистрация сотрудника</a>
                 <a href="{{ route('showeRegisterStudent') }}">Регистрация ребенка</a>
                 <a href="{{ route('showeShedule') }}">Группы</a>
-                @elseif (Auth::check() && Auth::user()->role === 'teacher')
-                <a href="#">Расписание</a>
-                @endif
             </div>
         </div>
+        @elseif (Auth::check() && Auth::user()->role === 'teacher')
+        <div class="header_admin">
+            <div class="header_admin_content">
+                <a href="#">Расписание</a>
+            </div>
+        </div>
+        @endif
     </header>
     {{ $slot }}
 </body>
