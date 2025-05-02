@@ -6,7 +6,6 @@
     <title>Laravel with Vite</title>
     @vite('resources/css/app.css')
     @vite('resources/views/components/layout.css')
-    @vite('resources/views/components/layout.js')
 </head>
 <body>
     <header class="no-select">
