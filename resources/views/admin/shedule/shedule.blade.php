@@ -38,14 +38,14 @@
                             data-day="{{ $day }}" 
                             data-time-index="{{ $timeIndex }}">
                             @if(isset($groups[$day][$time->id]))
-                                @foreach($groups[$day][$time->id] as $group)
-                                    <div class="lesson-card">
-                                        <div class="lesson-module">{{ $group->modul->name }}</div>
-                                    </div>
-                                @endforeach
-                            @else
-                                <button class="lesson-add">+ Добавить</button>
-                            @endif
+                            @foreach($groups[$day][$time->id] as $group)
+                                <div class="lesson-card">
+                                    <a href="{{ route('group.show', ['group' => $group->id, 'branch_id' => $selectedBranch]) }}" class="lesson-module">{{ $group->modul->name }}</a>
+                                </div>
+                            @endforeach
+                        @else
+                            <button class="lesson-add">+ Добавить</button>
+                        @endif
                         </div>
                     @endforeach
                 @endforeach

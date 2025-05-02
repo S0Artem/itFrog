@@ -32,4 +32,17 @@ class Group extends Model
     {
         return $this->belongsTo(LessonTime::class, 'time_id');
     }
+    public function students()
+    {
+        return $this->belongsToMany(
+            Student::class,
+            'modul_students',
+            'group_id',
+            'student_id'
+        )->withTimestamps();
+    }
+    public function teacher()
+    {
+        return $this->hasOne(GroupTeacher::class, 'group_id');
+    }
 }
