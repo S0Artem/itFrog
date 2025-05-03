@@ -24,6 +24,7 @@ return new class extends Migration
                 ->constrained('moduls')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['student_id', 'group_id']);
         });
     }
 

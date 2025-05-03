@@ -9,11 +9,11 @@ use App\Models\StudentProgect;
 class HomeController extends Controller
 {
     function showeHome(){
-        $directions = Direction::with('moduls')->get();
+        $directions = Direction::with('moduls')->inRandomOrder()->take(6)->get();
         $directions = $directions->map(function ($direction) {
             $direction->modules_count = $direction->moduls->count();
             $direction->total_lessons = $direction->moduls->sum('lesson');
-            $direction->moduls_to_display = $direction->moduls->random(3);
+            $direction->moduls_to_display = $direction->moduls->count() >= 3 ? $direction->moduls->random(3) : $direction->moduls;
 
             return $direction;
         });

@@ -31,8 +31,7 @@ return new class extends Migration
                 
             $table->timestamps();
             
-
-            $table->unique(['branch_id', 'modul_id', 'time_id', 'day'], 'group_schedule_unique');
+            $table->unique(['branch_id', 'time_id', 'day'], 'branch_time_day_unique');
         });
     }
 
