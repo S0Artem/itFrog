@@ -22,6 +22,7 @@
                 @if (!Auth::check())
                     <a href="{{ route('showeLogin') }}">Вход</a>
                 @else
+                    <p>{{ Auth::user()->name }}</p>
                     <a href="{{ route('logout') }}">Выйти</a>
                 @endif
     
@@ -42,7 +43,7 @@
         @elseif (Auth::check() && Auth::user()->role === 'teacher')
         <div class="header_admin">
             <div class="header_admin_content">
-                <a href="#">Расписание</a>
+                <a href="{{ route('showeSheduleTeacher') }}">Расписание</a>
             </div>
         </div>
         @endif

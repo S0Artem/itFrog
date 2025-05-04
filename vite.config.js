@@ -27,6 +27,7 @@ export default defineConfig({
                 'resources/views/admin/adminPortfolio/portfolio.js',
                 'resources/views/admin/adminPortfolio/portfolio.css',
                 'resources/views/admin/adminAplication/aplication.css',
+                'resources/views/admin/groupInfo/groupInfo.css',
             ],
         }),
     ],

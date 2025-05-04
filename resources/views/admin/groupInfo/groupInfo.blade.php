@@ -4,10 +4,17 @@
     <section class="admin-group">
         <div class="container">
             <!-- Кнопка возврата -->
+            @if (!Auth::check() && !Auth::user() === 'admin')
             <a href="{{ route('showeShedule', ['branch_id' => $selectedBranch]) }}" 
-               class="btn btn-back">
-                ← Назад к расписанию
+                class="btn btn-back">
+                 ← Назад к расписанию
             </a>
+            @else
+            <a href="{{ route('showeSheduleTeacher') }}" 
+                class="btn btn-back">
+                 ← Назад к расписанию
+            </a>
+            @endif
             
             <!-- Информация о группе -->
             <div class="group-info">

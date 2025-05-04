@@ -35,3 +35,4 @@ Route::post('/admin/register/admin', [AdminRegisterStudentController::class, 'su
 Route::get('/admin/shedule', [SheduleController::class, 'showe'])->name('showeShedule');
 Route::post('/admin/shedule', [SheduleController::class, 'submit'])->name('submitShedule');
 Route::get('/admin/shedule/group/{group}', [GroupInfoController::class, 'show'])->name('group.show');
+Route::get('/admin/sheduleTeacher', [SheduleController::class, 'showeTeacher'])->name('showeSheduleTeacher');

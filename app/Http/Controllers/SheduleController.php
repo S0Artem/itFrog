@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Branch, LessonTime, Group, Modul};
+use Illuminate\Support\Facades\Auth;
+use App\Models\{Branch, LessonTime, Group, Modul, GroupTeacher};
 
 class SheduleController extends Controller
 {
@@ -11,14 +12,27 @@ class SheduleController extends Controller
     {
         $branches = Branch::all();
         $selectedBranch = request('branch_id') ?? $branches->first()->id;
-        
-        return view('admin.shedule.shedule', [
+        return view('admin.shedule.sheduleAdmin', [
             'branches' => $branches,
             'selectedBranch' => $selectedBranch,
             'times' => LessonTime::orderBy('lesson_start')->get(),
             'moduls' => Modul::all(),
             'groups' => Group::with(['modul', 'time'])
                 ->where('branch_id', $selectedBranch)
+                ->get()
+                ->groupBy(['day', 'time_id'])
+        ]);
+    }
+
+
+    public function showeTeacher()
+    {
+        $idTeacher = Auth::user()->id;
+        $groopTeacher = GroupTeacher::where('employee_id', $idTeacher)->pluck('group_id');
+        return view('admin.shedule.sheduleTeacher', [
+            'times' => LessonTime::orderBy('lesson_start')->get(),
+            'groups' => Group::with(['modul', 'time'])
+                ->whereIn('id', $groopTeacher)
                 ->get()
                 ->groupBy(['day', 'time_id'])
         ]);
