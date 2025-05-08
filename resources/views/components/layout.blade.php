@@ -22,7 +22,7 @@
                 @if (!Auth::check())
                     <a href="{{ route('showeLogin') }}">Вход</a>
                 @else
-                    <p>{{ Auth::user()->name }}</p>
+                    <a href="{{ route('showeProfil') }}">{{ Auth::user()->name }}</a>
                     <a href="{{ route('logout') }}">Выйти</a>
                 @endif
     

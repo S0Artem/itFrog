@@ -23,6 +23,8 @@
                     {{ $group->teacher->employee->user->name ?? 'Не назначен' }}</p>
                 <p><strong>Телефон преподавателя:</strong> 
                     {{ $group->teacher->employee->user->number ?? 'Не указан' }}</p>
+                <p><strong>Филиал:</strong> 
+                    {{ $group->branch->sity }}, {{ $group->branch->adres }}</p>
             </div>
             
             <!-- Список учеников -->

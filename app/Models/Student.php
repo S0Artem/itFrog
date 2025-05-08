@@ -10,7 +10,7 @@ class Student extends Model
 
     public function branch()
     {
-        return $this->belongsTo(Branch::class);
+        return $this->belongsTo(Branch::class, 'branche_id');
     }
 
     public function user()
@@ -27,4 +27,30 @@ class Student extends Model
     {
         return $this->hasMany(StudentProgect::class);
     }
+    public function modulStudents()
+    {
+        return $this->hasMany(ModulStudent::class);
+    }
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'modul_students')
+                    ->withPivot(['last_payment_date'])
+                    ->withTimestamps();
+    }
+
+    public function application()
+    {
+        return $this->belongsTo(Aplication::class);
+    }
+
+    public function assessments()
+    {
+        return $this->hasMany(LessonAssessment::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
 }

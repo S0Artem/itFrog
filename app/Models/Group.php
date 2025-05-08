@@ -27,12 +27,17 @@ class Group extends Model
     {
         return $this->belongsTo(LessonTime::class, 'time_id');
     }
+    // Group.php
+    public function teachers()
+    {
+        return $this->belongsToMany(Employee::class, 'group_teachers', 'group_id', 'employee_id');
+    }
 
     public function time()
     {
         return $this->belongsTo(LessonTime::class, 'time_id');
     }
-    public function students()
+    public function student()
     {
         return $this->belongsToMany(
             Student::class,
@@ -45,4 +50,11 @@ class Group extends Model
     {
         return $this->hasOne(GroupTeacher::class, 'group_id');
     }
+    public function modulStudents()
+    {
+        return $this->hasMany(ModulStudent::class);
+    }
+
+
+
 }

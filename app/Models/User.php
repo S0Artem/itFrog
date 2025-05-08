@@ -29,7 +29,7 @@ class User extends Authenticatable
         'role',
     ];
 
-    public function students()
+    public function student()
     {
         return $this->hasMany(Student::class);
     }

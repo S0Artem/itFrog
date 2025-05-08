@@ -29,12 +29,14 @@ class SheduleController extends Controller
     {
         $idTeacher = Auth::user()->id;
         $groopTeacher = GroupTeacher::where('employee_id', $idTeacher)->pluck('group_id');
+        $grops = Group::with(['modul', 'time'])
+            ->whereIn('id', $groopTeacher)
+            ->get()
+            ->groupBy(['day', 'time_id']);
+
         return view('admin.shedule.sheduleTeacher', [
             'times' => LessonTime::orderBy('lesson_start')->get(),
-            'groups' => Group::with(['modul', 'time'])
-                ->whereIn('id', $groopTeacher)
-                ->get()
-                ->groupBy(['day', 'time_id'])
+            'groups' => $grops,
         ]);
     }
 

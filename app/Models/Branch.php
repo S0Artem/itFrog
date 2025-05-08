@@ -8,7 +8,7 @@ class Branch extends Model
 {
     protected $fillable = ['sity', 'adres'];
 
-    public function students()
+    public function student()
     {
         return $this->hasMany(Student::class);
     }

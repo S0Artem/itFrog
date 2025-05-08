@@ -15,7 +15,6 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class, 'id', 'id');
     }
-
     public function groupTeachers()
     {
         return $this->hasMany(GroupTeacher::class, 'employee_id');

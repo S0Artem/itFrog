@@ -13,8 +13,9 @@ class UsersTableSeeder extends Seeder
 
         // Администратор
         DB::table('users')->insert([
-            'name' => 'Администратор',
+            'name' => 'Петров Петр Сергеевич',
             'email' => 'so.artem998@gmail.com',
+            'number' => $faker->unique()->numerify('+7(9##)-###-##-##'),
             'password' => Hash::make('25071983EEe'),
             'role' => 'admin',
             'created_at' => now(),
@@ -35,6 +36,7 @@ class UsersTableSeeder extends Seeder
                 'email' => $teacher['email'],
                 'password' => Hash::make('password'),
                 'role' => 'teacher',
+                'number' => $faker->unique()->numerify('+7(9##)-###-##-##'),
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
@@ -46,6 +48,7 @@ class UsersTableSeeder extends Seeder
             $parents[] = [
                 'name' => $faker->lastName . ' ' . $faker->firstName . ' ' . $faker->middleName,
                 'email' => $faker->unique()->safeEmail,
+                'number' => $faker->unique()->numerify('+7(9##)-###-##-##'),
                 'password' => Hash::make('password'),
                 'role' => 'user',
                 'created_at' => now(),

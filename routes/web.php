@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminRegisterEmployeeController;
 use App\Http\Controllers\AdminRegisterStudentController;
 use App\Http\Controllers\SheduleController;
 use App\Http\Controllers\GroupInfoController;
+use App\Http\Controllers\ProfilController;
 
 
 Route::get('/', [HomeController::class, 'showeHome'])->name('showeHome');
@@ -36,3 +37,4 @@ Route::get('/admin/shedule', [SheduleController::class, 'showe'])->name('showeSh
 Route::post('/admin/shedule', [SheduleController::class, 'submit'])->name('submitShedule');
 Route::get('/admin/shedule/group/{group}', [GroupInfoController::class, 'show'])->name('group.show');
 Route::get('/admin/sheduleTeacher', [SheduleController::class, 'showeTeacher'])->name('showeSheduleTeacher');
+Route::get('/profil', [ProfilController::class, 'showe'])->name('showeProfil');

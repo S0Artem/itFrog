@@ -8,7 +8,7 @@ class Modul extends Model
 {
     protected $fillable = ['name', 'description', 'lesson'];
 
-    public function students()
+    public function student()
     {
         return $this->belongsToMany(Student::class, 'modul_students')->withPivot('paid');
     }
@@ -27,6 +27,11 @@ class Modul extends Model
     {
         return $this->hasMany(Group::class);
     }
+    public function modulStudents()
+    {
+        return $this->hasMany(ModulStudent::class);
+    }
+
 
 
     
