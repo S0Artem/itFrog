@@ -74,4 +74,28 @@ class AdminRegisterUserController extends Controller
 
         return redirect()->route('showeRegisterUser')->with('register', 'Вы успешно зарегистрировали пользователя! Проверьте данные на ' . $user->email);
     }
+    function resetShowe(){
+        return view('auth.reset.reset');
+    }
+    function resetUser(Request $request){
+        $messages = [
+            'email.required' => 'Почта обязательна для заполнения',
+            'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
+            'email.exists' => 'Пользователь с такой почтой не найден',
+        ];
+
+        $request->validate([
+            'email' => [
+                'required',
+                'email',
+                Rule::exists('users', 'email'),  // Проверяем наличие в таблице users по полю email
+            ],
+        ], $messages);
+        $user = User::where('email', $request->email)->firstOrFail();
+        $password = $this->generateRandomPassword();
+        $user->password = Hash::make($password);
+        $user->save();
+        $user->notify(new SendLoginDetails($user, $password));
+        return redirect()->route('showeLogin')->with('reset', 'Вы успешно изменили пароль! Проверьте данные на ' . $user->email);
+    }
 }

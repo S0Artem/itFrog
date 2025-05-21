@@ -45,3 +45,5 @@ Route::post('/payment/create', [PaymentController::class, 'create'])->name('paym
 Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback')->middleware('role:user');
 Route::get('/cashPaymen', [CashPaymenеController::class, 'showe'])->name('cashPaymen.showe')->middleware('role:admin,teacher');
 Route::post('/cashPaymen/create', [CashPaymenеController::class, 'submit'])->name('submitCashPaymen')->middleware('role:admin,teacher');
+Route::get('/resetPassword', [AdminRegisterUserController::class, 'resetShowe'])->name('resetShowe');
+Route::post('/resetPassword/reset', [AdminRegisterUserController::class, 'resetUser'])->name('resetUser');
