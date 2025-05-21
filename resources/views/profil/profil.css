@@ -3,6 +3,9 @@
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
 }
 
 .group-info {
@@ -10,4 +13,16 @@
     padding: 10px;
     margin-top: 10px;
     border-left: 3px solid #3c8dbc;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+h2{
+    margin-bottom: 20px;
 }

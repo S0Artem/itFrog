@@ -27,7 +27,6 @@ class Group extends Model
     {
         return $this->belongsTo(LessonTime::class, 'time_id');
     }
-    // Group.php
     public function teachers()
     {
         return $this->belongsToMany(Employee::class, 'group_teachers', 'group_id', 'employee_id');
@@ -37,14 +36,13 @@ class Group extends Model
     {
         return $this->belongsTo(LessonTime::class, 'time_id');
     }
-    public function student()
+
+    public function students()
     {
-        return $this->belongsToMany(
-            Student::class,
-            'modul_students',
-            'group_id',
-            'student_id'
-        )->withTimestamps();
+        return $this->belongsToMany(Student::class, 'modul_students', 'group_id', 'student_id')
+            ->withPivot(['last_payment_date'])
+            ->withTimestamps()
+            ->with('user');;
     }
     public function teacher()
     {

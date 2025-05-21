@@ -30,6 +30,7 @@ class AdminRegisterEmployeeController extends Controller
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
             'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
+            'name.regex' => 'Введите полное ФИО (например, Софронов Артем Павлович)',
             'number.required' => 'Номер обязательно для заполнения',
             'branch_id.required' => 'Филиал обязательно для заполнения',
         ];
@@ -41,7 +42,7 @@ class AdminRegisterEmployeeController extends Controller
                 Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
             ],
             'branch_id' => 'required',
-            'name' => 'required',
+            'name' => ['required', 'regex:/^\s*\S+\s+\S+\s+\S+/u'],
             'number'=> 'required',
         ], $messages);
 

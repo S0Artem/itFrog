@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('number');
             $table->string('name');
             $table->string('email');
-            $table->integer('age')->nullable();
+            $table->string('student_name');
+            $table->date('student_birth_date');
             $table->foreignId('branche_id')
-                ->nullable()
                 ->constrained('branches')
                 ->onDelete('cascade');
             $table->foreignId('student_id')
@@ -29,7 +29,8 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('employees')
                 ->onDelete('cascade');
-            $table->enum('status', ['Новая','В работе', 'Отказ', 'Обработана', 'Созданная'])->default('Новая');
+            $table->enum('status', ['Новая','В работе', 'Отказ', 'Обработана', 'Созданная'])
+                ->default('Новая');
             $table->timestamps();
         });
     }

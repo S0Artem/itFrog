@@ -45,8 +45,9 @@ class UsersTableSeeder extends Seeder
         // Родители (50 человек)
         $parents = [];
         for ($i = 0; $i < 50; $i++) {
+            $gender = $faker->randomElement(['male', 'female']);
             $parents[] = [
-                'name' => $faker->lastName . ' ' . $faker->firstName . ' ' . $faker->middleName,
+                'name' => $faker->lastName($gender) . ' ' . $faker->firstName($gender) . ' ' . $faker->middleName($gender),
                 'email' => $faker->unique()->safeEmail,
                 'number' => $faker->unique()->numerify('+7(9##)-###-##-##'),
                 'password' => Hash::make('password'),

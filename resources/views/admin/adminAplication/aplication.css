@@ -90,3 +90,6 @@
     color: rgb(255, 255, 255);
     background-color: #248c2d; /* Темно-зеленый при наведении */
 }
+.error{
+    color: red;
+}

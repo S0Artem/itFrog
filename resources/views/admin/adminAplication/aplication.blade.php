@@ -14,20 +14,25 @@
     @endif
     <div class="aplication">
         @foreach ($aplications as $aplication)
-            <div class="aplication__card">
+            <div id="aplication_{{ $aplication->id }}" class="aplication__card">
                 <div class="aplication__info">
-                    <p><strong>Имя:</strong> {{ $aplication->name ?? 'нету инфы' }}</p>
+                    <h4>Родитель</h4>
+                    <p><strong>ФИО:</strong> {{ $aplication->name ?? 'нету инфы' }}</p>
                     <p><strong>Почта:</strong> {{ $aplication->email ?? 'нету инфы' }}</p>
                     <p><strong>Телефон:</strong> {{ $aplication->number ?? 'нету инфы' }}</p>
+                    <h4>Ребенок</h4>
+                    <p><strong>ФИО:</strong> {{ $aplication->student_name ?? 'нету инфы' }}</p>
+                    <p><strong>Возраст:</strong> {{ $aplication->age_text }}</p>
+                    <p><strong>Филиал:</strong> {{ $aplication->branche->sity}} {{ $aplication->branche->adres }}</p>
                 </div>
                 @if ($errors->has('aplication_' . $aplication->id))
-                <div class="alert alert-danger">
+                <div class="error">
                     {{ $errors->first('aplication_' . $aplication->id) }}
                 </div>
                 @endif
                 
                 @if (session('success_' . $aplication->id))
-                    <div class="alert alert-success">
+                    <div class="alert alert-danger ">
                         {{ session('success_' . $aplication->id) }}
                     </div>
                 @endif
@@ -50,6 +55,12 @@
                             'number' => $aplication->number,
                             'idAplication' => $aplication->id
                         ]) }}" class="aplication__button">Зарегистрировать</a>
+                    @elseif ($aplication->status === 'Созданная')
+                        <a href="{{ route('showeRegisterStudent', [
+                            'student_birth_date' => $aplication->student_birth_date, 
+                            'student_name' => $aplication->student_name,
+                            'branche_id' => $aplication->branche_id,
+                        ]) }}" class="aplication__button">Зарегистрировать ребенка</a>
                     @endif
                 </form>
             </div>

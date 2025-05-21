@@ -36,7 +36,7 @@
     color: #666;
     margin: 15px 0;
 }
-.name-group, .email-group, .number-group, .password-group{
+.form-group{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -46,14 +46,14 @@
 }
 
 
-.name-group input, .email-group input, .number-group input, .password-group input{
+.form-group input{
     width: 100%;
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     font-size: 16px;
 }
-.name-group select, .email-group select, .number-group select, .password-group select{
+.form-group select{
     width: 100%;
     flex: 1;
     padding: 15px;
@@ -87,25 +87,4 @@ select option[disabled] {
 }
 select option[hidden] {
     display: none;
-}
-
-/* Стили для валидных/невалидных групп */
-select.valid-group {
-    border: 2px solid #28a745;
-    background-color: rgba(40, 167, 69, 0.1);
-}
-
-select.invalid-group {
-    border: 2px solid #72711c;
-    background-color: #ffe9a7;
-}
-
-option.age-valid {
-    background-color: #d4edda !important;
-    color: #155724;
-}
-
-option.age-invalid {
-    background-color: #ffe9a7 !important;
-    color: #72711c;
 }

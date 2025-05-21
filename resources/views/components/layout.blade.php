@@ -44,6 +44,7 @@
         <div class="header_admin">
             <div class="header_admin_content">
                 <a href="{{ route('showeSheduleTeacher') }}">Расписание</a>
+                <a href="{{ route('cashPaymen.showe') }}">Оплата наличными</a>
             </div>
         </div>
         @endif

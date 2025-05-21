@@ -1,17 +1,19 @@
 <x-layout>
     @vite(['resources/views/profil/profil.css'])
+    <div class="info">
+        @if (Auth::user()->role === 'user')
+            <h2>Профиль родителя</h2>
+        @elseif (Auth::user()->role === 'teacher')
+            <h2>Профиль учителя</h2>
+        @elseif (Auth::user()->role === 'admin')
+            <h2>Профиль админа</h2>
+        @endif
+        <p><strong>Имя: </strong>{{ $userInfo->name }}</p>
+        <p><strong>Почта: </strong>{{ $userInfo->email }}</p>
+        <p><strong>Номер: </strong>{{ $userInfo->number }}</p>
+    </div>
     @if (Auth::user()->role === 'user')
-        <h2>Профиль родителя</h2>
-    @elseif (Auth::user()->role === 'teacher')
-        <h2>Профиль учителя</h2>
-    @elseif (Auth::user()->role === 'admin')
-        <h2>Профиль админа</h2>
-    @endif
-    <p><strong>Имя: </strong>{{ $userInfo->name }}</p>
-    <p><strong>Почта: </strong>{{ $userInfo->email }}</p>
-    <p><strong>Номер: </strong>{{ $userInfo->number }}</p>
-    @if (Auth::user()->role === 'user')
-        <h3>Ваши дети:</h3>
+        <h2>Ваши дети:</h2>
         @foreach ($userStudents as $userStudent)
             <div class="student-card">
                 <p><strong>Имя ребенка: </strong>{{ $userStudent->name }}</p>
@@ -49,6 +51,29 @@
                                 {{ $teacher->user->number }}
                             </a>
                         </p>
+                        <p>
+                            <strong>Дата последней оплаты:</strong>
+                            <span style="color: {{ $group->payment_color }}">
+                                {{ $group->payment_display }}
+                            </span>
+                        </p>
+                        <form action="{{ route('payment.create') }}" method="POST" class="payment-form">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <input type="hidden" name="student_id" value="{{ $userStudent->id }}">
+                            <input type="hidden" name="amount" value="3400.00">
+                            <input type="hidden" name="description" value="Оплата за обучение">
+                            <input type="hidden" name="cash" value="0">
+                            <input type="hidden" name="groupId" value="{{ $group->id }}">
+
+
+                            <button type="submit"
+                                    @if(!($group->show_button ?? false)) style="display: none;" @endif
+                                    @disabled(!($group->show_button ?? false))  style="width: 200px;" class="btn">
+                                <i class="fas fa-credit-card mr-2"></i> Оплатить через ЮKassa
+                            </button>
+                        </form>
+
                         @endforeach
                     </div>
                 @empty

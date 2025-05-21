@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Direction;
 use Illuminate\Http\Request;
 use App\Models\StudentProgect;
+use App\Models\Branch;
 
 class HomeController extends Controller
 {
@@ -17,13 +18,14 @@ class HomeController extends Controller
 
             return $direction;
         });
+        $branches = Branch::get();
 
 
 
         $student_projects = StudentProgect::with('student', 'modul')->get();
         $student_projects = $student_projects->map(function ($project) {
             $project->student_name = optional($project->student)->name; 
-            $project->student_age = optional($project->student)->age;
+            $project->student_age = \Carbon\Carbon::parse(optional($project->student)->birthdate)->age;
             $project->tags = json_decode(optional($project->modul)->tags ?? '[]', true); 
             $project->progect = $project->progect;
             
@@ -33,6 +35,6 @@ class HomeController extends Controller
         
 
 
-        return view('home.home', compact('directions', 'student_projects'));
+        return view('home.home', compact('directions', 'student_projects', 'branches'));
     }
 }

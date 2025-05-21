@@ -8,20 +8,26 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Group;
 use App\Models\ModulStudent;
+use Carbon\Carbon;
 
 class AdminRegisterStudentController extends Controller
 {
-    public function showe()
+    public function showe(Request $request)
     {
+        $student_birth_date = $request->query('student_birth_date');
+        $student_name = $request->query('student_name');
+        $branch_id = $request->query('branche_id');
+
         $branchs = Branch::all();
-        $users = User::all();
+        $users = User::where('role', 'user')->get();
         $groups = Group::with(['modul', 'branch', 'lessonTime'])->get();
-        return view('admin.adminRegister.student.register', compact('users', 'branchs', 'groups'));
+        return view('admin.adminRegister.student.register', compact('users', 'branchs', 'groups', 'student_name', 'student_birth_date', 'branch_id'));
     }
     public function submitRegister(Request $request)
     {
         $messages = [
             'name.required' => 'Имя студента обязательно для заполнения',
+            'name.regex' => 'Введите полное ФИО (например, Софронов Артем Павлович)',
             'birthdate.required' => 'Дата рождения обязательна для заполнения',
             'birthdate.date' => 'Пожалуйста, введите корректную дату',
             'branch_id.required' => 'Филиал обязательно для выбора',
@@ -30,11 +36,11 @@ class AdminRegisterStudentController extends Controller
         ];
         
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'regex:/^\s*\S+\s+\S+\s+\S+/u'],
             'birthdate' => 'required|date',
-            'branch_id' => 'required|exists:branches,id',
-            'group_id' => 'required|exists:groups,id',
-            'user_id' => 'required|exists:users,id',
+            'branch_id' => 'required',
+            'group_id' => 'required',
+            'user_id' => 'required',
         ], $messages);
 
         $student = Student::create([
@@ -52,6 +58,7 @@ class AdminRegisterStudentController extends Controller
             'modul_id' => $group->modul_id,
             'created_at' => now(),
             'updated_at' => now(),
+            'last_payment_date' => Carbon::now()->subMonthNoOverflow()->subDay(),
         ]);
 
         return redirect()->route('showeRegisterStudent')->with('register', 'Студент успешно зарегистрирован!');    

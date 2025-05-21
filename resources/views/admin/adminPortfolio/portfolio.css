@@ -172,3 +172,79 @@
 }
 
 
+/* Сброс стандартных Tom Select стилей */
+.ts-wrapper.form-select {
+    width: 60% !important;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0;
+    min-height: 48px;
+    box-shadow: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.ts-wrapper.form-select.focus {
+    border-color: #2fac35;
+    background-color: #fff;
+}
+
+/* Ввод текста */
+.ts-control {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 12px 16px;
+    color: #333;
+}
+
+/* Варианты (выпадающее меню) */
+.ts-dropdown {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    z-index: 999;
+}
+
+.ts-dropdown .option {
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.ts-dropdown .option:hover {
+    background-color: #e6e6e6;
+}
+
+.ts-dropdown .option.selected,
+.ts-dropdown .option.active {
+    background-color: #2fac35;
+    color: white;
+}
+
+
+.center-select {
+    text-align: center;
+}
+
+.center-select .form-select,
+.center-select .ts-wrapper.form-select {
+    display: inline-block;
+    margin: auto;
+    float: none;
+}
+.ts-dropdown {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+
+.ts-dropdown .ts-dropdown-content, /* или правильный внутренний контейнер, если есть */
+.ts-dropdown .option-list {
+    overflow: visible !important;
+    max-height: none !important;
+}
+.error{
+    color: red;
+}

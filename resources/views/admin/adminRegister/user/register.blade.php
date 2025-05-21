@@ -12,31 +12,29 @@
                 @endif
                 <p>Регистрация нового пользователя в системе. Логин и пароль прийдет на почту</p>
                 <form action="{{ route('submitRegisterUser') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="idAplication" value="{{ $idAplication }}">
+                @csrf
+                <input type="hidden" name="idAplication" value="{{ $idAplication }}">
+                <div class="name-group">
+                    <input name="name" type="name" placeholder="ФИО пользователя " value="{{ old('name', $name) }}" >
+                </div>
+                @error('name') <p class="error">{{ $message }}</p> @enderror
+                <div class="email-group">
+                    <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email', $email) }}">
+                </div>
+                @error('email') <p class="error">{{ $message }}</p> @enderror
+                <div class="number-group">
+                    <label>Номер телефона пользователя</label>
+                    <input type="tel" 
+                            id="phone" 
+                            name="number" 
+                            placeholder="+7 (___) ___-__-__" 
+                            value="{{ old('number', $number ?? '') }}"
+                            required>
+                </div>
+                @error('number') <p class="error">{{ $message }}</p> @enderror
 
-                        
-    
-                        <div class="name-group">
-                            <input name="name" type="name" placeholder="Имя пользователя " value="{{ old('name', $name) }}" >
-                        </div>
-                        @error('name') <p class="error">{{ $message }}</p> @enderror
-                        <div class="email-group">
-                            <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email', $email) }}">
-                        </div>
-                        @error('email') <p class="error">{{ $message }}</p> @enderror
-                        <div class="number-group">
-                            <input type="tel" 
-                                   id="phone" 
-                                   name="number" 
-                                   placeholder="+7 (___) ___-__-__" 
-                                   value="{{ old('number', $number ?? '') }}"
-                                   required>
-                        </div>
-                        @error('number') <p class="error">{{ $message }}</p> @enderror
-    
-                        <button type="submit" class="btn">Зарегестрировать</button>
-                    </form>
+                <button type="submit" class="btn">Зарегестрировать</button>
+                </form>
             </div>
         </div>
     </section>

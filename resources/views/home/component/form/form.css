@@ -37,10 +37,24 @@
     color: #666;
     margin: 15px 0;
 }
+.form-container .error{
+    color: red;
+} 
 .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     margin: 10px 0;
 }
-
+.form-group select{
+    width: 100%;
+    flex: 1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
 
 .form-group input {
     width: 100%;

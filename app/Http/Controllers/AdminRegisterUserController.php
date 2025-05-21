@@ -34,6 +34,7 @@ class AdminRegisterUserController extends Controller
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
             'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
+            'name.regex' => 'Введите полное ФИО (например, Софронов Артем Павлович)',
             'number.required' => 'Имя обязательно для заполнения',
         ];
         
@@ -43,7 +44,7 @@ class AdminRegisterUserController extends Controller
                 'email',
                 Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
             ],
-            'name' => 'required',
+            'name' => ['required', 'regex:/^\s*\S+\s+\S+\s+\S+/u'],
             'number'=> 'required',
             'idAplication' => 'nullable|exists:aplications,id',
         ], $messages);

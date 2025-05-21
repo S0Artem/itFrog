@@ -38,24 +38,26 @@
 
                         <!-- Поле с выпадающим списком -->
                         <label for="student">Выберите ребенка:</label>
-                        <div class="form-group">
-                            <select name="student_id" id="student" class="form-select">
-                                @foreach($students as $student)
-                                    <option value="{{ $student->id }}" data-age="{{ $student->age }}" {{ old('student_id', $project->student_id) == $student->id ? 'selected' : '' }}>
-                                        {{ $student->name }}, {{ $student->age }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <div class="form-group center-select">
+                            @php
+                                $selectedStudent = $selectedStudents[$project->student_id] ?? null;
+                            @endphp
 
+                            <select name="student_id"
+                                    class="form-select"
+                                    data-url="{{ route('students.search') }}"
+                                    data-selected-id="{{ $selectedStudent->id ?? '' }}"
+                                    data-selected-label="{{ $selectedStudent ? $selectedStudent->name . ', ' . \Carbon\Carbon::parse($selectedStudent->birthdate)->age . ' лет' : '' }}">
+                            </select>
+
+                        </div>
+                        @error('student_id')<p class="error">{{ $message }}</p>@enderror
                         <!-- Текст о проекте -->
                         <label for="text" class="form-label">Описание проекта:</label>
                         <div class="form-group">
                             <textarea name="text" id="text" class="form-input" placeholder="Техт про проект" rows="2">{{ old('text', $project->progect) }}</textarea>
                         </div>
-                        @error('text') 
-                            <p class="error text-danger">{{ $message }}</p>
-                        @enderror
+                        @error('text')<p class="error">{{ $message }}</p>@enderror
 
                         <button type="submit" class="btn btn-primary mt-3">Изменить</button>
                     </form>

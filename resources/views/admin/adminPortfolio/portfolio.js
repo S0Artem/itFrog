@@ -1,3 +1,32 @@
+import TomSelect from "tom-select";
+import "tom-select/dist/css/tom-select.css";
+
+// Инициализация
+document.querySelectorAll('.form-select').forEach(select => {
+    const tom = new TomSelect(select, {
+        valueField: 'id',
+        labelField: 'label',
+        searchField: 'label',
+        load: function(query, callback) {
+            const url = select.dataset.url + '?q=' + encodeURIComponent(query);
+            fetch(url)
+                .then(response => response.json())
+                .then(json => callback(json))
+                .catch(() => callback());
+        },
+        placeholder: 'Выберите ребёнка...',
+    });
+
+    // Установить значение вручную, если data-selected-id и data-selected-label заданы
+    const selectedId = select.dataset.selectedId;
+    const selectedLabel = select.dataset.selectedLabel;
+
+    if (selectedId && selectedLabel) {
+        tom.addOption({ id: selectedId, label: selectedLabel });
+        tom.setValue(selectedId);
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const sliderContainer = document.querySelector(".slider-container");
     const slides = Array.from(sliderContainer.children);

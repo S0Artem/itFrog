@@ -17,7 +17,7 @@
                     
 
                     <div class="name-group">
-                        <input name="name" type="name" placeholder="Имя пользователя " value="{{ old('name') }}" >
+                        <input name="name" type="name" placeholder="ФИО пользователя " value="{{ old('name') }}" >
                     </div>
                     @error('name') <p class="error">{{ $message }}</p> @enderror
                     <div class="email-group">
@@ -25,6 +25,7 @@
                     </div>
                     @error('email') <p class="error">{{ $message }}</p> @enderror
                     <div class="number-group">
+                        <label>Номер телефона</label>
                         <input type="tel" 
                                id="phone" 
                                name="number" 
