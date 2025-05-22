@@ -5,8 +5,8 @@
         <div class="home__banner__content">
             <div class="home__banner__content__text">
                 <h2>Какое направление будет интересно вашему ребенку?</h2>
-                <p>Пройдите опрос из 8 вопросов и узнайти какое напровление интересновашему ребенку</p>
-                <button class="btn">Пройти опрос</button>
+                <p>Оставте заявку и администратор подберет курс под вас</p>
+                <a href="#home__form" class="btn">Записаться</a>
             </div>
             <img src="{{ asset('img/frog.png') }}" alt="Logo" />
         </div>

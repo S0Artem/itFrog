@@ -9,6 +9,11 @@
                         {{ session('reset') }}
                     </div>
                 @endif
+                @if (session('error'))
+                    <div class="error error-register">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <p>Вход в личный кабинет, данные личного кабинета вам выдадут при записи ребенка на занятия</p>
                 <form action="{{ route('submitLogin') }}" method="post">
                     @csrf

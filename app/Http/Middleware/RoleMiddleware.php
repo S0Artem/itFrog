@@ -19,8 +19,12 @@ class RoleMiddleware
         $user = Auth::user();
 
         if (!$user || !in_array($user->role, $roles)) {
-            abort(403, 'Доступ запрещен');
+            Auth::logout(); // сначала выходим
+
+            return redirect()->route('showeLogin') // потом редиректим
+                ->with('error', 'Сюда вам доступ закрыт, сначала зарегистрируйтесь');
         }
+
 
         return $next($request);
     }

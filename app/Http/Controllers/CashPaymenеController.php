@@ -64,7 +64,7 @@ class CashPaymenеController extends Controller
             }
         }
 
-        return view('teacher.сashPaymen.cashPaymen', compact('groups', 'students'));
+        return view('teacher.cashPaymen.cashPaymen', compact('groups', 'students'));
     }
 
 

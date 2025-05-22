@@ -3,6 +3,7 @@
 @vite(['resources/views/admin/adminPortfolio/portfolio.js'])
 
 <section class="home__portfolio__section">
+    
     <h2>Работы наших студентов</h2>
     <div class="slider">
         <button class="prev">&#10094;</button> <!-- Левая стрелка -->

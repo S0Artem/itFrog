@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Branch, LessonTime, Group, Modul, GroupTeacher};
+use App\Models\{Branch, Employee, LessonTime, Group, Modul, GroupTeacher};
 
 class SheduleController extends Controller
 {

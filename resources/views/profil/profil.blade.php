@@ -5,6 +5,7 @@
             <h2>Профиль родителя</h2>
         @elseif (Auth::user()->role === 'teacher')
             <h2>Профиль учителя</h2>
+            <p><strong>Филиал: </strong>{{ $branch->sity }}, {{ $branch->adres }}</p>
         @elseif (Auth::user()->role === 'admin')
             <h2>Профиль админа</h2>
         @endif
@@ -81,5 +82,14 @@
                 @endforelse
             </div>
         @endforeach
+    @elseif (Auth::user()->role === 'teacher')
+        <h2>Модули, которые вы ведёте</h2>
+            @foreach ($moduls as $modul)
+            <div class="student-card">
+                    <p><strong>Название модуля: </strong>{{ $modul->name }} — {{ $modul->description }}</p>
+                    <p><strong>Уроков: </strong>{{ $modul->lesson }}. <strong>Возраст:</strong> {{ $modul->min_age }}–{{ $modul->max_age }} лет</p>
+            </div>
+            @endforeach
+
     @endif
 </x-layout>

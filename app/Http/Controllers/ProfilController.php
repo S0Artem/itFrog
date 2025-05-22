@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Student;
 use App\Models\Branch;
+use App\Models\Employee;
+use App\Models\Group;
+use App\Models\GroupTeacher;
+use App\Models\Modul;
 use App\Models\ModulStudent;
 use Carbon\Carbon;
 
@@ -15,6 +19,22 @@ class ProfilController extends Controller
     public function showe()
     {
         $userId = Auth::id();
+
+        // Получаем филиал
+        $employee = Employee::find($userId);
+        $branchId = $employee?->branche_id;
+        $branch = Branch::find($branchId);
+
+        // Получаем все group_id, где учитель прикреплён
+        $groupIds = GroupTeacher::where('employee_id', $userId)->pluck('group_id');
+
+        // Получаем все modul_id из этих групп
+        $modulIds = \App\Models\Group::whereIn('id', $groupIds)->pluck('modul_id')->unique();
+
+        // Получаем модули по этим ID
+        $moduls = Modul::whereIn('id', $modulIds)->get();
+
+
 
         $userInfo = User::find($userId, ['email', 'name', 'number']);
         $userStudents = Student::with([
@@ -76,6 +96,6 @@ class ProfilController extends Controller
 
 
 
-        return view('profil.profil', compact('userInfo', 'userStudents'));
+        return view('profil.profil', compact('userInfo', 'userStudents', 'branch', 'moduls'));
     }
 }

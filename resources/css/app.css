@@ -67,3 +67,6 @@ a:hover {
     background-color: #2fac35;
     color: white;
 }
+.error{
+    color: red;
+}

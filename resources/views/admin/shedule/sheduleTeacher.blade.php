@@ -3,7 +3,7 @@
 
     <section class="admin-schedule">
         <div class="container">
-            
+            <h2>Расписание филиалов</h2>
             <!-- Сетка расписания -->
             <div class="schedule-grid">
                 <!-- Заголовки дней недели -->

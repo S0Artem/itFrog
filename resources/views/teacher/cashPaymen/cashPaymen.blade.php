@@ -1,5 +1,7 @@
+@vite(['resources/views/teacher/cashPaymen/cashPaymen.js'])
+@vite(['resources/views/teacher/cashPaymen/cashPaymen.css'])
 <x-layout>
-    @vite(['resources/views/teacher/сashPaymen/сashPaymen.js', 'resources/views/teacher/сashPaymen/сashPaymen.css'])
+
     <section class="register__section">
         
         <div class="register-container">

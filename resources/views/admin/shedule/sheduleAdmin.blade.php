@@ -5,6 +5,11 @@
     <section class="admin-schedule">
         <div class="container">
             <!-- Выбор филиала -->
+            @if (Auth::user()->role === 'admin')
+                <h2>Расписание филиалов</h2>
+            @else
+                <h2>Расписание учителя</h2>
+            @endif
             <div class="branch-selector">
                 <form method="GET" class="branch-form">
                     <select name="branch_id" class="form-select" onchange="this.form.submit()">

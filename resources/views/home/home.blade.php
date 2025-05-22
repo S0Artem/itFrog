@@ -1,4 +1,5 @@
 <x-layout>
+    
     @include('home.component.main.main')
     @include('home.component.courses.courses')
     @include('home.component.banner.banner')

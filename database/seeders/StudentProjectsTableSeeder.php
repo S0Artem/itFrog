@@ -16,7 +16,7 @@ class StudentProjectsTableSeeder extends Seeder
         // Доступные файлы проектов
         $availableProjects = [
             'img/studebt_progect_1.png',
-            'img/studebt_progect_2.gif',
+            'img/studebt_progect_2.png',
             'img/studebt_progect_3.png'
         ];
         
