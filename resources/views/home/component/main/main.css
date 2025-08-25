@@ -22,7 +22,6 @@
     line-height: 25px;
 }
 
-
 /*Банер*/
 .home__main__content__banner{
     background-color: #2fac35;
@@ -48,4 +47,96 @@
     height: 100%;
     width: fit-content;
     align-items: center;
+}
+
+@media (max-width: 900px) {
+    .home__main__content{
+        background-image: none !important;
+    }
+    .home__main__content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .home__main__content_text h1 {
+        font-size: 24px;
+    }
+    .home__main__content_text p {
+        font-size: 16px;
+    }
+    .home__main__content__baner__btn {
+        flex-direction: column;
+        justify-content: unset;
+        align-items: center;
+        gap: 30px;
+    }
+    .home__main__content__banner, .home__main__content__banner2 {
+        flex-direction: column;
+        margin: 10px 0;
+        padding: 28px;
+    }
+    .home__main__content__banner img {
+        width: 40px;
+        height: 40px;
+    }
+    .home__main__content__banner__text p {
+        font-size: 14px;
+    }
+    .btn {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .home__main__content{
+        background-image: url('../../../../../public/img/home__page.png');
+        background-repeat: no-repeat;
+        background-size: 55%;
+        background-position: right bottom; 
+    }
+    .card{
+        padding: 45px !important;
+    }
+}
+@media (max-width: 600px) {
+    .home__main__content_text h1 {
+        font-size: 20px;
+        width: 100%;
+        max-width: 300px;
+    }
+    .home__main__content_text p {
+        font-size: 14px;
+        width: 100%;
+        max-width: 300px;
+        line-height: 20px;
+        margin-top: 20px;
+    }
+}
+@media (max-width: 400px) {
+    .home__main__content {
+        height: auto;
+        padding: 30px 10px;
+    }
+    
+    .home__main__content__baner__btn {
+        gap: 20px;
+    }
+    .home__main__content__banner, .home__main__content__banner2 {
+        border-radius: 12px;
+    }
+    .home__main__content__banner img {
+        width: 30px;
+        height: 30px;
+    }
+    .home__main__content__banner__text {
+        width: 80px;
+    }
+    .home__main__content__banner__text p {
+        font-size: 12px;
+    }
+    .btn {
+        margin-top: 30px;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

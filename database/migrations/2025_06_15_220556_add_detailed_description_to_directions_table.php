@@ -8,15 +8,11 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     * Продукты
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('volume');
-            $table->timestamps();
+        Schema::table('directions', function (Blueprint $table) {
+            $table->text('detailed_description')->nullable()->after('description');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::table('directions', function (Blueprint $table) {
+            $table->dropColumn('detailed_description');
+        });
     }
 };

@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Direction;
 use Illuminate\Http\Request;
-use App\Models\StudentProgect;
+use App\Models\StudentProject;
 use App\Models\Branch;
 
 class HomeController extends Controller
 {
     function showeHome(){
-        $directions = Direction::with('moduls')->inRandomOrder()->take(6)->get();
+        $directions = Direction::with('moduls')->inRandomOrder()->get();
         $directions = $directions->map(function ($direction) {
             $direction->modules_count = $direction->moduls->count();
             $direction->total_lessons = $direction->moduls->sum('lesson');
@@ -22,12 +22,12 @@ class HomeController extends Controller
 
 
 
-        $student_projects = StudentProgect::with('student', 'modul')->get();
+        $student_projects = StudentProject::with('student', 'modul')->get();
         $student_projects = $student_projects->map(function ($project) {
             $project->student_name = optional($project->student)->name; 
             $project->student_age = \Carbon\Carbon::parse(optional($project->student)->birthdate)->age;
             $project->tags = json_decode(optional($project->modul)->tags ?? '[]', true); 
-            $project->progect = $project->progect;
+            $project->project = $project->project;
             
             return $project;
         });

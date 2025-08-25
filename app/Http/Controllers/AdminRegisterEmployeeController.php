@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Notifications\SendLoginDetails;
 use Illuminate\Validation\Rule;
 use App\Models\Branch;
+use App\Rules\ProperNameFormat;
+use App\Rules\AgeLimit;
 
 class AdminRegisterEmployeeController extends Controller
 {
@@ -30,9 +32,10 @@ class AdminRegisterEmployeeController extends Controller
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
             'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
-            'name.regex' => 'Введите полное ФИО (например, Софронов Артем Павлович)',
             'number.required' => 'Номер обязательно для заполнения',
             'branch_id.required' => 'Филиал обязательно для заполнения',
+            'birthdate.required' => 'Дата рождения обязательна для заполнения',
+            'birthdate.date' => 'Пожалуйста, введите корректную дату',
         ];
         
         $request->validate([
@@ -42,8 +45,9 @@ class AdminRegisterEmployeeController extends Controller
                 Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
             ],
             'branch_id' => 'required',
-            'name' => ['required', 'regex:/^\s*\S+\s+\S+\s+\S+/u'],
+            'name' => ['required', new ProperNameFormat],
             'number'=> 'required',
+            'birthdate' => ['required', 'date', new AgeLimit(null, 120, 'user')],
         ], $messages);
 
         // Генерация уникального пароля
@@ -54,6 +58,7 @@ class AdminRegisterEmployeeController extends Controller
             'email' => $request->email,
             'name' => $request->name,
             'number' => $request->number,
+            'birthdate' => $request->birthdate,
             'role' => 'teacher',
             'password' => Hash::make($password),
         ]);

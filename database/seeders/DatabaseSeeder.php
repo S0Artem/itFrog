@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
             LessonsTableSeeder::class,
             StudentsTableSeeder::class,
             ModulStudentsTableSeeder::class,
-            LessonAssessmentsTableSeeder::class,
             StudentProjectsTableSeeder::class
         ]);
     }

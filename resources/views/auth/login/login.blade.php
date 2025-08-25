@@ -14,7 +14,7 @@
                         {{ session('error') }}
                     </div>
                 @endif
-                <p>Вход в личный кабинет, данные личного кабинета вам выдадут при записи ребенка на занятия</p>
+                <p>Вход в личный кабинет. Данные личного кабинета выдаются при записи ребёнка на занятия.</p>
                 <form action="{{ route('submitLogin') }}" method="post">
                     @csrf
                     <div class="login-group">
@@ -27,7 +27,7 @@
                     @error('password') <p class="error">{{ $message }}</p> @enderror
                     <button type="submit" class="btn">Войти</button>
                 </form>
-                <p class="login-footer">Если забыли пароль <a href="{{ route('resetShowe') }}">Восстановить пароль</a></p>
+                <p class="login-footer">Если вы забыли пароль, <a href="{{ route('resetShowe') }}">нажмите 'Восстановить пароль'</a></p>
             </div>
         </div>
     </section>

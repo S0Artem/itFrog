@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['name' ,'birthdate', 'branche_id', 'user_id'];
+    protected $fillable = ['name' ,'birthdate', 'branch_id', 'user_id'];
 
     public function branch()
     {
-        return $this->belongsTo(Branch::class, 'branche_id');
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
     public function user()
@@ -25,7 +25,7 @@ class Student extends Model
 
     public function projects()
     {
-        return $this->hasMany(StudentProgect::class);
+        return $this->hasMany(StudentProject::class);
     }
     public function modulStudents()
     {
@@ -40,7 +40,7 @@ class Student extends Model
 
     public function application()
     {
-        return $this->belongsTo(Aplication::class);
+        return $this->belongsTo(Application::class);
     }
 
     public function assessments()

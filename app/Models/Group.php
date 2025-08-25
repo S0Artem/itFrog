@@ -39,10 +39,9 @@ class Group extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'modul_students', 'group_id', 'student_id')
-            ->withPivot(['last_payment_date'])
-            ->withTimestamps()
-            ->with('user');;
+        return $this->hasMany(ModulStudent::class)
+            ->with('student.user')
+            ->whereNull('deleted_at');
     }
     public function teacher()
     {

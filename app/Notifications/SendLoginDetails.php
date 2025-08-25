@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notification;
 class SendLoginDetails extends Notification
 {
     use Queueable;
-
     protected $user;
     protected $password;
 
@@ -26,7 +25,6 @@ class SendLoginDetails extends Notification
     
     public function toMail($notifiable)
     {
-        #//TODO:Разобраться как это работает до конца
         return (new MailMessage)
             ->subject('Здраствуйте  ' . $this->user->name . '. Ваши данные для входа')
             ->line('Здраствуйте  ' . $this->user->name . '. Ваши данные для входа')

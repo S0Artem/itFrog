@@ -15,9 +15,9 @@ class StudentProjectsTableSeeder extends Seeder
         
         // Доступные файлы проектов
         $availableProjects = [
-            'img/studebt_progect_1.png',
-            'img/studebt_progect_2.png',
-            'img/studebt_progect_3.png'
+            'img/student_project_1.png',
+            'img/student_project_2.png',
+            'img/student_project_3.png'
         ];
         
         // Получаем всех студентов с их модулями
@@ -31,7 +31,7 @@ class StudentProjectsTableSeeder extends Seeder
             $randomProject = $availableProjects[array_rand($availableProjects)];
             
             $projects[] = [
-                'progect' => $this->generateProjectDescription($randomProject, $faker),
+                'project' => $this->generateProjectDescription($randomProject, $faker),
                 'student_id' => $student->student_id,
                 'modul_id' => $student->modul_id,
                 'video' => $randomProject,
@@ -42,7 +42,7 @@ class StudentProjectsTableSeeder extends Seeder
 
         // Разбиваем на части для больших объемов данных
         foreach (array_chunk($projects, 500) as $chunk) {
-            DB::table('student_progects')->insert($chunk);
+            DB::table('student_projects')->insert($chunk);
         }
     }
     

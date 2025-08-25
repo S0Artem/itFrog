@@ -8,7 +8,13 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Group;
 use App\Models\ModulStudent;
+use App\Models\Application;
+use App\Models\LessonTime;
+use App\Models\Modul;
+use App\Notifications\SendInfo;
 use Carbon\Carbon;
+use App\Rules\ProperNameFormat;
+use App\Rules\AgeLimit;
 
 class AdminRegisterStudentController extends Controller
 {
@@ -16,18 +22,18 @@ class AdminRegisterStudentController extends Controller
     {
         $student_birth_date = $request->query('student_birth_date');
         $student_name = $request->query('student_name');
-        $branch_id = $request->query('branche_id');
+        $branch_id = $request->query('branch_id');
+        $user_id = $request->query('user_id');
 
         $branchs = Branch::all();
         $users = User::where('role', 'user')->get();
         $groups = Group::with(['modul', 'branch', 'lessonTime'])->get();
-        return view('admin.adminRegister.student.register', compact('users', 'branchs', 'groups', 'student_name', 'student_birth_date', 'branch_id'));
+        return view('admin.adminRegister.student.register', compact('users', 'branchs', 'groups', 'student_name', 'student_birth_date', 'branch_id', 'user_id'));
     }
     public function submitRegister(Request $request)
     {
         $messages = [
-            'name.required' => 'Имя студента обязательно для заполнения',
-            'name.regex' => 'Введите полное ФИО (например, Софронов Артем Павлович)',
+            'name.required' => 'Имя ученика обязательно для заполнения',
             'birthdate.required' => 'Дата рождения обязательна для заполнения',
             'birthdate.date' => 'Пожалуйста, введите корректную дату',
             'branch_id.required' => 'Филиал обязательно для выбора',
@@ -36,8 +42,8 @@ class AdminRegisterStudentController extends Controller
         ];
         
         $request->validate([
-            'name' => ['required', 'regex:/^\s*\S+\s+\S+\s+\S+/u'],
-            'birthdate' => 'required|date',
+            'name' => ['required', new ProperNameFormat],
+            'birthdate' => ['required', 'date', new AgeLimit(null, 18, 'student')],
             'branch_id' => 'required',
             'group_id' => 'required',
             'user_id' => 'required',
@@ -46,7 +52,7 @@ class AdminRegisterStudentController extends Controller
         $student = Student::create([
             'name' => $request->name,
             'birthdate' => $request->birthdate,
-            'branche_id' => $request->branch_id,
+            'branch_id' => $request->branch_id,
             'user_id' => $request->user_id,
         ]);
 
@@ -60,7 +66,26 @@ class AdminRegisterStudentController extends Controller
             'updated_at' => now(),
             'last_payment_date' => Carbon::now()->subMonthNoOverflow()->subDay(),
         ]);
+        $parent = User::findOrFail($request->user_id);
+    $parentName = $parent->name;
+    $childName = $request->name;
+    $day = $group->day;
+    $time = LessonTime::findOrFail($group->time_id)->lesson_start;
+    $moduleName = Modul::findOrFail($group->modul_id)->name;
+    $status = 0;
 
-        return redirect()->route('showeRegisterStudent')->with('register', 'Студент успешно зарегистрирован!');    
+    // Отправляем уведомление пользователю
+    $parent->notify(new SendInfo($parentName, $childName, $day, $time, $moduleName, $status));
+        // Если есть application_id, обновляем статус заявки на "Готовая" и данные ученик
+        if ($request->has('aplication_id')) {
+            $application = Application::find($request->aplication_id);
+            if ($application) {
+                $application->status = 'Готовая';
+                $application->student_id = $student->id;
+                $application->update(['updated_at' => now()->setTimezone('Europe/Moscow')]);
+            }
+        }
+
+        return redirect()->route('showeRegisterStudent')->with('register', 'Ученик успешно зарегистрирован!');    
     }
 }

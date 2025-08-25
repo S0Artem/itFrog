@@ -10,43 +10,53 @@
                         {{ session('register') }}
                     </div>
                 @endif
-                <p>Регистрация нового пользователя в системе. Логин и пароль прийдет на почту</p>
+                <p>Регистрация нового пользователя в системе. Логин и пароль придут на почту.</p>
 
                 <form action="{{ route('submitRegisterEmployee') }}" method="post">
                     @csrf
                     
-
                     <div class="name-group">
-                        <input name="name" type="name" placeholder="ФИО пользователя " value="{{ old('name') }}" >
+                        <label for="name">ФИО сотрудника</label>
+                        <input name="name" id="name" type="text" placeholder="ФИО сотрудника" value="{{ old('name') }}">
+                        @error('name')<p class="error">{{ $message }}</p>@enderror
                     </div>
-                    @error('name') <p class="error">{{ $message }}</p> @enderror
+                    
                     <div class="email-group">
-                        <input name="email" type="email" placeholder="Почта пользователя" value="{{ old('email') }}">
+                        <label for="email">Email</label>
+                        <input name="email" id="email" type="email" placeholder="Email" value="{{ old('email') }}">
+                        @error('email')<p class="error">{{ $message }}</p>@enderror
                     </div>
-                    @error('email') <p class="error">{{ $message }}</p> @enderror
+                    
                     <div class="number-group">
-                        <label>Номер телефона</label>
+                        <label for="number">Номер телефона</label>
                         <input type="tel" 
-                               id="phone" 
+                               id="number" 
                                name="number" 
                                placeholder="+7 (___) ___-__-__" 
-                               value="{{ old('number' ?? '') }}"
+                               value="{{ old('number') }}"
                                required>
+                        @error('number')<p class="error">{{ $message }}</p>@enderror
                     </div>
-                    @error('number') <p class="error">{{ $message }}</p> @enderror
+
+                    <div class="name-group">
+                        <label for="birthdate">Дата рождения сотрудника</label>
+                        <input type="date" name="birthdate" id="birthdate" value="{{ old('birthdate') }}" class="form-control">
+                        @error('birthdate')<p class="error">{{ $message }}</p>@enderror
+                    </div>
 
                     <div class="email-group">
-                        <select name="branch_id" id="branch" class="form-select">
+                        <label for="branch_id">Филиал</label>
+                        <select name="branch_id" id="branch_id" class="form-select">
+                            <option value="">Выберите филиал</option>
                             @foreach($branchs as $branch)
-                                <option value="{{ $branch->id }}">
+                                <option value="{{ $branch->id }}" {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
                                     {{ $branch->sity }}, {{ $branch->adres }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
-                    
 
-                    <button type="submit" class="btn">Зарегестрировать</button>
+                    <button type="submit" class="btn">Зарегистрировать</button>
                 </form>
             </div>
         </div>

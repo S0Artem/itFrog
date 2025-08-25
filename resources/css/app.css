@@ -12,10 +12,21 @@ html {
 }
 
 body {
-    font-family: "Comfortaa", serif;;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Comfortaa", serif;
     width: 1280px;
     margin: 0 auto;
     overflow-x: hidden;
+    padding: 0 20px; /* Добавляю отступы слева и справа */
+}
+
+@media (max-width: 1400px) {
+    body {
+        width: 100%;
+    }
 }
 
 ul {
@@ -48,25 +59,35 @@ a:hover {
 }
 /*Кнопка*/
 .btn {
-    width: 150px;
-    font-family: "Comfortaa", serif;;
-    padding: 8px 17px;
-    font-size: 16px;
-    border: 1.4px solid #000000;
-    background-color: white;
-    color: #000000;
+    margin-top: 20px;
+    width: fit-content;
+    padding: 12px 24px;
+    background-color: #2fac35;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
     cursor: pointer;
-    border-radius: 17px;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    text-decoration: none;
+    display: inline-block;
+    font-family: "Comfortaa", serif;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
 }
 .btn:hover {
-    border: 1.4px solid #33333300;
-    background-color: #2fac35;
-    color: white;
+    background-color: #248c2d;
+    transform: scale(1.05);
+    color: #fff;
+    text-decoration: none;
 }
 .error{
     color: red;
+}
+
+.none{
+    display: none;
 }

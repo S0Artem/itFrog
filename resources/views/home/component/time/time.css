@@ -77,3 +77,60 @@
     font-weight: bold;
     margin-top: 5px;
 }
+
+@media (max-width: 900px) {
+    .home__time__section {
+        margin-top: 40px;
+    }
+    
+    .home__time__contenteiner h2 {
+        font-size: 20px;
+        text-align: center;
+        padding: 0 20px;
+    }
+    
+    .timeline__titles {
+        margin-top: 40px;
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .timeline__titles p {
+        font-size: 16px;
+    }
+    
+    .timeline__line {
+        margin: 30px 20px;
+    }
+    
+    .timeline__circle {
+        width: 20px;
+        height: 20px;
+        border-width: 3px;
+    }
+    
+    .timeline__times {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .home__time__contenteiner h2 {
+        font-size: 18px;
+    }
+    
+    .timeline__titles p {
+        font-size: 14px;
+    }
+    
+    .timeline__circle {
+        width: 15px;
+        height: 15px;
+        border-width: 2px;
+    }
+    
+    .timeline__times {
+        font-size: 12px;
+    }
+}

@@ -2,9 +2,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ModulStudent extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'last_payment_date',
         'group_id',

@@ -13,6 +13,11 @@ class Branch extends Model
         return $this->hasMany(Student::class);
     }
 
+    public function applications()
+    {
+        return $this->hasMany(Application::class, 'branch_id');
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_branches')->withPivot('volume');

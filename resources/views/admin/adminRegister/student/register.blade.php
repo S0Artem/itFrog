@@ -10,28 +10,30 @@
                         {{ session('register') }}
                     </div>
                 @endif
-                <p>Регистрация нового пользователя в системе. Логин и пароль прийдет на почту</p>
+                <p>Регистрация нового пользователя в системе. Логин и пароль придут на почту.</p>
                 <form action="{{ route('submitRegisterStudent') }}" method="post">
                     @csrf
                 
                     <div class="name-group">
-                        <input name="name" type="text" placeholder="ФИО студента" value="{{ old('name', $student_name) }}">
+                        <label for="name">ФИО ученика</label>
+                        <input name="name" id="name" type="text" placeholder="ФИО ученика" value="{{ old('name', $student_name) }}">
                         @error('name')<p class="error">{{ $message }}</p>@enderror
                     </div>
                 
                     <!-- Поле даты рождения -->
                     <div class="name-group">
-                        <label>День рождение ребенка</label>
+                        <label for="birthdate">Дата рождения ребёнка</label>
                         <input type="date" name="birthdate" id="birthdate" value="{{ old('birthdate', $student_birth_date) }}" class="form-control">
                         @error('birthdate')<p class="error">{{ $message }}</p>@enderror
                     </div>
                 
                     <!-- Выбор филиала -->
                     <div class="name-group">
+                        <label for="branch_id">Филиал</label>
                         <select name="branch_id" id="branch_id" class="form-select">
                             <option value="">Выберите филиал</option>
                             @foreach($branchs as $branch)
-                                <option value="{{ $branch->id }}" {{ old('branche_id', $branch_id ?? '') == $branch->id ? 'selected' : '' }}>
+                                <option value="{{ $branch->id }}" {{ old('branch_id', $branch_id ?? '') == $branch->id ? 'selected' : '' }}>
                                     {{ $branch->sity }}, {{ $branch->adres }}
                                 </option>
                             @endforeach
@@ -40,7 +42,7 @@
                 
                     <!-- Выбор группы -->
                     <div class="name-group">
-                        <label>Группа</label>
+                        <label for="group_id">Группа</label>
                         <select name="group_id" id="group_id" class="form-select" disabled >
                             <option value="" id="group_placeholder">Сначала выберите филиал и укажите дату рождения</option>
                             @foreach($groups as $group)
@@ -63,16 +65,23 @@
                     </div>
                 
                     <div class="name-group">
-                        <select name="user_id" id="user_id" class="form-select">
+                        <label for="user_id">Родитель</label>
+                        <select name="user_id" id="user_id" class="form-select" {{ $user_id ? 'disabled' : '' }}>
                             <option value="">Выберите родителя</option>
                             @foreach($users as $user)
-                                <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                <option value="{{ $user->id }}" {{ old('user_id', $user_id ?? '') == $user->id ? 'selected' : '' }}>
                                     {{ $user->name }}
                                 </option>
                             @endforeach
                         </select>
+                        @if ($user_id)
+                            <input type="hidden" name="user_id" value="{{ $user_id }}">
+                        @endif
                     </div>
 
+                    @if (request('aplication_id'))
+                        <input type="hidden" name="aplication_id" value="{{ request('aplication_id') }}">
+                    @endif
                 
                     <button type="submit" class="btn">Зарегистрировать</button>
                 </form>

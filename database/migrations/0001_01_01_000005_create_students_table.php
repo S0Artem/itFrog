@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('name');
             
-            $table->foreignId('branche_id')
+            $table->foreignId('branch_id')
                 ->constrained('branches')
                 ->onDelete('cascade');
             $table->foreignId('user_id')

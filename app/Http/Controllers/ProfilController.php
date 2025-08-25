@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Student;
+use App\Models\Direction;
 use App\Models\Branch;
 use App\Models\Employee;
 use App\Models\Group;
@@ -31,8 +32,8 @@ class ProfilController extends Controller
         // Получаем все modul_id из этих групп
         $modulIds = \App\Models\Group::whereIn('id', $groupIds)->pluck('modul_id')->unique();
 
-        // Получаем модули по этим ID
-        $moduls = Modul::whereIn('id', $modulIds)->get();
+        // Получаем модули по этим ID с загрузкой направления
+        $moduls = Modul::with('direction')->whereIn('id', $modulIds)->get();
 
 
 
@@ -94,8 +95,16 @@ class ProfilController extends Controller
         }
 
 
+        $directions = Direction::with('moduls')->inRandomOrder()->get();
+        $directions = $directions->map(function ($direction) {
+            $direction->modules_count = $direction->moduls->count();
+            $direction->total_lessons = $direction->moduls->sum('lesson');
+            $direction->moduls_to_display = $direction->moduls->count() >= 3 ? $direction->moduls->random(3) : $direction->moduls;
 
+            return $direction;
+        });
+        $branches = Branch::get();
 
-        return view('profil.profil', compact('userInfo', 'userStudents', 'branch', 'moduls'));
+        return view('profil.profil', compact('userInfo', 'userStudents', 'branch', 'moduls', 'directions', 'branches'));
     }
 }

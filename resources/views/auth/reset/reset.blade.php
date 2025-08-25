@@ -1,10 +1,10 @@
 <x-layout>
     @vite(['resources/views/auth/login/login.css']) {{-- Подключаем тот же CSS, что и для логина --}}
-    <section class="login__section">
+    <section class="login__section_reset">
         <div class="login__contenteiner">
             <div class="login-container">
                 <h2>Восстановление пароля</h2>
-                <p>Восстановление пароля по почте. Новый пароль придёт на почту.</p>
+                <p>Восстановление пароля по почте. Новый пароль будет отправлен на вашу почту.</p>
                 <form action="{{ route('resetUser') }}" method="post">
                     @csrf
                     <div class="login-group">

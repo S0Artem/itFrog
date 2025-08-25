@@ -11,15 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aplications', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->string('number');
             $table->string('name');
             $table->string('email');
             $table->string('student_name');
             $table->date('student_birth_date');
-            $table->foreignId('branche_id')
+            $table->foreignId('branch_id')
                 ->constrained('branches')
+                ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
                 ->onDelete('cascade');
             $table->foreignId('student_id')
                 ->nullable()
@@ -29,7 +33,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('employees')
                 ->onDelete('cascade');
-            $table->enum('status', ['Новая','В работе', 'Отказ', 'Обработана', 'Созданная'])
+            $table->enum('status', ['Новая','В работе', 'Отказ', 'Обработана', 'Пользователь создан', 'Готовая'])
                 ->default('Новая');
             $table->timestamps();
         });
@@ -40,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aplications');
+        Schema::dropIfExists('applications');
     }
 };

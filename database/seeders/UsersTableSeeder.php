@@ -42,9 +42,9 @@ class UsersTableSeeder extends Seeder
             ]);
         }
 
-        // Родители (50 человек)
+        // Родители (250 человек)
         $parents = [];
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 250; $i++) {
             $gender = $faker->randomElement(['male', 'female']);
             $parents[] = [
                 'name' => $faker->lastName($gender) . ' ' . $faker->firstName($gender) . ' ' . $faker->middleName($gender),

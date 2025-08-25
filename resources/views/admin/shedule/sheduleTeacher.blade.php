@@ -31,7 +31,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="lesson-empty">Пусто</p>
+                            <p class="lesson-empty">Пусто.</p>
                         @endif
                         </div>
                     @endforeach

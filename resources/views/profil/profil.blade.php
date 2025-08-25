@@ -5,19 +5,24 @@
             <h2>Профиль родителя</h2>
         @elseif (Auth::user()->role === 'teacher')
             <h2>Профиль учителя</h2>
+            @if($branch)
             <p><strong>Филиал: </strong>{{ $branch->sity }}, {{ $branch->adres }}</p>
+            @else
+                <p><strong>Филиал: </strong>Не назначен</p>
+            @endif
         @elseif (Auth::user()->role === 'admin')
-            <h2>Профиль админа</h2>
+            <h2>Профиль администратора</h2>
         @endif
         <p><strong>Имя: </strong>{{ $userInfo->name }}</p>
         <p><strong>Почта: </strong>{{ $userInfo->email }}</p>
         <p><strong>Номер: </strong>{{ $userInfo->number }}</p>
     </div>
     @if (Auth::user()->role === 'user')
+        
         <h2>Ваши дети:</h2>
         @foreach ($userStudents as $userStudent)
             <div class="student-card">
-                <p><strong>Имя ребенка: </strong>{{ $userStudent->name }}</p>
+                <p><strong>Имя ребёнка: </strong>{{ $userStudent->name }}</p>
                 <p><strong>День рождения: </strong>{{ $userStudent->birthdate }}</p>
                 @if($userStudent->branch)
                     <p><strong>Филиал: </strong>
@@ -78,18 +83,46 @@
                         @endforeach
                     </div>
                 @empty
-                    <p>Студент не записан ни в одну группу</p>
+                    <p>Ученик не записан ни в одну группу.</p>
                 @endforelse
             </div>
         @endforeach
+        @include('home.component.form.form')
     @elseif (Auth::user()->role === 'teacher')
         <h2>Модули, которые вы ведёте</h2>
+        <div class="modules-grid">
             @foreach ($moduls as $modul)
-            <div class="student-card">
-                    <p><strong>Название модуля: </strong>{{ $modul->name }} — {{ $modul->description }}</p>
-                    <p><strong>Уроков: </strong>{{ $modul->lesson }}. <strong>Возраст:</strong> {{ $modul->min_age }}–{{ $modul->max_age }} лет</p>
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3>{{ $modul->name }}</h3>
+                        <span class="module-lessons">{{ $modul->lesson }} занятий</span>
+                    </div>
+                    
+                    <p class="module-description">{{ $modul->description }}</p>
+                    <p class="module-age"><strong>Возраст:</strong> {{ $modul->min_age }}–{{ $modul->max_age }} лет</p>
+                    
+                    @if($modul->tags)
+                        <div class="module-tags">
+                            @foreach(json_decode($modul->tags, true) as $tag)
+                                <span class="module-tag">{{ $tag }}</span>
+                            @endforeach
+                        </div>
+                    @endif
+                    
+                    <div class="module-actions">
+                        @if($modul->direction)
+                            <a href="{{ route('direction.show', $modul->direction->id) }}" class="btn btn-primary">
+                                Перейти к направлению
+                            </a>
+                        @endif
+                        @if($modul->file)
+                            <a href="{{ asset($modul->file) }}" download="{{ $modul->name }} для учителя.pdf" class="btn btn-secondary">
+                                Скачать материалы
+                            </a>
+                        @endif
+                    </div>
             </div>
             @endforeach
-
+        </div>
     @endif
 </x-layout>

@@ -45,6 +45,13 @@
     flex-direction: column;
 }
 
+.name-group label, .email-group label, .number-group label, .password-group label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: left;
+}
 
 .name-group input, .email-group input, .number-group input, .password-group input{
     width: 100%;
@@ -64,6 +71,22 @@
 .btn {
     margin-top: 20px;
     width: fit-content;
+    padding: 12px 24px;
+    background-color: #2fac35;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.btn:hover {
+    background-color: #248c2d;
+    transform: scale(1.05);
+    color: #fff;
+    text-decoration: none;
 }
 .register-footer a {
     cursor: pointer;

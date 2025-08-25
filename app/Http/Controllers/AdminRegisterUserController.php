@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Aplication;
+use App\Models\Application;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\SendLoginDetails;
 use Illuminate\Validation\Rule;
+use App\Rules\ProperNameFormat;
+use App\Rules\AgeLimit;
 
 class AdminRegisterUserController extends Controller
 {
@@ -34,8 +36,7 @@ class AdminRegisterUserController extends Controller
             'email.email' => 'Пожалуйста, введите корректный адрес электронной почты',
             'email.unique' => 'Пользователь с такой почтой уже зарегистрирован',
             'name.required' => 'Имя обязательно для заполнения',
-            'name.regex' => 'Введите полное ФИО (например, Софронов Артем Павлович)',
-            'number.required' => 'Имя обязательно для заполнения',
+            'number.required' => 'Номер телефона обязателен для заполнения',
         ];
         
         $request->validate([
@@ -44,9 +45,9 @@ class AdminRegisterUserController extends Controller
                 'email',
                 Rule::unique('users', 'email'), // Проверка на уникальность почты в таблице users
             ],
-            'name' => ['required', 'regex:/^\s*\S+\s+\S+\s+\S+/u'],
+            'name' => ['required', new ProperNameFormat],
             'number'=> 'required',
-            'idAplication' => 'nullable|exists:aplications,id',
+            'idAplication' => 'nullable|exists:applications,id',
         ], $messages);
 
         // Генерация уникального логина и пароля
@@ -60,12 +61,17 @@ class AdminRegisterUserController extends Controller
             'password' => Hash::make($password),
         ]);
 
-        // Если idAplication передан, обновляем статус заявки на "Созданный"
+        // Если idAplication передан, обновляем статус заявки и данные
         if ($request->has('idAplication')) {
-            $aplication = Aplication::find($request->input('idAplication'));
-            if ($aplication) {
-                $aplication->status = 'Созданная';
-                $aplication->save();
+            $application = Application::find($request->input('idAplication'));
+            if ($application) {
+                $application->status = 'Пользователь создан';
+                $application->user_id = $user->id;
+                $application->email = $request->email; // Обновляем email в заявке
+                $application->name = $request->name; // Обновляем имя в заявке
+                $application->number = $request->number; // Обновляем номер в заявке
+                // Принудительно обновляем время изменения через update()
+                $application->update(['updated_at' => now()->setTimezone('Europe/Moscow')]);
             }
         }
 

@@ -23,11 +23,26 @@
     width: 100px;
 }
 .home__banner__section .btn{
-    width: 170px;
-    border-radius: 14px;
-    margin-top: 40px;
+    margin-top: 20px;
+    width: fit-content;
+    padding: 12px 24px;
+    background-color: #2fac35;
+    color: #fff;
     border: none;
-    text-align: center;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.home__banner__section .btn:hover {
+    background-color: #248c2d;
+    transform: scale(1.05);
+    color: #fff;
+    text-decoration: none;
 }
 .home__banner__content__text p{
     margin-top: 10px;
@@ -38,4 +53,19 @@
     display: flex;
     flex-direction: column;
 
+}
+@media (max-width: 900px) {
+    .home__banner__content {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .home__banner__content__text {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .home__banner__section .btn{
+        margin: auto;
+        margin-top: 20px;
+    }
 }

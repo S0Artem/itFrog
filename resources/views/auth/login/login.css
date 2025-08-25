@@ -1,3 +1,16 @@
+.login__section_reset{
+    margin-top: 80px;
+    height: fit-content;
+    position: relative; /* Позволяет ей выходить за границы main */
+    left: 50%; /* Смещаем влево на половину ширины main */
+    width: 100vw; /* Делаем ширину на весь экран */
+    transform: translateX(-50%); /* Возвращаем секцию на место */
+    background: #b3ff95;
+    padding: 100px 0 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .login__section{
     margin-top: 80px;
     height: fit-content;
@@ -6,7 +19,7 @@
     width: 100vw; /* Делаем ширину на весь экран */
     transform: translateX(-50%); /* Возвращаем секцию на место */
     background: #b3ff95;
-    padding: 100px 0 80px;
+    padding: 100px 0 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,6 +76,22 @@
 .btn {
     margin-top: 20px;
     width: fit-content;
+    padding: 12px 24px;
+    background-color: #2fac35;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+}
+
+.btn:hover {
+    background-color: #248c2d;
+    transform: scale(1.05);
+    color: #fff;
+    text-decoration: none;
 }
 .login-footer a {
     cursor: pointer;

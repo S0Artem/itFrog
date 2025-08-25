@@ -21,14 +21,14 @@ class ModulStudentsTableSeeder extends Seeder
             ->select('groups.id', 'groups.branch_id', 'groups.modul_id', 'branches.sity')
             ->get();
 
-        // Получаем всех студентов сгруппированных по филиалам
+        // Получаем всех студентов, сгруппированных по филиалам
         $studentsByBranch = DB::table('students')
-            ->select('id', 'branche_id')
+            ->select('id', 'branch_id')
             ->get()
-            ->groupBy('branche_id');
+            ->groupBy('branch_id');
 
         foreach ($groups as $group) {
-            // Проверяем есть ли студенты в этом филиале
+            // Проверяем, есть ли студенты в этом филиале
             if (!isset($studentsByBranch[$group->branch_id])) {
                 continue;
             }
@@ -58,8 +58,16 @@ class ModulStudentsTableSeeder extends Seeder
             DB::table('modul_students')->insert($assignments);
 
             // Удаляем выбранных студентов из доступных
-            $studentsByBranch[$group->branch_id] = $studentsByBranch[$group->branch_id]
+            $studentsByBranch[$group->branch_id] = $availableStudents
                 ->whereNotIn('id', $selectedStudents->pluck('id'));
+        }
+
+        // Проверяем оставшихся студентов и удаляем их
+        foreach ($studentsByBranch as $branchId => $remainingStudents) {
+            if ($remainingStudents->isNotEmpty()) {
+                $remainingStudentIds = $remainingStudents->pluck('id')->toArray();
+                DB::table('students')->whereIn('id', $remainingStudentIds)->delete();
+            }
         }
     }
 }

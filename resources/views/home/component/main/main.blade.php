@@ -8,14 +8,14 @@
                     {{ session('login') }}
                 </div>
             @endif
-            <h1>Школа программирования для детей и подростков itFrog’</h1>
-            <p>Запишите своего ребенка на бесплатный пробный урок и погрузите его в сферу it</p>
+            <h1>Школа программирования для детей и подростков itFrog</h1>
+            <p>Запишите своего ребёнка на бесплатный пробный урок и погрузите его в сферу IT.</p>
         </div>
         <div class='home__main__content__baner__btn'>
             <div class="home__main__content__banner no-select">
                 <img src="{{ asset('img/icon_stud.png') }}" alt="Logo" />
                 <div class="home__main__content__banner__text">
-                    <p>более 2 000 учеников</p>
+                    <p>более 2000 учеников</p>
                 </div>
                 <img src="{{ asset('img/icon_stud.png') }}" alt="Logo" />
                 <div class="home__main__content__banner__text">
@@ -23,7 +23,7 @@
                 </div>
                 <img src="{{ asset('img/icon_stud.png') }}" alt="Logo" />
                 <div class="home__main__content__banner__text">
-                    <p>4.6 оценка на 2ГИС</p>
+                    <p>4.6 балла на 2ГИС</p>
                 </div>
             </div>
             <div class="home__main__content__banner no-select home__main__content__banner2">

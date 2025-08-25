@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Direction extends Model
 {
-    protected $fillable = ['name', 'description', 'photo'];
+    protected $fillable = ['name', 'description', 'detailed_description', 'photo', 'icon'];
 
     // Один ко многим, один direction может иметь много модулей
     public function moduls()

@@ -1,9 +1,11 @@
-
-.admin-schedule .container h2, .branch-form{
+/* Основные стили (оставлены без изменений для десктопа) */
+.admin-schedule .container h2,
+.branch-form {
     margin-top: 20px;
     text-align: center;
 }
-.form-select{
+
+.form-select {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -12,8 +14,9 @@
     background-color: #f9f9f9;
     cursor: pointer;
     transition: border-color 0.3s ease;
-    flex: 1;
+    width: 100%;
 }
+
 .schedule-grid {
     display: grid;
     grid-template-columns: 120px repeat(7, 1fr);
@@ -29,13 +32,15 @@
     font-weight: bold;
 }
 
-.time-column, .time-slot {
+.time-column,
+.time-slot {
     background-color: #f8f9fa;
     padding: 10px;
     text-align: center;
 }
 
 .lesson-slot {
+    font-size: 14px;
     min-height: 90px;
     background-color: white;
     padding: 5px;
@@ -53,11 +58,12 @@
     font-weight: bold;
 }
 
-.branch-selector{
+.branch-selector {
     max-width: 400px;
     margin: 0 auto 20px;
 }
-.lesson-add{
+
+.lesson-add {
     width: 100%;
     height: 100%;
     font-size: 14px;
@@ -67,15 +73,14 @@
     border: none;
     cursor: pointer;
 }
-lesson-empty{
+
+.lesson-empty {
     width: 100%;
     height: 100%;
     font-size: 14px;
     display: flex;
     border: none;
 }
-
-
 
 .modal {
     display: none;
@@ -97,10 +102,10 @@ lesson-empty{
 
 .modal-content {
     background-color: #fff;
-    padding: 30px 25px;
+    padding: 20px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    width: 100%;
+    width: 90%;
     max-width: 480px;
     position: relative;
     animation: fadeInUp 0.3s ease-out;
@@ -175,7 +180,7 @@ lesson-empty{
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .btn-primary {
@@ -186,6 +191,7 @@ lesson-empty{
 
 .btn-primary:hover {
     background-color: #ffdbab;
+    color: #4b3b2a;
 }
 
 .btn-secondary {
@@ -198,6 +204,7 @@ lesson-empty{
 
 .btn-secondary:hover {
     background-color: #e0e0e0;
+    color: #333;
 }
 
 .alert-danger {
@@ -214,34 +221,127 @@ lesson-empty{
     cursor: pointer;
 }
 
+/* Мобильная адаптация */
+@media (max-width: 1180px) {
+    .schedule-grid {
+        grid-template-columns: 80px repeat(7, 1fr); /* Уменьшаем ширину столбца времени */
+        font-size: 12px;
+    }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    .grid-header {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .time-column,
+    .time-slot {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .lesson-slot {
+        min-height: 60px; /* Уменьшаем высоту ячеек */
+        padding: 3px;
+    }
+
+    .lesson-card {
+        padding: 3px;
+        font-size: 12px;
+    }
+
+    .lesson-add {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .branch-selector {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .form-select {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .modal-title {
+        font-size: 18px;
+    }
+
+    .form-control {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    .form-actions .btn {
+        font-size: 13px;
+        padding: 8px 0;
+    }
 }
 
-.modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 5px;
-    width: 50%;
-    max-width: 500px;
-}
+@media (max-width: 970px) {
+    .schedule-grid {
+        display: block; /* Переключаем на блочную модель для маленьких экранов */
+    }
 
-.close {
-    float: right;
-    font-size: 24px;
-    cursor: pointer;
-}
+    .grid-header,
+    .time-slot,
+    .lesson-slot {
+        display: none; /* Скрываем сетку по умолчанию */
+    }
 
-.no-select {
-    user-select: none;
-    cursor: pointer;
+    .grid-header.time-column,
+    .time-slot {
+        display: block; /* Показываем только столбец времени */
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .lesson-slot {
+        display: block;
+        width: 100%;
+        min-height: 50px;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Показываем только один день за раз (можно добавить переключатель дней в JS) */
+    .lesson-slot[data-day="1"] {
+        display: block; /* Показываем только понедельник по умолчанию */
+    }
+
+    .lesson-card {
+        font-size: 11px;
+        padding: 5px;
+    }
+
+    .lesson-add {
+        font-size: 11px;
+        padding: 5px;
+    }
+
+    .modal-content {
+        width: 98%;
+        padding: 10px;
+    }
+
+    .modal-title {
+        font-size: 16px;
+    }
+
+    .form-control {
+        font-size: 12px;
+    }
+
+    .form-actions .btn {
+        font-size: 12px;
+        padding: 6px 0;
+    }
 }

@@ -20,10 +20,34 @@
 
 .slide {
     min-width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
+}
+
+.slide img, .slide video {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 900px) {
+    .slide img, .slide video {
+        height: 300px;
+    }
+}
+@media (max-width: 430px) {
+    .portfolio__tags {
+        display: none !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .slide img, .slide video {
+        height: 200px;
+    }
 }
 
 .video {
@@ -42,6 +66,7 @@
     padding: 20px;
     border-radius: 0 0 15px 15px;
     max-width: 60%;
+    min-width: 60%;
 }
 
 .portfolio__tags {
