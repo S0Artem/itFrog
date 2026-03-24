@@ -7,27 +7,27 @@
             @foreach ($directions as $index => $direction)
                 <div class="card {{ $index >= 6 ? 'hidden-card' : '' }}">
                     <div class="card-content">
-                        <p class="courses-info">{{ $direction->modules_count }} МОДУЛЕЙ, {{ $direction->total_lessons }} ЗАНЯТИЯ</p>
-                        <h2 class="card-title">{{ $direction->name }}</h2>
+                        <p class="courses-info">{{ $direction['modules_count'] }} МОДУЛЕЙ, {{ $direction['total_lessons'] }} ЗАНЯТИЯ</p>
+                        <h2 class="card-title">{{ $direction['name'] }}</h2>
                         <ul class="card-list">
-                            @foreach ($direction->moduls_to_display as $modul)
+                            @foreach ($direction['moduls_to_display'] as $modul_name)
                                 <li>
-                                    {{ $modul->name }}
+                                    {{ $modul_name }}
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="card-icon">
-                        <img src="{{ asset($direction->icon) }}" alt="Logo" />
+                        <img src="{{ asset($direction['icon'] ?? 'img/default-icon.png') }}" alt="Logo" />
                     </div>
-                    <a href="{{ route('direction.show', $direction->id) }}" class="card-arrow">
+                    <a href="{{ route('direction.show', ['id' => $direction['id']]) }}" class="card-arrow">
                         ➜
                     </a>
                 </div>
             @endforeach
         </div>
         @if (count($directions) > 6)
-            <a id="seeAllButton" class="btn">Записаться</a>
+            <a id="seeAllButton" class="btn">Увидеть все</a>
         @endif
     </div>
     <script>
