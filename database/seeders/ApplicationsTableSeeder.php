@@ -33,8 +33,8 @@ class ApplicationsTableSeeder extends Seeder
                 'student_id' => null,
                 'employee_id' => null,
                 'status' => $statuses[array_rand($statuses)],
-                'created_at' => $faker->dateTimeBetween('-3 months', 'now', 'Europe/Moscow'),
-                'updated_at' => now()->setTimezone('Europe/Moscow'),
+                'created_at' => $faker->dateTimeBetween('-3 months', 'now'),
+                'updated_at' => now(),
             ];
         }
 

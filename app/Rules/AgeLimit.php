@@ -5,7 +5,7 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Carbon\Carbon;
-
+# TODO: разобрать и переиспользовать
 class AgeLimit implements ValidationRule
 {
     protected $minAge;

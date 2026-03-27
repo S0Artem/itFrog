@@ -71,7 +71,7 @@ class AdminRegisterUserController extends Controller
                 $application->name = $request->name; // Обновляем имя в заявке
                 $application->number = $request->number; // Обновляем номер в заявке
                 // Принудительно обновляем время изменения через update()
-                $application->update(['updated_at' => now()->setTimezone('Europe/Moscow')]);
+                $application->update(['updated_at' => now()]);
             }
         }
 

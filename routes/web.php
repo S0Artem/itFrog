@@ -5,7 +5,7 @@ use App\Http\Controllers\View\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminRegisterUserController;
-use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\Actions\ApplicationController;
 use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminRegisterEmployeeController;

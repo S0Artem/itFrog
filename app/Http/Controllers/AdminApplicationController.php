@@ -94,7 +94,7 @@ class AdminApplicationController extends Controller
         }
         
         // Принудительно обновляем время изменения через update()
-        $application->update(['updated_at' => now()->setTimezone('Europe/Moscow')]);
+        $application->update(['updated_at' => now()]);
 
         return redirect()->route('showeAdminApplication')
             ->with('success_' . $id, 'Статус заявки успешно обновлен')

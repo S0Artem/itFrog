@@ -82,7 +82,7 @@ class AdminRegisterStudentController extends Controller
             if ($application) {
                 $application->status = 'Готовая';
                 $application->student_id = $student->id;
-                $application->update(['updated_at' => now()->setTimezone('Europe/Moscow')]);
+                $application->update(['updated_at' => now()]);
             }
         }
 

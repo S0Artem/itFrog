@@ -11,6 +11,8 @@ use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 
 /**
+ * Класс для вывода главной страницы
+ * 
  * @package App\Http\Controllers\View
  */
 class HomeController extends Controller

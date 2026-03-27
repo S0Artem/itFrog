@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-
+# TODO: разобрать и переиспользовать
 class ProperNameFormat implements ValidationRule
 {
     /**

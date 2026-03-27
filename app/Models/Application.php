@@ -9,17 +9,20 @@ class Application extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['number', 'email' , 'name', 'age', 'status', 'branch_id', 'user_id', 'student_id', 'employee_id', 'student_name', 'student_birth_date'];
+    protected $fillable = [
+        'name',
+        'email',
+        'number',
+        'age',
+        'status',
+        'branch_id',
+        'user_id',
+        'student_id',
+        'employee_id',
+        'student_name',
+        'student_birth_date',
+    ];
 
-    // Принудительно обновляем время при любых изменениях
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::updating(function ($application) {
-            $application->updated_at = now()->setTimezone('Europe/Moscow');
-        });
-    }
 
     public function branch()
     {

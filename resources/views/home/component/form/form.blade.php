@@ -84,6 +84,7 @@
                     <div class="form-group">
                         <input type="text" name="student_name" placeholder="ФИО ребенка" value="{{ old('student_name') }}" required>
                     </div>
+                    @error('student_name') <p class="error">{{ $message }}</p> @enderror
 
                     <div class="form-group">
                         <select name="branch_id" id="branch_id" class="form-select" required>
@@ -95,13 +96,14 @@
                             @endforeach
                         </select>
                     </div>
+                    @error('branch_id') <p class="error">{{ $message }}</p> @enderror
 
-                    @error('student_name') <p class="error">{{ $message }}</p> @enderror
                     <div class="form-group">
                         <label>День рождение ребенка</label>
-                        <input type="date" name="birthdate" value="{{ old('birthdate') }}" required>
+                        <input type="date" name="student_birth_date" value="{{ old('student_birth_date') }}" required>
                     </div>
                     @error('birthdate') <p class="error">{{ $message }}</p> @enderror
+
                     <button type="submit" class="btn">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
                 </form>
             @endauth
