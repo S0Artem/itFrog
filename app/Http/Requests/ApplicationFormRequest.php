@@ -15,7 +15,7 @@ use \Illuminate\Http\RedirectResponse;
  *
  * @package App\Http\Requests
  */
-class StoreProjectRequest extends FormRequest
+class ApplicationFormRequest extends FormRequest
 {
 
     /**

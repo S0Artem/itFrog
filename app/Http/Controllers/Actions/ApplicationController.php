@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers\Actions;
 
-use Illuminate\Http\Request;
 use App\Models\Application;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User;
-use App\Rules\ProperNameFormat;
-use App\Rules\AgeLimit;
-use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\ApplicationFormRequest;
 use \Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +22,7 @@ class ApplicationController extends Controller
      *
      * @return RedirectResponse         Результат выполнения
      */
-    public function store(StoreProjectRequest $request): RedirectResponse
+    public function store(ApplicationFormRequest $request): RedirectResponse
     {
         Application::create($request->validated());
 

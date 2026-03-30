@@ -21,7 +21,7 @@ class RoleMiddleware
         if (!$user || !in_array($user->role, $roles)) {
             Auth::logout(); // сначала выходим
 
-            return redirect()->route('showeLogin') // потом редиректим
+            return redirect()->route('auth.showeLogin') // потом редиректим
                 ->with('error', 'Сюда вам доступ закрыт, сначала зарегистрируйтесь');
         }
 

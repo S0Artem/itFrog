@@ -102,6 +102,6 @@ class AdminRegisterUserController extends Controller
         $user->password = Hash::make($password);
         $user->save();
         $user->notify(new SendLoginDetails($user, $password));
-        return redirect()->route('showeLogin')->with('reset', 'Вы успешно изменили пароль! Проверьте данные на ' . $user->email);
+        return redirect()->route('auth.showeLogin')->with('reset', 'Вы успешно изменили пароль! Проверьте данные на ' . $user->email);
     }
 }

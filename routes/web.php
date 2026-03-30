@@ -2,14 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\View\HomeController;
-use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminRegisterUserController;
 use App\Http\Controllers\Actions\ApplicationController;
 use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminRegisterEmployeeController;
 use App\Http\Controllers\AdminRegisterStudentController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\SheduleController;
 use App\Http\Controllers\GroupInfoController;
@@ -19,15 +19,21 @@ use App\Http\Controllers\TeacherPortfolioController;
 use App\Http\Controllers\CreatePortfolio;
 use App\Http\Controllers\DirectionController;
 
-
 Route::get('/', [HomeController::class, 'showeHome'])->name('showeHome');
-Route::get('/login', [LoginController::class, 'showeLogin'])->name('showeLogin');
-Route::post('/login',[LoginController::class, 'submitLogin'])->name('submitLogin');
+
+
+Route::name('auth.')->group(function () {
+    Route::prefix('login')->group( function () {
+        Route::get('/', function () {
+            return view('auth.login.login');
+        })->name('showeLogin');
+        Route::post('/',[LoginController::class, 'submitLogin'])->name('submitLogin');
+    });
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+});
+
+
 Route::post('/application', [ApplicationController::class, 'store'])->name('application.store');
-Route::get('/logout', function(){
-    Auth::logout();
-    return redirect()->route('showeLogin');
-})->name('logout');
 Route::get('/admin/potfolio', [AdminPortfolioController::class, 'showeAdminPortfolio'])->name('showeAdminPortfolio')->middleware('role:admin');
 Route::get('/admin/potfolio/studentsSearch', [AdminPortfolioController::class, 'studentsSearch'])->name('students.search')->middleware('role:admin');
 Route::put('/admin/potfolio/change', [AdminPortfolioController::class, 'studentProgectChange'])->name('studentProgectChange')->middleware('role:admin');

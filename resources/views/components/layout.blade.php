@@ -34,10 +34,10 @@
                 <li><a href="{{ route('showeHome') }}#home__courses">Курсы</a></li>
                 <li><a href="{{ route('showeHome') }}#home__portfolio">Работы учеников</a></li>
                 @if (!Auth::check())
-                    <li><a href="{{ route('showeLogin') }}">Вход</a></li>
+                    <li><a href="{{ route('auth.showeLogin') }}">Вход</a></li>
                 @else
                     <li><a href="{{ route('showeProfil') }}">{{ Auth::user()->name }}</a></li>
-                    <li><a href="{{ route('logout') }}">Выйти</a></li>
+                    <li><a href="{{ route('auth.logout') }}">Выйти</a></li>
                     @if (Auth::user()->role === 'admin')
                         <li class="none"><a class="none" href="{{ route('showeAdminPortfolio') }}">Работы учеников</a></li>
                         <li class="none"><a class="none" href="{{ route('showeAdminApplication') }}">Заявки</a></li>

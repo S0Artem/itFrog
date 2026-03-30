@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\Branch;
 use \Carbon\Carbon;
 
-
+/**
+ * Сервис сбора всех данных для главной страницы
+ *
+ * @package App\Services\Home
+ */
 class HomeDataService
 {
 

@@ -1,28 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Requests\LoginFormRequest;
 use Illuminate\Support\Facades\Hash;
+
 
 class LoginController extends Controller
 {
-    function showeLogin()
+    function submitLogin(LoginFormRequest $request)
     {
-        return(view('auth.login.login'));
-    }
-    function submitLogin(Request $request)
-    {
-        $messages = [
-            'login.required' => 'Почта обязателен для заполнения',
-            'password.required' => 'Пароль обязателен для заполнения'
-        ];
-        $request->validate([
-            'login' => 'required',
-            'password' => 'required'
-        ], $messages);
 
         $user = User::where('email', $request->login)->first();
         if (!$user){

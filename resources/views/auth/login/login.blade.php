@@ -15,7 +15,7 @@
                     </div>
                 @endif
                 <p>Вход в личный кабинет. Данные личного кабинета выдаются при записи ребёнка на занятия.</p>
-                <form action="{{ route('submitLogin') }}" method="post">
+                <form action="{{ route('auth.submitLogin') }}" method="post">
                     @csrf
                     <div class="login-group">
                         <input name="login" type="login" placeholder="Ваша почта" value="{{ old('login') }}">
