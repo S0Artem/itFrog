@@ -13,7 +13,6 @@ class LoginController extends Controller
 {
     function submitLogin(LoginFormRequest $request)
     {
-
         $user = User::where('email', $request->login)->first();
         if (!$user){
             return back()->withErrors(['password' => 'Неврная почта'])->withInput();
@@ -24,5 +23,11 @@ class LoginController extends Controller
         } else {
             return back()->withErrors(['password' => 'Неверный пароль.'])->withInput();
         }
+    }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect()->route('auth.showeLogin');
     }
 }

@@ -37,7 +37,14 @@
                     <li><a href="{{ route('auth.showeLogin') }}">Вход</a></li>
                 @else
                     <li><a href="{{ route('showeProfil') }}">{{ Auth::user()->name }}</a></li>
-                    <li><a href="{{ route('auth.logout') }}">Выйти</a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">
+                                Выйти
+                            </button>
+                        </form>
+                    </li>
                     @if (Auth::user()->role === 'admin')
                         <li class="none"><a class="none" href="{{ route('showeAdminPortfolio') }}">Работы учеников</a></li>
                         <li class="none"><a class="none" href="{{ route('showeAdminApplication') }}">Заявки</a></li>

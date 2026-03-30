@@ -18,7 +18,12 @@
                         <div class="blocked-message">
                             <h3>Форма недоступна</h3>
                             <p>Сначала выйдите из профиля администратора, чтобы оставить заявку.</p>
-                            <a href="{{ route('auth.logout') }}" class="btn btn-auth.logout">Выйти из профиля</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-auth.logout">
+                                    Выйти из профиля
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @elseif(Auth::user()->role === 'teacher')
@@ -26,7 +31,12 @@
                         <div class="blocked-message">
                             <h3>Форма недоступна</h3>
                             <p>Сначала выйдите из профиля учителя, чтобы оставить заявку.</p>
-                            <a href="{{ route('auth.logout') }}" class="btn btn-auth.logout">Выйти из профиля</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-auth.logout">
+                                    Выйти из профиля
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @else

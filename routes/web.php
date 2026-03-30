@@ -9,7 +9,6 @@ use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AdminRegisterEmployeeController;
 use App\Http\Controllers\AdminRegisterStudentController;
-use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\SheduleController;
 use App\Http\Controllers\GroupInfoController;
@@ -22,15 +21,21 @@ use App\Http\Controllers\DirectionController;
 Route::get('/', [HomeController::class, 'showeHome'])->name('showeHome');
 
 
-Route::name('auth.')->group(function () {
-    Route::prefix('login')->group( function () {
-        Route::get('/', function () {
-            return view('auth.login.login');
-        })->name('showeLogin');
-        Route::post('/',[LoginController::class, 'submitLogin'])->name('submitLogin');
-    });
-    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+// ==================== AUTH ====================
+Route::middleware('guest')->name('auth.')->prefix('login')->group(function () {
+    Route::get('/', function () {
+        return view('auth.login.login');
+    })->name('showeLogin');
+
+    Route::post('/',[LoginController::class, 'submitLogin'])->name('submitLogin');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
+});
+// ==================== AUTH ====================
 
 
 Route::post('/application', [ApplicationController::class, 'store'])->name('application.store');
