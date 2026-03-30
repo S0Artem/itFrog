@@ -5,7 +5,7 @@ use App\Models\Direction;
 use App\Models\StudentProject;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Branch;
-use \Carbon\Carbon;
+use Carbon\Carbon;
 
 /**
  * Сервис сбора всех данных для главной страницы

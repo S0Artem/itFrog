@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Requests\LoginFormRequest;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,9 +25,11 @@ class LoginController extends Controller
         }
     }
 
-    function logout()
+    function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('auth.showeLogin');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('showeHome');
     }
 }

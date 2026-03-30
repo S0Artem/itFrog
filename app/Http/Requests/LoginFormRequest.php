@@ -36,7 +36,7 @@ class LoginFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'login.required' => 'Почта обязателен для заполнения',
+            'login.required' => 'Почта обязательна для заполнения',
             'password.required' => 'Пароль обязателен для заполнения'
         ];
     }
