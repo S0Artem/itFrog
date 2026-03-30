@@ -48,8 +48,8 @@
                             <select name="branch_id" id="branch_id" class="form-select" required>
                                 <option value="">Выберите филиал</option>
                                 @foreach($branches as $branch)
-                                    <option value="{{ $branch->id }}" {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
-                                        {{ $branch->sity }}, {{ $branch->adres }}
+                                    <option value="{{ $branch['id'] }}" {{ old('branch_id') == $branch['id'] ? 'selected' : '' }}>
+                                        {{ $branch['sity'] }}, {{ $branch['adres'] }}
                                     </option>
                                 @endforeach
                             </select>
@@ -90,8 +90,8 @@
                         <select name="branch_id" id="branch_id" class="form-select" required>
                             <option value="">Выберите филиал</option>
                             @foreach($branches as $branch)
-                                <option value="{{ $branch->id }}" {{ old('branch_id') == $branch->id ? 'selected' : '' }}>
-                                    {{ $branch->sity }}, {{ $branch->adres }}
+                                <option value="{{ $branch['id'] }}" {{ old('branch_id') == $branch['id'] ? 'selected' : '' }}>
+                                    {{ $branch['sity'] }}, {{ $branch['adres'] }}
                                 </option>
                             @endforeach
                         </select>

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Payment;
 
 use YooKassa\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Facades\Log;
+
 
 class YooKassaService
 {
