@@ -5,7 +5,7 @@ namespace App\Http\Controllers\View;
 use App\Services\Home\HomeDataService;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Config;
 
 /**
  * Вывода главной страницы
@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function showeHome(): View
     {
         $data = $this->homeDataService->getHomePageData();
-
+        dd("Ghbdnt");
         return view('home.home', $data);
     }
 }

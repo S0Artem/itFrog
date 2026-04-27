@@ -46,7 +46,7 @@ class HomeDataService
      * @cache 300 секунд
      * @cache-key branches_cache
      */
-    private function getCachedBranches(): array
+    function getCachedBranches(): array
     {
         return Cache::remember('branches_cache', 300, function () {
             return Branch::get()->toArray();

@@ -24,7 +24,7 @@ class AdminPortfolioController extends Controller
                 'project'      => $project->project,
                 'student_id'   => $project->student_id,
                 'student_name' => optional($project->student)->name,
-                'student_age'  => \Carbon\Carbon::parse(optional($project->student)->birthdate)->age,
+                'student_age'  => Carbon::parse(optional($project->student)->birthdate)->age,
                 'tags'         => json_decode(optional($project->modul)->tags ?? '[]', true),
             ];
         }
@@ -72,7 +72,7 @@ class AdminPortfolioController extends Controller
 
         return response()->json(
             $students->map(function ($s) {
-                $age = \Carbon\Carbon::parse($s->birthdate)->age;
+                $age = Carbon::parse($s->birthdate)->age;
                 return [
                     'id' => $s->id,
                     'label' => "{$s->name}, {$age} лет"
