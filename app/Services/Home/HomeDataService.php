@@ -48,9 +48,9 @@ class HomeDataService
      */
     function getCachedBranches(): array
     {
-        return Cache::remember('branches_cache', 300, function () {
+        //return Cache::remember('branches_cache', 300, function () {
             return Branch::get()->toArray();
-        });
+        //});
     }
 
     /**
@@ -70,7 +70,7 @@ class HomeDataService
      */
     function getCachedDirections(): array
     {
-        return Cache::remember('directions_cache', 300, function () {
+        //return Cache::remember('directions_cache', 300, function () {
             return Direction::with('moduls')
                 ->inRandomOrder()
                 ->get()
@@ -85,7 +85,7 @@ class HomeDataService
                         : $d->moduls->pluck('name')->toArray(),
                 ])
                 ->toArray();
-        });
+        //});
     }
 
     /**
@@ -106,7 +106,7 @@ class HomeDataService
     function getCachedProjects(): array
     {
 
-        return Cache::remember('studentProjects_cache', 300, function() {
+        //return Cache::remember('studentProjects_cache', 300, function() {
             return StudentProject::with('student', 'modul')
                 ->get()
                 ->map(fn ($s) =>[
@@ -117,6 +117,6 @@ class HomeDataService
                     'project' => $s->project,
                 ])
                 ->toArray();
-        });
+        //});
     }
 }

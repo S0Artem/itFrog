@@ -6,7 +6,6 @@ use App\Models\Student;
 use App\Models\StudentProject;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\LazyCollection;
 
 class PortfolioService
