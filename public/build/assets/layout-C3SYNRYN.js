@@ -1,0 +1,1 @@
+window.addEventListener("load",function(){const e=document.getElementById("preloader");e&&setTimeout(()=>{e.classList.add("hidden"),setTimeout(()=>{e.remove()},500)},500)});document.querySelector(".burger-menu").addEventListener("click",function(){this.classList.toggle("active"),document.querySelector(".header__ul").style.display=this.classList.contains("active")?"flex":"none"});
